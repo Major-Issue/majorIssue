@@ -1,4 +1,4 @@
-package com.majorissue.bowandarrow;
+package com.majorissue.game;
 
 import com.majorissue.framework.Game;
 import com.majorissue.framework.Screen;
@@ -16,12 +16,14 @@ public class MainMenuScreen extends Screen{
 
     @Override
     public void present(float deltaTime) {
+        
+        
         // TODO
     }
 
     @Override
     public void pause() {
-        // TODO
+        Settings.save(game.getFileIO());
     }
 
     @Override

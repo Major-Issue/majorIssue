@@ -15,7 +15,7 @@
         android:label="Bow and Arrow"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".BowAndArrowGame"
+            android:name=".My2DGame"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:label="Bow and Arrow"
             android:screenOrientation="landscape" >

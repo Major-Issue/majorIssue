@@ -1,5 +1,5 @@
 
-package com.majorissue.bowandarrow;
+package com.majorissue.game;
 
 import com.majorissue.framework.Pixmap;
 
