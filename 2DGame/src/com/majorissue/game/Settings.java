@@ -7,9 +7,11 @@ public class Settings {
 
     public static void load(FileIO files) {
         // TODO:
+    	
     }
 
     public static void save(FileIO files) {
         // TODO:
+    	
     }
 }
