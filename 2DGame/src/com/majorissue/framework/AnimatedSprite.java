@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 
 public interface AnimatedSprite {
 
-    public void initialize(Bitmap bitmap, int width, int height, int fps, int frameCount);
+    public void initialize(Bitmap bitmap, int width, int height, int fps, int frameCount, boolean isLooping);
     
     public void update(long gameTime);
     
@@ -18,4 +18,6 @@ public interface AnimatedSprite {
     public int getmXPos();
     
     public int getmYPos();
+    
+    public boolean isExpired();
 }

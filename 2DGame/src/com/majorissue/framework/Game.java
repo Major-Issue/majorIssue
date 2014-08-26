@@ -1,5 +1,7 @@
 package com.majorissue.framework;
 
+import android.content.Context;
+
 public interface Game {
 
 	public Input getInput();
@@ -15,5 +17,7 @@ public interface Game {
 	public Screen getCurrentScreen();
 
 	public Screen getStartScreen();
+	
+	public Context getContext();
 
 }

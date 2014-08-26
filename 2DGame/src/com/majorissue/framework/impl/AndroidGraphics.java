@@ -4,20 +4,33 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.Typeface;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 import com.majorissue.framework.Graphics;
 import com.majorissue.framework.Pixmap;
 
 public class AndroidGraphics implements Graphics {
-    AssetManager assets;
+    
+    public static final int TOP_LEFT = 0;
+    public static final int TOP_RIGHT = 1;
+    public static final int BOTTOM_LEFT = 2;
+    public static final int BOTTOM_RIGHT = 3;
+    public static final int CENTER = 4;
+	
+	AssetManager assets;
     Bitmap frameBuffer;
     Canvas canvas;
     Paint paint;
@@ -49,11 +62,9 @@ public class AndroidGraphics implements Graphics {
             in = assets.open(fileName);
             bitmap = BitmapFactory.decodeStream(in);
             if (bitmap == null)
-                throw new RuntimeException("Couldn't load bitmap from asset '"
-                        + fileName + "'");
+                throw new RuntimeException("Couldn't load bitmap from asset '" + fileName + "'");
         } catch (IOException e) {
-            throw new RuntimeException("Couldn't load bitmap from asset '"
-                    + fileName + "'");
+            throw new RuntimeException("Couldn't load bitmap from asset '" + fileName + "'");
         } finally {
             if (in != null) {
                 try {
@@ -74,8 +85,7 @@ public class AndroidGraphics implements Graphics {
     }
 
     public void clear(int color) {
-        canvas.drawRGB((color & 0xff0000) >> 16, (color & 0xff00) >> 8,
-                (color & 0xff));
+        canvas.drawRGB((color & 0xff0000) >> 16, (color & 0xff00) >> 8, (color & 0xff));
     }
 
     public void drawPixel(int x, int y, int color) {
@@ -94,8 +104,7 @@ public class AndroidGraphics implements Graphics {
         canvas.drawRect(x, y, x + width - 1, y + width - 1, paint);
     }
 
-    public void drawPixmap(Pixmap pixmap, int x, int y, int srcX, int srcY,
-            int srcWidth, int srcHeight) {
+    public void drawPixmap(Pixmap pixmap, int x, int y, int srcX, int srcY, int srcWidth, int srcHeight) {
         srcRect.left = srcX;
         srcRect.top = srcY;
         srcRect.right = srcX + srcWidth - 1;
@@ -106,7 +115,7 @@ public class AndroidGraphics implements Graphics {
         dstRect.right = x + srcWidth - 1;
         dstRect.bottom = y + srcHeight - 1;
 
-        canvas.drawBitmap(((AndroidPixmap) pixmap).bitmap, srcRect, dstRect, null);
+        canvas.drawBitmap(((AndroidPixmap)pixmap).bitmap, srcRect, dstRect, null);
     }
 
     public void drawPixmap(Pixmap pixmap, int x, int y) {
@@ -120,5 +129,70 @@ public class AndroidGraphics implements Graphics {
     public int getHeight() {
         return frameBuffer.getHeight();
     }
+
+	public void drawText(int position, int size, String text, Typeface tf) {
+		Paint paint = new Paint(); 
+		paint.setColor(Color.WHITE); 
+		paint.setTextSize(getPixels(size));
+		paint.setAntiAlias(true);
+		if(tf != null)
+			paint.setTypeface(tf);
+		Point p = getDrawPointForText(paint, text, position);
+		canvas.drawText(text, p.x, p.y, paint);
+	}
+    
+	public void drawText(int x, int y, int size, String text, Typeface tf) {
+		Paint paint = new Paint(); 
+		paint.setColor(Color.WHITE); 
+		paint.setTextSize(getPixels(size));
+		paint.setAntiAlias(true);
+		if(tf != null)
+			paint.setTypeface(tf);
+		canvas.drawText(text, x, y, paint); 
+	}
+	
+	public int getPixels(int size) {
+	    DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
+	    return (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, size, metrics);
+	}
+	
+	public Point getDrawPointForText(Paint paint, String text, int position) {
+	    Rect bounds = new Rect();
+	    paint.getTextBounds(text, 0, text.length(), bounds);
+	    int x = 0;
+	    int y = 0;
+	    switch (position) {
+		case CENTER:
+			x = (getWidth() / 2) - (bounds.width() / 2);
+		    y = (getHeight() / 2) - (bounds.height() / 2);
+			break;
+		case TOP_LEFT:
+			x = 0;
+		    y = 0 + bounds.height();
+			break;
+		case TOP_RIGHT:
+			x = getWidth() - bounds.width();
+		    y = 0 + bounds.height();
+			break;
+		case BOTTOM_LEFT:
+			x = 0;
+		    y = getHeight();
+			break;
+		case BOTTOM_RIGHT:
+			x = getWidth() - bounds.width();
+		    y = getHeight();
+			break;
+		}
+	    
+	    return new Point(x, y);
+	}
+	
+	public Canvas getCanvas() {
+		return canvas;
+	}
+	
+	public void drawText(String text, int x, int y, Paint paint) {
+		canvas.drawText(text, x, y, paint);
+	}
 }
 

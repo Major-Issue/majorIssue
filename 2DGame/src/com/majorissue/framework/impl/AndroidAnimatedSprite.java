@@ -19,6 +19,8 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
     private long mFrameTimer;
     private int mSpriteHeight;
     private int mSpriteWidth;
+    private boolean mIsLooping;
+    private boolean mFirstCircleCompleted;
 
     public AndroidAnimatedSprite() {
         mSRectangle = new Rect(0, 0, 0, 0);
@@ -26,10 +28,11 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
         mCurrentFrame = 0;
         mXPos = 0;
         mYPos = 0;
+        mFirstCircleCompleted = false;
     }
 
     @Override
-    public void initialize(Bitmap bitmap, int width, int height, int fps, int frameCount) {
+    public void initialize(Bitmap bitmap, int width, int height, int fps, int frameCount, boolean isLooping) {
         mAnimation = bitmap;
         mSpriteWidth = width;
         mSpriteHeight = height;
@@ -39,6 +42,7 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
         mSRectangle.right = mSpriteWidth;
         mFPS = 1000 / fps;
         mFramesCount = frameCount;
+        mIsLooping = isLooping;
     }
 
     @Override
@@ -46,8 +50,10 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
         if (gameTime > mFrameTimer + mFPS) {
             mFrameTimer = gameTime;
             mCurrentFrame += 1;
-            if (mCurrentFrame == mFramesCount)
-                mCurrentFrame = 0;
+            if (mCurrentFrame == mFramesCount){
+            	mCurrentFrame = 0;
+            	mFirstCircleCompleted = true;
+            }
         }
         mSRectangle.left = mCurrentFrame * mSpriteWidth;
         mSRectangle.right = mSRectangle.left + mSpriteWidth;
@@ -55,9 +61,10 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
 
     @Override
     public void draw(Canvas canvas) {
-        Rect rect = new Rect(getmXPos(), getmYPos(), getmXPos() + mSpriteWidth, getmYPos()
-                + mSpriteHeight);
-        canvas.drawBitmap(mAnimation, mSRectangle, rect, null);
+    	if(!isExpired()){
+    		Rect rect = new Rect(getmXPos(), getmYPos(), getmXPos() + mSpriteWidth, getmYPos() + mSpriteHeight);
+    		canvas.drawBitmap(mAnimation, mSRectangle, rect, null);
+    	}
     }
 
     @Override
@@ -80,4 +87,11 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
         return mYPos;
     }
 
+	@Override
+	public boolean isExpired() {
+		if(!mIsLooping && mFirstCircleCompleted)
+			return true;
+		else
+			return false;
+	}
 }

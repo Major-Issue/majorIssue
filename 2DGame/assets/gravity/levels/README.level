@@ -1,0 +1,20 @@
+*.level
+
+##comment
+
+#t x y g a
+
+t: Type
+x: x Position in %
+y: y Position in %
+g: Gravity in %
+a: Asset
+
+Type:
+#ship
+#portal
+#planet
+#station
+
+Asset:
+TBD
