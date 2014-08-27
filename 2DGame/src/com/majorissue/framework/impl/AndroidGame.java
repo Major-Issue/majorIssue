@@ -27,15 +27,16 @@ public abstract class AndroidGame extends Activity implements Game {
     Screen screen;
     WakeLock wakeLock;
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        int displayWidth = getWindowManager().getDefaultDisplay().getWidth();
-        int displayHeight = getWindowManager().getDefaultDisplay().getHeight();;
+        
+		int displayWidth = getWindowManager().getDefaultDisplay().getWidth();
+		int displayHeight = getWindowManager().getDefaultDisplay().getHeight();
         
         boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         int frameBufferWidth = isLandscape ? displayWidth : displayHeight;

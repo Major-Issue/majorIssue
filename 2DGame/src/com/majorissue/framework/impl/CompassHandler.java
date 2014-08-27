@@ -11,7 +11,8 @@ public class CompassHandler implements SensorEventListener {
     float pitch;
     float roll;
 
-    public CompassHandler(Context context) {
+	@SuppressWarnings("deprecation")
+	public CompassHandler(Context context) {
         SensorManager manager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         if (manager.getSensorList(Sensor.TYPE_ORIENTATION).size() != 0) {
             Sensor compass = manager.getDefaultSensor(Sensor.TYPE_ORIENTATION);

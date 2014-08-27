@@ -83,11 +83,10 @@ public class MainMenuScreen extends MenuScreen {
 	}
 	
 	private boolean checkContinueGame() {
-		// TODO:
-		if(Settings.currentLevel.equals("01.level")) {
+		if(Settings.continueGame) {
 			return true;
 		} else {
-			
+			// TODO:
 		}
 		return true;
 	}

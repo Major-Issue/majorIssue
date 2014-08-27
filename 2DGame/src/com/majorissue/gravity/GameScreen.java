@@ -14,66 +14,71 @@ public class GameScreen extends Screen {
 
 	public static final int RESOLUTION_NATIVE = 0;
 	public static final int RESOLUTION_HALF = 1;
-	
+
 	private final float LOADING_TIME_MIN = 2; // sec
-	
+
 	enum GameState {
-		Loading,
-        Ready,
-        Running,
-        Paused,
-        GameOver
-    }
-	
+		Loading, Ready, Running, Paused, GameOver
+	}
+
 	GameState state = GameState.Loading;
-    World world;
-    
-    private float loadingTime = 0;
-    private boolean loadingComplete = false;
-	
+	World world;
+
+	private float loadingTime = 0;
+	private boolean loadingComplete = false;
+
 	public GameScreen(Game game, int extraLvl) {
 		super(game);
 		world = new World();
 		loadLevel(extraLvl);
 	}
 
-	private void loadLevel(int extraLvl){
-		if(extraLvl == 0)
+	private void loadLevel(int extraLvl) {
+		if (extraLvl == 0)
 			Level.loadLevel(Settings.currentLevel, Level.LEVEL_STORY, assets);
 		else
 			Level.loadLevel(extraLvl, Level.LEVEL_EXTRA, assets);
 		loadingComplete = true;
 	}
-	
+
 	@Override
 	public void update(float deltaTime) {
 		List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
-		if(state == GameState.Loading)
+		switch (state) {
+		case Loading:
 			updateLoading(touchEvents, deltaTime);
-		if(state == GameState.Ready)
-            updateReady(touchEvents);
-        if(state == GameState.Running)
-            updateRunning(touchEvents, deltaTime);
-        if(state == GameState.Paused)
-            updatePaused(touchEvents);
-        if(state == GameState.GameOver)
-            updateGameOver(touchEvents);
+			break;
+		case Ready:
+			updateReady(touchEvents);
+			break;
+		case Running:
+			updateRunning(touchEvents, deltaTime);
+			break;
+		case Paused:
+			updatePaused(touchEvents);
+			break;
+		case GameOver:
+			updateGameOver(touchEvents);
+			break;
+		default:
+			break;
+		}	
 	}
 
 	private void updateLoading(List<TouchEvent> touchEvents, float deltaTime) {
 		loadingTime += deltaTime;
-		if(loadingComplete && loadingTime > LOADING_TIME_MIN)
+		if (loadingComplete && loadingTime > LOADING_TIME_MIN)
 			state = GameState.Ready;
 	}
-	
+
 	private void updateGameOver(List<TouchEvent> touchEvents) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void updatePaused(List<TouchEvent> touchEvents) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void updateReady(List<TouchEvent> touchEvents) {
@@ -86,10 +91,10 @@ public class GameScreen extends Screen {
 			}
 		}
 	}
-	
+
 	private void updateRunning(List<TouchEvent> touchEvents, float deltaTime) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -98,33 +103,60 @@ public class GameScreen extends Screen {
 		g.clear(android.R.color.black);
 		switch (state) {
 		case Loading:
-			g.drawText(AndroidGraphics.CENTER, 20, "loading da game", null);
+			drawLoadingUI(g);
 			break;
 		case Ready:
-			g.drawText(AndroidGraphics.CENTER, 20, "da game is rdy", null);
+			drawReadyUI(g);
+		case Running:
+			drawRunningUI(g);
+			break;
+		case Paused:
+			drawPausedUI(g);
+			break;
+		case GameOver:
+			drawGameOverUI(g);
+			break;
 		default:
 			break;
 		}
-		
+	}
+
+	private void drawLoadingUI(Graphics g) {
+		g.drawText(AndroidGraphics.CENTER, 20, "loading da game", null);
+		// TODO:
+	}
+
+	private void drawReadyUI(Graphics g) {
+		g.drawText(AndroidGraphics.CENTER, 20, "da game is rdy", null);
+		// TODO:
+	}
+
+	private void drawRunningUI(Graphics g) {
+		// TODO:
+	}
+
+	private void drawPausedUI(Graphics g) {
+		// TODO:
+	}
+
+	private void drawGameOverUI(Graphics g) {
 		// TODO:
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
+		if (state == GameState.Running)
+			state = GameState.Paused;
 		
+		Settings.save(game.getFileIO());
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
