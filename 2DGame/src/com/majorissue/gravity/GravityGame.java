@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.majorissue.framework.Screen;
 import com.majorissue.framework.impl.AndroidGame;
+import com.majorissue.gravity.screens.LoadingScreen;
+import com.majorissue.gravity.screens.MainMenuScreen;
 
 public class GravityGame extends AndroidGame {
 

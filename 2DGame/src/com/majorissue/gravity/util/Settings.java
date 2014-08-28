@@ -7,18 +7,20 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import com.majorissue.framework.FileIO;
-import com.majorissue.gravity.GameScreen;
-import com.majorissue.gravity.IntroScreen;
+import com.majorissue.gravity.screens.GameScreen;
+import com.majorissue.gravity.screens.IntroScreen;
 
 public class Settings {
 
+	public static final String DEFAULT_LVL = "01.level";
+	
 	// settings w/ defaults
 	public static boolean soundEnabled = true;
 	public static boolean musicEnabled = true;
 	public static int introState = IntroScreen.INTRO_FIRST;
 	public static int resolution = GameScreen.RESOLUTION_NATIVE;
 	public static boolean continueGame = false;
-	public static String currentLevel = "01.level";
+	public static String currentLevel = DEFAULT_LVL;
 		
 	public static void load(FileIO files) {
 		BufferedReader in = null;
@@ -31,7 +33,7 @@ public class Settings {
 			continueGame = Boolean.parseBoolean(in.readLine());
 			currentLevel = in.readLine();
 		} catch (Exception e) {
-			// :( It's ok we have defaults
+			// defaults
 		} finally {
 			try {
 				if (in != null)

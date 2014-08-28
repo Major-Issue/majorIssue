@@ -21,6 +21,11 @@
     <string name="intro_on">ON</string>
     <string name="intro_off">OFF</string>
     
+    <!-- continue game -->
+    <string name="reset">New Game</string>
+    <string name="cancel">Cancel</string>
+    <string name="continue_info">reset current game progress and start anew?</string>
+    
     <!-- misc -->
     <string name="back">Back</string>
     
