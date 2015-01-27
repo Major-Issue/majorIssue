@@ -70,8 +70,9 @@ public class ContinueGameScreen extends MenuScreen {
 			Settings.save(game.getFileIO());
 			game.setScreen(new GameScreen(game, 0));
 		}
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.cancel)))
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.cancel))) {
 			game.setScreen(new MainMenuScreen(game));
+		}
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import com.majorissue.framework.Graphics;
 import com.majorissue.framework.Screen;
 import com.majorissue.framework.Input.TouchEvent;
 import com.majorissue.framework.impl.AndroidGraphics;
+import com.majorissue.gravity.util.Assets;
 import com.majorissue.gravity.util.Settings;
 
 public class IntroScreen extends Screen {
@@ -37,7 +38,7 @@ public class IntroScreen extends Screen {
 	@Override
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
-		g.clear(android.R.color.black);
+		g.drawPixmap(Assets.background_menu_01, 0, 0);
 		g.drawText(AndroidGraphics.CENTER, 20, "INTRO", null);
 		// TODO:
 	}

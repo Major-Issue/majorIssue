@@ -1,5 +1,4 @@
-##t x y g a
-#ship 0 0 0 0
-#portal 95 70 100 0
-#planet 33 15 50 0
-#planet 60 65 30 1
+##t x y g a s
+#ship 5 50 0 0 0
+#portal 85 70 100 0 100
+#planet 50 55 50 0 100

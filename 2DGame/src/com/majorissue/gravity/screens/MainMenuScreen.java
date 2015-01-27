@@ -5,6 +5,7 @@ import java.util.List;
 import android.app.Activity;
 
 import com.majorissue.framework.Game;
+import com.majorissue.framework.Graphics;
 import com.majorissue.framework.Input.TouchEvent;
 import com.majorissue.game.R;
 import com.majorissue.gravity.GravityGame;
@@ -22,7 +23,9 @@ public class MainMenuScreen extends MenuScreen {
 
 	@Override
 	public void update(float deltaTime) {
-		if(menuTouchAreas == null) return;
+		if(menuTouchAreas == null) {
+			return;
+		}
 		
 		List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
 		int len = touchEvents.size();
@@ -39,7 +42,7 @@ public class MainMenuScreen extends MenuScreen {
 	}
 
 	private void checkTouchDown(TouchEvent event) {
-		for(int i = 0; i < menuTouchAreas.length; i++){
+		for(int i = 0; i < menuTouchAreas.length; i++) {
 			try {
 				if(inBounds(event, menuTouchAreas, i)) {
 					touchedMenuEntry = menuTouchAreas[i][0];
@@ -71,50 +74,67 @@ public class MainMenuScreen extends MenuScreen {
 			if(checkContinueGame())
 				game.setScreen(new GameScreen(game, 0));
 		}
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.continue_game)))
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.continue_game))) {
 			game.setScreen(new GameScreen(game, 0));
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.extra)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.extra))) {
 			game.setScreen(new ExtraScreen(game));
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.settings)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.settings))) {
 			game.setScreen(new SettingsScreen(game));
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.help)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.help))) {
 			game.setScreen(new HelpScreen(game));
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.credits)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.credits))) {
 			game.setScreen(new CreditsScreen(game));
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.quit)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.quit))) {
 			((Activity)game).finish();
+		}
 	}
 	
 	private boolean checkContinueGame() {
-		if(Settings.continueGame)
+		if(Settings.continueGame) {
 			game.setScreen(new ContinueGameScreen(game));
-		else
+		} else {
 			return true;
-		
+		}
 		return false;
 	}
 	
 	private void playSound(String entry) {
-		if(entry == null || !Settings.soundEnabled) return;
+		if(entry == null || !Settings.soundEnabled) {
+			return;
+		}
 		
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.new_game)))
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.new_game))) {
 			Assets.menu_select.play(1);
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.continue_game)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.continue_game))) {
 			Assets.menu_select.play(1);
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.extra)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.extra))) {
 			Assets.menu_select.play(1);
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.settings)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.settings))) {
 			Assets.menu_select.play(1);
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.help)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.help))) {
 			Assets.menu_select.play(1);
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.credits)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.credits))) {
 			Assets.menu_select.play(1);
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.quit)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.quit))) {
 			Assets.menu_back.play(1);
+		}
 	}
 	
 	@Override
 	public void present(float deltaTime) {
+		Graphics g = game.getGraphics();
+		g.drawPixmap(Assets.background_menu_01, 0, 0);
 		menuTouchAreas = drawMenu(new String[]{	((GravityGame)game).getResources().getString(R.string.new_game),
 												((GravityGame)game).getResources().getString(R.string.continue_game),
 												((GravityGame)game).getResources().getString(R.string.extra),

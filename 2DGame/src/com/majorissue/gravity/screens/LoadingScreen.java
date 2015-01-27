@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import com.majorissue.framework.Game;
 import com.majorissue.framework.Graphics;
 import com.majorissue.framework.Screen;
+import com.majorissue.framework.Graphics.PixmapFormat;
 import com.majorissue.framework.impl.AndroidGraphics;
 import com.majorissue.gravity.util.Assets;
 import com.majorissue.gravity.util.Level;
@@ -26,9 +27,12 @@ public class LoadingScreen extends Screen {
 	}
 
 	private void loadAssets(){
-		// TODO: load assets
-		
 		// graphics
+		Graphics g = game.getGraphics();
+		Assets.background_menu_01 = g.newPixmap("gravity/graphics/background_menu_01.jpg", PixmapFormat.RGB565);
+		Assets.portal = g.newPixmap("gravity/graphics/portal.png", PixmapFormat.ARGB4444);
+		Assets.ship = g.newPixmap("gravity/graphics/ship.png", PixmapFormat.ARGB4444);
+		Assets.planet = g.newPixmap("gravity/graphics/planet.png", PixmapFormat.ARGB4444);
 		
 		// sounds
 		Assets.menu_select = game.getAudio().newSound("gravity/sound/select_01.wav");
@@ -51,6 +55,7 @@ public class LoadingScreen extends Screen {
 	@Override
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
+		g.drawPixmap(Assets.background_menu_01, 0, 0);
 		Typeface tf = Typeface.create("Roboto",Typeface.BOLD_ITALIC);
 		g.drawText(AndroidGraphics.CENTER, 25, "LOADING ...", tf);
 	}

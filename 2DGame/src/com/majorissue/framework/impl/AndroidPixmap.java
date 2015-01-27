@@ -28,5 +28,13 @@ public class AndroidPixmap implements Pixmap {
 
     public void dispose() {
         bitmap.recycle();
-    }      
+    }
+    
+    public Bitmap getBitmap() {
+    	return bitmap;
+    }
+    
+    public void setBitmap(Bitmap bmp) {
+    	this.bitmap = bmp;
+    }
 }

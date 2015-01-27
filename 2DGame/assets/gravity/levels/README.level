@@ -2,13 +2,14 @@
 
 ##comment
 
-#t x y g a
+#t x y g a s
 
 t: Type
 x: x Position in %
 y: y Position in %
 g: Gravity in %
 a: Asset
+s: Scale in %
 
 Type:
 #ship

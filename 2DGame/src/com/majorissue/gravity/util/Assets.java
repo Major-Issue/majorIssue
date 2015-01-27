@@ -8,6 +8,7 @@ public class Assets {
 	public static Pixmap ship;
 	public static Pixmap planet;
 	public static Pixmap station;
+	public static Pixmap background_menu_01;
 	
 	public static Sound menu_select;
 	public static Sound menu_back;

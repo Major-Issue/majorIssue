@@ -121,6 +121,10 @@ public class AndroidGraphics implements Graphics {
     public void drawPixmap(Pixmap pixmap, int x, int y) {
         canvas.drawBitmap(((AndroidPixmap)pixmap).bitmap, x, y, null);
     }
+    
+    public void drawBitmap(Bitmap bitmap, int x, int y) {
+        canvas.drawBitmap(bitmap, x, y, null);
+    }
 
     public int getWidth() {
         return frameBuffer.getWidth();
@@ -176,11 +180,11 @@ public class AndroidGraphics implements Graphics {
 			break;
 		case BOTTOM_LEFT:
 			x = 0;
-		    y = getHeight();
+		    y = getHeight() - 10;
 			break;
 		case BOTTOM_RIGHT:
 			x = getWidth() - bounds.width();
-		    y = getHeight();
+		    y = getHeight() - 10;
 			break;
 		}
 	    

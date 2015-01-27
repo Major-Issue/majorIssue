@@ -1,5 +1,6 @@
 package com.majorissue.framework;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -24,6 +25,8 @@ public interface Graphics {
 			int srcWidth, int srcHeight);
 
 	public void drawPixmap(Pixmap pixmap, int x, int y);
+	
+	public void drawBitmap(Bitmap bitmap, int x, int y);
 	
 	public void drawText(int position, int size, String text, Typeface tf);
 	

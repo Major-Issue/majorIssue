@@ -11,7 +11,7 @@ public class World {
 
 	public Snake snake;
 	public Stain stain;
-	public boolean gameOver = false;;
+	public boolean gameOver = false;
 	public int score = 0;
 
 	boolean fields[][] = new boolean[WORLD_WIDTH][WORLD_HEIGHT];

@@ -22,7 +22,7 @@ public abstract class MenuScreen extends Screen {
 	protected String[][] drawMenu(String[] entries, String touchedMenuEntry) {
 		
 		Graphics g = game.getGraphics();
-		g.clear(android.R.color.black);
+//		g.clear(android.R.color.black);
 		
 		int widthMenuBlock = 0;
 		int heightMenuBlock = 0;

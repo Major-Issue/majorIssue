@@ -9,6 +9,8 @@ import com.majorissue.gravity.screens.MainMenuScreen;
 
 public class GravityGame extends AndroidGame {
 
+	public static final boolean DEBUG = true;
+	
 	@Override
 	public Screen getStartScreen() {
 		return new LoadingScreen(this);
@@ -21,10 +23,12 @@ public class GravityGame extends AndroidGame {
 
 	@Override
 	public void onBackPressed() {
-		if(getCurrentScreen() instanceof MainMenuScreen)
-			super.onBackPressed();//TODO: advertising
-		else
+		if(getCurrentScreen() instanceof MainMenuScreen) {	// exit game
+			super.onBackPressed();// TODO: advertising
+		} else {											// return to main screen
 			setScreen(new MainMenuScreen(this));
+			// TODO: check "return to menu ?"
+		}
 	}
 
 }

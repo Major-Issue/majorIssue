@@ -3,6 +3,7 @@ package com.majorissue.gravity.screens;
 import java.util.List;
 
 import com.majorissue.framework.Game;
+import com.majorissue.framework.Graphics;
 import com.majorissue.framework.Input.TouchEvent;
 import com.majorissue.game.R;
 import com.majorissue.gravity.GravityGame;
@@ -65,6 +66,8 @@ public class SettingsScreen extends MenuScreen {
 
 	@Override
 	public void present(float deltaTime) {
+		Graphics g = game.getGraphics();
+		g.drawPixmap(Assets.background_menu_01, 0, 0);
 		settingsTouchAreas = drawMenu(new String[]{	((GravityGame)game).getResources().getString(R.string.music),
 													((GravityGame)game).getResources().getString(R.string.sound),
 													((GravityGame)game).getResources().getString(R.string.intro),
