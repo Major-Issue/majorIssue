@@ -182,6 +182,7 @@ public class Level {
 		planet.gravity = Integer.parseInt(st.nextToken());
 		planet.asset = Integer.parseInt(st.nextToken());
 		planet.scale = Integer.parseInt(st.nextToken());
+		planet.hasMoon = Integer.parseInt(st.nextToken()) == 0 ? false : true;
 		planets.add(planet);
 	}
 	

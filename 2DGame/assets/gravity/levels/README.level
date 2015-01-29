@@ -2,7 +2,7 @@
 
 ##comment
 
-#t x y g a s
+#t x y g a s m
 
 t: Type
 x: x Position in %
@@ -10,6 +10,7 @@ y: y Position in %
 g: Gravity in %
 a: Asset
 s: Scale in %
+m: Moon (Plantes only: 0|1)
 
 Type:
 #ship

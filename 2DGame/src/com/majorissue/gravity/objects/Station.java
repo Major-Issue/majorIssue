@@ -21,10 +21,6 @@ public class Station extends OSO{
 		// TODO:
 	}
 	
-	private void updateHeading(int targetX, int targetY) {
-		// TODO:
-	}
-	
 	public void reset() {
 		// TODO:
 	}

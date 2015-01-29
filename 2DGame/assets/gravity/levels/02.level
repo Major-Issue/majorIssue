@@ -1,3 +1,4 @@
-line01
-line02
-line03
+##t x y g a s m
+#ship 5 50 0 0 0
+#portal 80 35 100 0 100
+#planet 60 55 50 0 100 1

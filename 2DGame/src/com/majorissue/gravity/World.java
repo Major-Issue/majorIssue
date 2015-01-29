@@ -113,6 +113,11 @@ public class World {
 				if(ship.checkCollision(planet.getPosX(), planet.getPosY(), planet.collisionRadius)) {
 					gameOver = true;
 				}
+				if(planet.hasMoon) {
+					if(ship.checkCollision(planet.moon.getPosX(), planet.moon.getPosY(), planet.moon.collisionRadius)) {
+						gameOver = true;
+					}
+				}
 			}
 		}
 		if(stations != null) {

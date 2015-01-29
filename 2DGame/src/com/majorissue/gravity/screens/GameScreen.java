@@ -23,7 +23,7 @@ public class GameScreen extends Screen {
 	public static final int RESOLUTION_HALF = 1;
 	public static final float DELTA_TIME_MIN = 0.02f;
 	
-	private final float LOADING_TIME_MIN = 0.5f; // sec
+	private final float LOADING_TIME_MIN = 2f; // sec
 	
 	public enum GameState {
 		Loading, Ready, Running, Paused, GameOver, GameWon
@@ -88,7 +88,8 @@ public class GameScreen extends Screen {
 		state = oldState;
 		state = GameState.Loading;
 		world.reset();
-		Level.loadLevel(Settings.currentLevel, Level.LEVEL_STORY, assets);
+		String nextLevel = "02.level"; // TODO: next level
+		Level.loadLevel(nextLevel, Level.LEVEL_STORY, assets);
 		loadingComplete = true;
 	}
 
@@ -167,7 +168,7 @@ public class GameScreen extends Screen {
 
 		if (world.gameOver) {
 			oldState = state;
-			state = GameState.GameWon; // TODO:
+			state = GameState.GameOver;
 		}
 		else if(world.gameWon) {
 			oldState = state;
@@ -247,6 +248,12 @@ public class GameScreen extends Screen {
 				x = planet.getPosX() - (b.getWidth() / 2);
 				y = planet.getPosY() - (b.getHeight() / 2);
 				g.drawBitmap(b, x, y);
+				if(planet.hasMoon) {
+					b = Util.RotateBitmap(Assets.moon.getBitmap(), planet.moon.selfRotation);
+					x = planet.moon.getPosX() - (b.getWidth() / 2);
+					y = planet.moon.getPosY() - (b.getHeight() / 2);
+					g.drawBitmap(b, x, y);
+				}
 			}
 		}
 		

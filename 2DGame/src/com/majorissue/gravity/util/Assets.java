@@ -7,6 +7,7 @@ public class Assets {
 	public static Pixmap portal;
 	public static Pixmap ship;
 	public static Pixmap planet;
+	public static Pixmap moon;
 	public static Pixmap station;
 	public static Pixmap background_menu_01;
 	
