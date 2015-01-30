@@ -218,6 +218,9 @@ public class GameScreen extends Screen {
 	
 	private void drawDebug(Graphics g) {
 		g.drawText(AndroidGraphics.TOP_RIGHT, 20, fps + " fps", null);
+		if(world == null || world.ship == null) {
+			return;
+		}
 		if(state == GameState.Ready || state == GameState.Running || state == GameState.Paused) {
 			g.drawText(AndroidGraphics.BOTTOM_LEFT, 20, "x=" + player_x + ", y=" + player_y + ", h=" + world.ship.heading + ", p=" + world.ship.pulse + ", s=" + world.ship.percetageSpeed, null);
 		}
@@ -283,15 +286,18 @@ public class GameScreen extends Screen {
 		}
 		
 		// draw Ship
-		Bitmap ship = Util.RotateBitmap(Assets.ship.getBitmap(), world.ship.heading);
-		x = world.ship.getPosX() - (ship.getWidth() / 2);
-		y = world.ship.getPosY() - (ship.getHeight() / 2);
-		g.drawBitmap(ship, x, y);
-		
-		// draw Line
-		if(state == GameState.Ready && player_x != -1) {
-			g.drawLine(world.ship.getPosX(), world.ship.getPosY(), player_x, player_y, 0xffffffff);
+		if(world.ship != null) {
+			Bitmap ship = Util.RotateBitmap(Assets.ship.getBitmap(), world.ship.heading);
+			x = world.ship.getPosX() - (ship.getWidth() / 2);
+			y = world.ship.getPosY() - (ship.getHeight() / 2);
+			g.drawBitmap(ship, x, y);
+			
+			// draw Line
+			if(state == GameState.Ready && player_x != -1) {
+				g.drawLine(world.ship.getPosX(), world.ship.getPosY(), player_x, player_y, 0xffffffff);
+			}
 		}
+		
 	}
 
 	@Override

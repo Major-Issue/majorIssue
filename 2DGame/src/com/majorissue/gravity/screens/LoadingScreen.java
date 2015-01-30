@@ -35,6 +35,9 @@ public class LoadingScreen extends Screen {
 		Assets.planet = g.newPixmap("gravity/graphics/planet.png", PixmapFormat.ARGB4444);
 		Assets.station = g.newPixmap("gravity/graphics/station.png", PixmapFormat.ARGB4444);
 		Assets.moon = g.newPixmap("gravity/graphics/moon.png", PixmapFormat.ARGB4444);
+		Assets.intro_page_01 = g.newPixmap("gravity/graphics/intro_page_01.png", PixmapFormat.RGB565);
+		Assets.intro_page_02 = g.newPixmap("gravity/graphics/intro_page_02.png", PixmapFormat.RGB565);
+		Assets.intro_page_03 = g.newPixmap("gravity/graphics/intro_page_03.png", PixmapFormat.RGB565);
 		
 		// sounds
 		Assets.menu_select = game.getAudio().newSound("gravity/sound/select_01.wav");

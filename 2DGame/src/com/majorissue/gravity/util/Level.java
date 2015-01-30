@@ -6,12 +6,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import android.content.res.AssetManager;
+
 import com.majorissue.gravity.objects.Planet;
 import com.majorissue.gravity.objects.Portal;
-import com.majorissue.gravity.objects.Station;
 import com.majorissue.gravity.objects.Ship;
-
-import android.content.res.AssetManager;
 
 public class Level {
 
@@ -34,10 +33,18 @@ public class Level {
 	public static String levelBGM;
 
 	public static void loadLevel(int level, int type, AssetManager am) {
+		
+		ship = null;
+		portal = null;
+		planets = null;
+		
 		if(storyLevels == null || extraLevels == null) {
 			return;
 		}
 		if(type == LEVEL_STORY) {
+			if(level > 9) {
+				level = 1;
+			}
 			Settings.currentLevel = level;
 			if(level > 1) {
 				Settings.continueGame = true;
@@ -49,13 +56,6 @@ public class Level {
 	}
 	
 	private static void loadLevel(String levelName, int type, AssetManager am) {
-		
-		if(planets == null) {
-			planets = new ArrayList<Planet>();
-		} else {
-			planets.clear();
-		}
-		
 		InputStream in = null;
 		BufferedReader reader = null;
 		try {
@@ -165,6 +165,9 @@ public class Level {
 	}
 
 	private static void createPlanet(String line) {
+		if(planets == null) {
+			planets = new ArrayList<Planet>();
+		}
 		Planet planet = new Planet();
 		StringTokenizer st = new StringTokenizer(line);
 		st.nextToken();

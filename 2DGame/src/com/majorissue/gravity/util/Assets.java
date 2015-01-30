@@ -10,6 +10,9 @@ public class Assets {
 	public static Pixmap moon;
 	public static Pixmap station;
 	public static Pixmap background_menu_01;
+	public static Pixmap intro_page_01;
+	public static Pixmap intro_page_02;
+	public static Pixmap intro_page_03;
 	
 	public static Sound menu_select;
 	public static Sound menu_back;

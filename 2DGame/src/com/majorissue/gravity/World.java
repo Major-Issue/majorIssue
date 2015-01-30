@@ -53,7 +53,7 @@ public class World {
 
 	public void update(float deltaTime, GameState state) {
 		// this is where we make things move
-		if(state == GameState.Ready) {
+		if(state == GameState.Ready && ship != null) {
 			ship.userInput(inputX, inputY);
 		}
 		if(state == GameState.Running) {
@@ -71,7 +71,9 @@ public class World {
 	
 	private void updateRunning(float deltaTime) {
 		// ship movement
-		ship.updatePosition(deltaTime);
+		if(ship != null) {
+			ship.updatePosition(deltaTime);
+		}
 		
 		// gravitational movement
 		if(planets != null) {
@@ -84,15 +86,17 @@ public class World {
 		}
 		
 		// update heading & velocitiy
-		ship.updateHeading();
+		if(ship != null) {
+			ship.updateHeading();
+		}
 		
 		// collision
-		if(portal != null) {
+		if(ship != null && portal != null) {
 			if(ship.checkCollision(portal)) {
 				gameWon = true;
 			}
 		}
-		if(planets != null) {
+		if(ship != null && planets != null) {
 			for(Planet planet : planets) {
 				if(ship.checkCollision(planet)) {
 					gameOver = true;
@@ -111,20 +115,24 @@ public class World {
 		}
 		
 		// lost in space
-		if(ship.checkOutOfBounds()) {
+		if(ship != null && ship.checkOutOfBounds()) {
 			gameOver = true;
 		}
 	}
 	
 	public void reset() {
-		ship.reset();
-		inputX = -1;
-		inputY = -1;
+		ship = null;
+		planets = null;
+		portal = null;
 		
-		if(planets != null) {
-			for(Planet planet : planets) {
-				planet.reset();
-			}
-		}
+//		ship.reset();
+//		inputX = -1;
+//		inputY = -1;
+//		
+//		if(planets != null) {
+//			for(Planet planet : planets) {
+//				planet.reset();
+//			}
+//		}
 	}
 }
