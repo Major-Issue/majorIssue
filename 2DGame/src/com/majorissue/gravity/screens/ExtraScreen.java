@@ -32,7 +32,7 @@ public class ExtraScreen extends Screen {
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
 		g.drawPixmap(Assets.background_menu_01, 0, 0);
-		g.drawText(AndroidGraphics.CENTER, 20, "comming soon ...", null);
+		g.drawText(AndroidGraphics.CENTER, 20, "coming soon ...", null);
 		// TODO:
 	}
 

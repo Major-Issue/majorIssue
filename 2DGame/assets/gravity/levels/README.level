@@ -2,21 +2,21 @@
 
 ##comment
 
-#t x y g a s m
+#t x y g a v m s
 
 t: Type
 x: x Position in %
 y: y Position in %
 g: Gravity in %
 a: Asset
-s: Scale in %
+v: Scale in %
 m: Moon (Plantes only: 0|1)
+s: Station (Planets only: 0|1)
 
 Type:
 #ship
 #portal
 #planet
-#station
 
 Asset:
 TBD

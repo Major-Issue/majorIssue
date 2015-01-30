@@ -67,6 +67,10 @@ public class Ship extends OSO {
 		heading = (float) (rad * 180 / Math.PI);
 	}
 	
+	public boolean checkCollision(OSO object) {
+		return checkCollision(object.getPosX(), object.getPosY(), object.collisionRadius);
+	}
+	
 	public boolean checkCollision(int objectX, int objectY, int objectRadius) {
 		float distX = objectX - pixPosX;
 		float distY = objectY - pixPosY;

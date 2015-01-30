@@ -38,8 +38,9 @@ public abstract class MenuScreen extends Screen {
 		paint.setTypeface(Typeface.create("Roboto",Typeface.BOLD));
 		
 		for(String entry : entries) {
-			if(entry.equalsIgnoreCase(((GravityGame)game).getResources().getString(R.string.continue_game)) && !Settings.continueGame)
+			if(entry.equalsIgnoreCase(((GravityGame)game).getResources().getString(R.string.continue_game)) && !Settings.continueGame) {
 				continue;
+			}
 		    paint.getTextBounds(entry, 0, entry.length(), bounds);
 		    widthMenuBlock = widthMenuBlock < bounds.width() ? bounds.width() : widthMenuBlock;
 		    heightMenuBlock += (bounds.height() * 2);
@@ -50,8 +51,9 @@ public abstract class MenuScreen extends Screen {
 		
 		int  i = 0;
 		for(String entry : entries) {
-			if(entry.equalsIgnoreCase(((GravityGame)game).getResources().getString(R.string.continue_game)) && !Settings.continueGame)
+			if(entry.equalsIgnoreCase(((GravityGame)game).getResources().getString(R.string.continue_game)) && !Settings.continueGame) {
 				continue;
+			}
 			
 			if(entry.equals(touchedMenuEntry)) {
 				paint.setColor(Color.DKGRAY);
@@ -69,14 +71,17 @@ public abstract class MenuScreen extends Screen {
 			
 			g.drawText(entry, menuX, menuY, paint);
 			
-			if(entry.equals(((GravityGame)game).getResources().getString(R.string.sound)))
+			if(entry.equals(((GravityGame)game).getResources().getString(R.string.sound))) {
 				drawSoundExplanation(menuX, menuY, widthMenuBlock);
+			}
 			
-			if(entry.equals(((GravityGame)game).getResources().getString(R.string.music)))
+			if(entry.equals(((GravityGame)game).getResources().getString(R.string.music))) {
 				drawMusicExplanation(menuX, menuY, widthMenuBlock);
+			}
 			
-			if(entry.equals(((GravityGame)game).getResources().getString(R.string.intro)))
+			if(entry.equals(((GravityGame)game).getResources().getString(R.string.intro))) {
 				drawIntroExplanation(menuX, menuY, widthMenuBlock);
+			}
 			
 			menuY += (bounds.height() * 2);
 			i++;
@@ -102,28 +107,31 @@ public abstract class MenuScreen extends Screen {
 	
 	private void drawSoundExplanation(int x, int y, int blockWidth) {
 		String text = "";
-		if(Settings.soundEnabled)
+		if(Settings.soundEnabled) {
 			text = ((GravityGame)game).getResources().getString(R.string.sound_on);
-		else
+		} else {
 			text = ((GravityGame)game).getResources().getString(R.string.sound_off);
+		}
 		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
 	}
 	
 	private void drawMusicExplanation(int x, int y, int blockWidth) {
 		String text = "";
-		if(Settings.musicEnabled)
+		if(Settings.musicEnabled) {
 			text = ((GravityGame)game).getResources().getString(R.string.music_on);
-		else
+		} else {		
 			text = ((GravityGame)game).getResources().getString(R.string.music_off);
+		}
 		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
 	}
 	
 	private void drawIntroExplanation(int x, int y, int blockWidth) {
 		String text = "";
-		if(Settings.introState == IntroScreen.INTRO_DONT_SHOW)
+		if(Settings.introState == IntroScreen.INTRO_DONT_SHOW) {
 			text = ((GravityGame)game).getResources().getString(R.string.intro_off);
-		else
+		} else {
 			text = ((GravityGame)game).getResources().getString(R.string.intro_on);
+		}
 		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
 	}
 	
@@ -136,10 +144,11 @@ public abstract class MenuScreen extends Screen {
 	}
 	
 	protected boolean inBounds(TouchEvent event, int x0, int x1, int y0, int y1) {
-		if (event.x > x0 && event.x < x1 && event.y > y0 && event.y < y1)
+		if (event.x > x0 && event.x < x1 && event.y > y0 && event.y < y1) {
 			return true;
-		else
+		} else {
 			return false;
+		}
 	}
 
 }

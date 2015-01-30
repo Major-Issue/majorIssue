@@ -32,8 +32,8 @@ public class CreditsScreen extends Screen {
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
 		g.drawPixmap(Assets.background_menu_01, 0, 0);
-		g.drawText(AndroidGraphics.CENTER, 20, "CREDITS", null);
-		// TODO:
+		g.drawText(AndroidGraphics.CENTER, 20, "ALL the credits belong to me!", null);
+		g.drawText(AndroidGraphics.BOTTOM_RIGHT, 15, "... sweet, sweet credits", null);
 	}
 
 	@Override

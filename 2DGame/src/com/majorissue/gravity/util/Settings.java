@@ -12,7 +12,7 @@ import com.majorissue.gravity.screens.IntroScreen;
 
 public class Settings {
 
-	public static final String DEFAULT_LVL = "01.level";
+	public static final int DEFAULT_LVL = 1;
 	
 	// settings w/ defaults
 	public static boolean soundEnabled = true;
@@ -20,7 +20,7 @@ public class Settings {
 	public static int introState = IntroScreen.INTRO_FIRST;
 	public static int resolution = GameScreen.RESOLUTION_NATIVE;
 	public static boolean continueGame = false;
-	public static String currentLevel = DEFAULT_LVL;
+	public static int currentLevel = DEFAULT_LVL;
 		
 	public static void load(FileIO files) {
 		BufferedReader in = null;
@@ -31,7 +31,7 @@ public class Settings {
 			introState = Integer.parseInt(in.readLine());
 			resolution = Integer.parseInt(in.readLine());
 			continueGame = Boolean.parseBoolean(in.readLine());
-			currentLevel = in.readLine();
+			currentLevel = Integer.parseInt(in.readLine());
 		} catch (Exception e) {
 			// defaults
 		} finally {
@@ -57,7 +57,7 @@ public class Settings {
 			out.write("\n");
 			out.write(Boolean.toString(continueGame));
 			out.write("\n");
-			out.write(currentLevel);
+			out.write(Integer.toString(currentLevel));
 			out.write("\n");
 		} catch (IOException e) {
 		} finally {

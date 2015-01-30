@@ -171,19 +171,19 @@ public class AndroidGraphics implements Graphics {
 		    y = (getHeight() / 2) - (bounds.height() / 2);
 			break;
 		case TOP_LEFT:
-			x = 0;
-		    y = 0 + bounds.height();
+			x = 10;
+		    y = 10 + bounds.height();
 			break;
 		case TOP_RIGHT:
-			x = getWidth() - bounds.width();
-		    y = 0 + bounds.height();
+			x = getWidth() - bounds.width() - 10;
+		    y = 10 + bounds.height();
 			break;
 		case BOTTOM_LEFT:
-			x = 0;
+			x = 10;
 		    y = getHeight() - 10;
 			break;
 		case BOTTOM_RIGHT:
-			x = getWidth() - bounds.width();
+			x = getWidth() - bounds.width() - 10;
 		    y = getHeight() - 10;
 			break;
 		}

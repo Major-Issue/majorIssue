@@ -29,7 +29,6 @@ public class Level {
 	public static Ship ship = null;
 	public static Portal portal = null;
 	public static ArrayList<Planet> planets = null;
-	public static ArrayList<Station> stations = null;
 	
 	public static String levelBackground;
 	public static String levelBGM;
@@ -38,13 +37,18 @@ public class Level {
 		if(storyLevels == null || extraLevels == null) {
 			return;
 		}
-		
+		if(type == LEVEL_STORY) {
+			Settings.currentLevel = level;
+			if(level > 1) {
+				Settings.continueGame = true;
+			}
+		}
 		String levelName = type == LEVEL_STORY ? storyLevels[level] : extraLevels[level];
 		levelName += LEVEL_POSTFIX;
 		loadLevel(levelName, type, am);
 	}
 	
-	public static void loadLevel(String levelName, int type, AssetManager am) {
+	private static void loadLevel(String levelName, int type, AssetManager am) {
 		
 		if(planets == null) {
 			planets = new ArrayList<Planet>();
@@ -52,15 +56,6 @@ public class Level {
 			planets.clear();
 		}
 		
-		if(stations == null) {
-			stations = new ArrayList<Station>();
-		} else {
-			stations.clear();
-		}
-		
-		if(type == LEVEL_STORY) {
-			Settings.currentLevel = levelName;
-		}
 		InputStream in = null;
 		BufferedReader reader = null;
 		try {
@@ -141,10 +136,6 @@ public class Level {
 		else if(line.startsWith("#planet")) {
 			createPlanet(line);
 		}
-		else if(line.startsWith("#station")) {
-			createStation(line);
-		}
-		
 	}
 
 	private static void createShip(String line) {
@@ -183,19 +174,8 @@ public class Level {
 		planet.asset = Integer.parseInt(st.nextToken());
 		planet.scale = Integer.parseInt(st.nextToken());
 		planet.hasMoon = Integer.parseInt(st.nextToken()) == 0 ? false : true;
+		planet.hasStation = Integer.parseInt(st.nextToken()) == 0 ? false : true;
 		planets.add(planet);
-	}
-	
-	private static void createStation(String line) {
-		Station station = new Station();
-		StringTokenizer st = new StringTokenizer(line);
-		st.nextToken();
-		station.posX = Integer.parseInt(st.nextToken());
-		station.posY = Integer.parseInt(st.nextToken());
-		station.gravity = Integer.parseInt(st.nextToken());
-		station.asset = Integer.parseInt(st.nextToken());
-		station.scale = Integer.parseInt(st.nextToken());
-		stations.add(station);
 	}
 
 }

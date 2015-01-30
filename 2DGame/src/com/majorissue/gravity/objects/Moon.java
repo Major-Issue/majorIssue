@@ -5,7 +5,7 @@ import com.majorissue.gravity.util.Assets;
 public class Moon extends OSO {
 
 	private static final float SELF_ROTATION_INCR = -1f;
-	private static final float ORBITAL_ROTATION_INCR = 0.6f;
+	private static float ORBITAL_ROTATION_INCR = 0.6f;
 	public float selfRotation = 0f;
 	public float orbitalRotation = 0f;
 	
@@ -25,7 +25,6 @@ public class Moon extends OSO {
 	}
 	
 	public void update(float deltaTime) {
-		// TODO:
 		// self-rotation
 		selfRotation += SELF_ROTATION_INCR;
 		if (selfRotation >= 360 || selfRotation <= -360) {
@@ -40,30 +39,29 @@ public class Moon extends OSO {
 	}
 	
 	private void updateOrbitalPosition() {
-		// TODO:
 		double rad = Math.toRadians(orbitalRotation);
 		float yNorm = (float) Math.sin(rad);
 		float y = yNorm * distanceToRoot;
 		float x = (float) Math.sqrt( ( (Math.pow(distanceToRoot, 2))-(Math.pow(y, 2)) ) );
+		float f = getRotationCorrection();
+		pixPosX = root.pixPosX + (x*f);
+		pixPosY = root.pixPosY + y;
+	}
+	
+	private float getRotationCorrection() {
 		float f = 1.0f;
-		if(orbitalRotation <= 360) {
-			f = 1.0f;
-		}
 		if(orbitalRotation <= 270) {
-			f = -1.0f;
-		}
-		if(orbitalRotation <= 180) {
 			f = -1.0f;
 		}
 		if(orbitalRotation <= 90) {
 			f = 1.0f;
 		}
-		pixPosX = root.pixPosX + (x*f);
-		pixPosY = root.pixPosY + y;
+		return f;
 	}
 	
 	public void reset() {
 		// reset
+		orbitalRotation = 0f;
 	}
 	
 }

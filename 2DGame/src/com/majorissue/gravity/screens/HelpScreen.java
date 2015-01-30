@@ -32,8 +32,7 @@ public class HelpScreen extends Screen {
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
 		g.drawPixmap(Assets.background_menu_01, 0, 0);
-		g.drawText(AndroidGraphics.CENTER, 20, "HELP", null);
-		// TODO:
+		g.drawText(AndroidGraphics.CENTER, 20, "NO!", null);
 	}
 
 	@Override

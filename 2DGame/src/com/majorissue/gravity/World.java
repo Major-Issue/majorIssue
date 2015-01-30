@@ -6,7 +6,6 @@ import com.majorissue.framework.Game;
 import com.majorissue.gravity.objects.Planet;
 import com.majorissue.gravity.objects.Portal;
 import com.majorissue.gravity.objects.Ship;
-import com.majorissue.gravity.objects.Station;
 import com.majorissue.gravity.screens.GameScreen.GameState;
 import com.majorissue.gravity.util.Level;
 
@@ -15,7 +14,6 @@ public class World {
 	public Ship ship;
 	public Portal portal;
 	public ArrayList<Planet> planets;
-	public ArrayList<Station> stations;
 	public boolean gameOver = false;
 	public boolean gameWon = false;
 	public Game game;
@@ -28,7 +26,6 @@ public class World {
 		ship = Level.ship;
 		portal = Level.portal;
 		planets = Level.planets;
-		stations = Level.stations;
 	}
 	
 	public void init() {
@@ -52,14 +49,6 @@ public class World {
 				planet.init();
 			}
 		}
-		if(stations != null) {
-			// init stations
-			for(Station station : stations) {
-				station.pixPosX = (station.posX * game.getGraphics().getWidth()) / 100;
-				station.pixPosY = (station.posY * game.getGraphics().getHeight()) / 100;
-				station.init();
-			}
-		}
 	}
 
 	public void update(float deltaTime, GameState state) {
@@ -76,11 +65,6 @@ public class World {
 		if(planets != null) {
 			for(Planet planet : planets) {
 				planet.update(deltaTime);
-			}
-		}
-		if(stations != null) {
-			for(Station station : stations) {
-				station.update(deltaTime);
 			}
 		}
 	}
@@ -104,26 +88,24 @@ public class World {
 		
 		// collision
 		if(portal != null) {
-			if(ship.checkCollision(portal.getPosX(), portal.getPosY(), portal.collisionRadius)) {
+			if(ship.checkCollision(portal)) {
 				gameWon = true;
 			}
 		}
 		if(planets != null) {
 			for(Planet planet : planets) {
-				if(ship.checkCollision(planet.getPosX(), planet.getPosY(), planet.collisionRadius)) {
+				if(ship.checkCollision(planet)) {
 					gameOver = true;
 				}
 				if(planet.hasMoon) {
-					if(ship.checkCollision(planet.moon.getPosX(), planet.moon.getPosY(), planet.moon.collisionRadius)) {
+					if(ship.checkCollision(planet.moon)) {
 						gameOver = true;
 					}
 				}
-			}
-		}
-		if(stations != null) {
-			for(Station station : stations) {
-				if(ship.checkCollision(station.getPosX(), station.getPosY(), station.collisionRadius)) {
-					gameOver = true;
+				if(planet.hasStation) {
+					if(ship.checkCollision(planet.station)) {
+						gameWon = true;
+					}
 				}
 			}
 		}
@@ -138,9 +120,10 @@ public class World {
 		ship.reset();
 		inputX = -1;
 		inputY = -1;
-		if(stations != null) {
-			for(Station station : stations) {
-				station.reset();
+		
+		if(planets != null) {
+			for(Planet planet : planets) {
+				planet.reset();
 			}
 		}
 	}

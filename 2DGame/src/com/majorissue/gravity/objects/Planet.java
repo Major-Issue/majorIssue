@@ -13,8 +13,10 @@ public class Planet extends OSO {
 	
 	public float rotation = 0f;
 	public boolean hasMoon = false;
+	public boolean hasStation = false;
 	
 	public Moon moon;
+	public Station station;
 	
 	public Planet(){};
 	
@@ -24,6 +26,10 @@ public class Planet extends OSO {
 			moon = new Moon();
 			moon.init(this);
 		}
+		if(hasStation) {
+			station = new Station();
+			station.init(this);
+		}
 	}
 	
 	public void update(float deltaTime) {
@@ -31,8 +37,20 @@ public class Planet extends OSO {
 		if (rotation >= 360 || rotation <= -360) {
 			rotation = 0;
 		}
-		if(hasMoon) {
+		if(moon != null) {
 			moon.update(deltaTime);
+		}
+		if(station != null) {
+			station.update(deltaTime);
+		}
+	}
+	
+	public void reset() {
+		if(moon != null) {
+			moon.reset();
+		}
+		if(station != null) {
+			station.reset();
 		}
 	}
 }

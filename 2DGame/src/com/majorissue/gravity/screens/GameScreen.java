@@ -88,8 +88,17 @@ public class GameScreen extends Screen {
 		state = oldState;
 		state = GameState.Loading;
 		world.reset();
-		String nextLevel = "02.level"; // TODO: next level
-		Level.loadLevel(nextLevel, Level.LEVEL_STORY, assets);
+		Level.loadLevel(Settings.currentLevel + 1, Level.LEVEL_STORY, assets);
+		loadingComplete = true;
+	}
+	
+	private void retryLevel() {
+		player_x = -1;
+		player_y = -1;
+		state = oldState;
+		state = GameState.Loading;
+		world.reset();
+		Level.loadLevel(Settings.currentLevel, Level.LEVEL_STORY, assets);
 		loadingComplete = true;
 	}
 
@@ -108,7 +117,7 @@ public class GameScreen extends Screen {
 		for (int i = 0; i < len; i++) {
 			TouchEvent event = touchEvents.get(i);
 			if (event.type == TouchEvent.TOUCH_UP) {
-				game.setScreen(new MainMenuScreen(game));
+				retryLevel();
 			}
 		}
 		updateWorld(deltaTime);
@@ -166,13 +175,15 @@ public class GameScreen extends Screen {
 	private void updateWorld(float deltaTime) {
 		world.update(deltaTime, state);
 
-		if (world.gameOver) {
-			oldState = state;
-			state = GameState.GameOver;
-		}
-		else if(world.gameWon) {
-			oldState = state;
-			state = GameState.GameWon;
+		if(state == GameState.Running) {
+			if (world.gameOver) {
+				oldState = state;
+				state = GameState.GameOver;
+			}
+			else if(world.gameWon) {
+				oldState = state;
+				state = GameState.GameWon;
+			}
 		}
 	}
 
@@ -252,6 +263,12 @@ public class GameScreen extends Screen {
 					b = Util.RotateBitmap(Assets.moon.getBitmap(), planet.moon.selfRotation);
 					x = planet.moon.getPosX() - (b.getWidth() / 2);
 					y = planet.moon.getPosY() - (b.getHeight() / 2);
+					g.drawBitmap(b, x, y);
+				}
+				if(planet.hasStation) {
+					b = Util.RotateBitmap(Assets.station.getBitmap(), planet.station.selfRotation);
+					x = planet.station.getPosX() - (b.getWidth() / 2);
+					y = planet.station.getPosY() - (b.getHeight() / 2);
 					g.drawBitmap(b, x, y);
 				}
 			}

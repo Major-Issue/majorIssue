@@ -3,9 +3,11 @@ package com.majorissue.gravity.screens;
 import java.util.List;
 
 import com.majorissue.framework.Game;
+import com.majorissue.framework.Graphics;
 import com.majorissue.framework.Input.TouchEvent;
 import com.majorissue.game.R;
 import com.majorissue.gravity.GravityGame;
+import com.majorissue.gravity.util.Assets;
 import com.majorissue.gravity.util.Settings;
 
 public class ContinueGameScreen extends MenuScreen {
@@ -77,6 +79,8 @@ public class ContinueGameScreen extends MenuScreen {
 
 	@Override
 	public void present(float deltaTime) {
+		Graphics g = game.getGraphics();
+		g.drawPixmap(Assets.background_menu_01, 0, 0);
 		touchAreas = drawMenu(new String[]{	((GravityGame)game).getResources().getString(R.string.reset),
 											((GravityGame)game).getResources().getString(R.string.cancel)
 											}, touchedEntry);
