@@ -32,9 +32,11 @@ public class LoadingScreen extends Screen {
 		Assets.background_menu_01 = g.newPixmap("gravity/graphics/background_menu_01.jpg", PixmapFormat.RGB565);
 		Assets.portal = g.newPixmap("gravity/graphics/portal.png", PixmapFormat.ARGB4444);
 		Assets.ship = g.newPixmap("gravity/graphics/ship.png", PixmapFormat.ARGB4444);
-		Assets.planet = g.newPixmap("gravity/graphics/planet.png", PixmapFormat.ARGB4444);
+		Assets.planet_01 = g.newPixmap("gravity/graphics/planet_01.png", PixmapFormat.ARGB4444);
+		Assets.planet_02 = g.newPixmap("gravity/graphics/planet_02.png", PixmapFormat.ARGB4444);
+		Assets.planet_03 = g.newPixmap("gravity/graphics/planet_03.png", PixmapFormat.ARGB4444);
 		Assets.station = g.newPixmap("gravity/graphics/station.png", PixmapFormat.ARGB4444);
-		Assets.moon = g.newPixmap("gravity/graphics/moon.png", PixmapFormat.ARGB4444);
+		Assets.moon_01 = g.newPixmap("gravity/graphics/moon_01.png", PixmapFormat.ARGB4444);
 		Assets.intro_page_01 = g.newPixmap("gravity/graphics/intro_page_01.png", PixmapFormat.RGB565);
 		Assets.intro_page_02 = g.newPixmap("gravity/graphics/intro_page_02.png", PixmapFormat.RGB565);
 		Assets.intro_page_03 = g.newPixmap("gravity/graphics/intro_page_03.png", PixmapFormat.RGB565);

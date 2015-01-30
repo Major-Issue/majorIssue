@@ -24,7 +24,7 @@ public class GravityGame extends AndroidGame {
 	@Override
 	public void onBackPressed() {
 		if(getCurrentScreen() instanceof MainMenuScreen) {	// exit game
-			super.onBackPressed();// TODO: advertising
+			super.onBackPressed();
 		} else {											// return to main screen
 			setScreen(new MainMenuScreen(this));
 			// TODO: check "return to menu ?"

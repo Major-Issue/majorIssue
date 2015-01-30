@@ -9,7 +9,6 @@ import com.majorissue.framework.Graphics;
 import com.majorissue.framework.Input.TouchEvent;
 import com.majorissue.framework.Screen;
 import com.majorissue.framework.impl.AndroidGraphics;
-import com.majorissue.gravity.GravityGame;
 import com.majorissue.gravity.World;
 import com.majorissue.gravity.objects.Planet;
 import com.majorissue.gravity.util.Assets;
@@ -211,21 +210,8 @@ public class GameScreen extends Screen {
 			break;
 		}
 		
-		if(GravityGame.DEBUG) {
-			drawDebug(g);
-		}
-	}
-	
-	private void drawDebug(Graphics g) {
 		g.drawText(AndroidGraphics.TOP_RIGHT, 20, fps + " fps", null);
-		if(world == null || world.ship == null) {
-			return;
-		}
-		if(state == GameState.Ready || state == GameState.Running || state == GameState.Paused) {
-			g.drawText(AndroidGraphics.BOTTOM_LEFT, 20, "x=" + player_x + ", y=" + player_y + ", h=" + world.ship.heading + ", p=" + world.ship.pulse + ", s=" + world.ship.percetageSpeed, null);
-		}
 	}
-
 
 	private void drawLoadingUI(Graphics g) {
 		g.drawText(AndroidGraphics.TOP_LEFT, 20, "loading ...", null);	
@@ -258,12 +244,12 @@ public class GameScreen extends Screen {
 		// draw Planets
 		if(world.planets != null) {
 			for(Planet planet : world.planets) {
-				Bitmap b = Util.RotateBitmap(Assets.planet.getBitmap(), planet.rotation);
+				Bitmap b = Util.RotateBitmap(Assets.planet_03.getBitmap(), planet.rotation);
 				x = planet.getPosX() - (b.getWidth() / 2);
 				y = planet.getPosY() - (b.getHeight() / 2);
 				g.drawBitmap(b, x, y);
 				if(planet.hasMoon) {
-					b = Util.RotateBitmap(Assets.moon.getBitmap(), planet.moon.selfRotation);
+					b = Util.RotateBitmap(Assets.moon_01.getBitmap(), planet.moon.selfRotation);
 					x = planet.moon.getPosX() - (b.getWidth() / 2);
 					y = planet.moon.getPosY() - (b.getHeight() / 2);
 					g.drawBitmap(b, x, y);

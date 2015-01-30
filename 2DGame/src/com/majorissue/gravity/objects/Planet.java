@@ -21,7 +21,7 @@ public class Planet extends OSO {
 	public Planet(){};
 	
 	public void init() {
-		collisionRadius = Assets.planet.getWidth() / 2;
+		collisionRadius = Assets.planet_03.getWidth() / 2;
 		if(hasMoon) {
 			moon = new Moon();
 			moon.init(this);

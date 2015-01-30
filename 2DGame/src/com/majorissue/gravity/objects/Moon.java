@@ -4,7 +4,7 @@ import com.majorissue.gravity.util.Assets;
 
 public class Moon extends OSO {
 
-	private static final float SELF_ROTATION_INCR = -1f;
+	private static final float SELF_ROTATION_INCR = -0.6f;
 	private static float ORBITAL_ROTATION_INCR = 0.6f;
 	public float selfRotation = 0f;
 	public float orbitalRotation = 0f;
@@ -16,7 +16,7 @@ public class Moon extends OSO {
 	
 	public void init(OSO planet) {
 		root = planet;
-		collisionRadius = Assets.moon.getWidth() / 2;
+		collisionRadius = Assets.moon_01.getWidth() / 2;
 		
 		// init position
 		distanceToRoot = root.collisionRadius + collisionRadius * 2f;
