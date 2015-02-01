@@ -21,7 +21,7 @@ public class Portal extends OSO {
 	}
 
 	public void update(float deltaTime) {
-		rotation += ROTATION_INCR;
+		rotation += (ROTATION_INCR * rotationDirection);
 		if (rotation >= 360 || rotation <= -360) {
 			rotation = 0;
 		}

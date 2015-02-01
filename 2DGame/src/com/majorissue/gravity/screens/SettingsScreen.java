@@ -87,26 +87,37 @@ public class SettingsScreen extends MenuScreen {
 	public void dispose() {}
 	
 	private void handleInput(String entry) {
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.music)))
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.music))) {
 			Settings.toggleMusic();
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.sound)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.sound))) {
 			Settings.toggleSound();
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.intro)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.intro))) {
 			Settings.toggleIntro();
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.back)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.back))) {
+			Settings.save(game.getFileIO());
 			game.setScreen(new MainMenuScreen(game));
+		}
 	}
 	
 	private void playSound(String entry) {
-		if(entry == null || !Settings.soundEnabled) return;
+		if(entry == null || !Settings.soundEnabled) {
+			return;
+		}
 		
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.music)))
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.music))) {
 			Assets.menu_select.play(1);
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.sound)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.sound))) {
 			Assets.menu_select.play(1);
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.intro)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.intro))) {
 			Assets.menu_select.play(1);
-		if(entry.equals(((GravityGame)game).getResources().getString(R.string.back)))
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.back))) {
 			Assets.menu_back.play(1);
+		}
 	}
 }

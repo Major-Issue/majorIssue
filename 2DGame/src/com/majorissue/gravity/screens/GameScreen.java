@@ -48,6 +48,7 @@ public class GameScreen extends Screen {
 		} else {
 			Level.loadLevel(extraLvl, Level.LEVEL_EXTRA, assets);
 		}
+		Settings.save(game.getFileIO());
 		loadingComplete = true;
 	}
 
@@ -244,7 +245,7 @@ public class GameScreen extends Screen {
 		// draw Planets
 		if(world.planets != null) {
 			for(Planet planet : world.planets) {
-				Bitmap b = Util.RotateBitmap(Assets.planet_03.getBitmap(), planet.rotation);
+				Bitmap b = Util.RotateBitmap(planet.getAsset().getBitmap(), planet.rotation);
 				x = planet.getPosX() - (b.getWidth() / 2);
 				y = planet.getPosY() - (b.getHeight() / 2);
 				g.drawBitmap(b, x, y);

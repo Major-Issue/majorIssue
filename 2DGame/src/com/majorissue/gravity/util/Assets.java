@@ -1,5 +1,6 @@
 package com.majorissue.gravity.util;
 
+import com.majorissue.framework.Music;
 import com.majorissue.framework.Pixmap;
 import com.majorissue.framework.Sound;
 
@@ -18,4 +19,6 @@ public class Assets {
 	
 	public static Sound menu_select;
 	public static Sound menu_back;
+	
+	public static Music music_bonobo;
 }

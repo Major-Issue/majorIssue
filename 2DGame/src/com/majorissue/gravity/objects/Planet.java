@@ -1,5 +1,6 @@
 package com.majorissue.gravity.objects;
 
+import com.majorissue.framework.Pixmap;
 import com.majorissue.gravity.util.Assets;
 
 public class Planet extends OSO {
@@ -9,7 +10,7 @@ public class Planet extends OSO {
 	public static int PLANET_TYPE_C = 2;
 	public static int PLANET_TYPE_D = 3;
 	
-	private static final float ROTATION_INCR = -0.1f;
+	private static final float ROTATION_INCR = 0.1f;
 	
 	public float rotation = 0f;
 	public boolean hasMoon = false;
@@ -33,7 +34,7 @@ public class Planet extends OSO {
 	}
 	
 	public void update(float deltaTime) {
-		rotation += ROTATION_INCR;
+		rotation += (ROTATION_INCR * rotationDirection);
 		if (rotation >= 360 || rotation <= -360) {
 			rotation = 0;
 		}
@@ -51,6 +52,19 @@ public class Planet extends OSO {
 		}
 		if(station != null) {
 			station.reset();
+		}
+	}
+	
+	public Pixmap getAsset() {
+		switch (asset) {
+		case 1:
+			return Assets.planet_01;
+		case 2:
+			return Assets.planet_02;
+		case 3:
+			return Assets.planet_03;
+		default:
+			return Assets.planet_01;
 		}
 	}
 }

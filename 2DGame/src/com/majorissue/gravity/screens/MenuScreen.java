@@ -11,12 +11,22 @@ import com.majorissue.framework.Screen;
 import com.majorissue.framework.Input.TouchEvent;
 import com.majorissue.game.R;
 import com.majorissue.gravity.GravityGame;
+import com.majorissue.gravity.util.Assets;
 import com.majorissue.gravity.util.Settings;
 
 public abstract class MenuScreen extends Screen {
 
 	public MenuScreen(Game game) {
 		super(game);
+	}
+	
+	public void playBackgroundMusic() {
+		if(Settings.musicEnabled) {
+			Assets.music_bonobo.setLooping(true);
+			Assets.music_bonobo.play();
+		} else {
+			Assets.music_bonobo.stop();
+		}
 	}
 	
 	protected String[][] drawMenu(String[] entries, String touchedMenuEntry) {

@@ -2,14 +2,15 @@
 
 ##comment
 
-#t x y g a v m s
+#t x y g (r) a f (m) (s)
 
 t: Type
 x: x Position in %
 y: y Position in %
 g: Gravity in %
+r: Rotation (-1|1 ccw|cw) (Portals & Planets)
 a: Asset
-v: Scale in %
+f: Scale in %
 m: Moon (Plantes only: 0|1)
 s: Station (Planets only: 0|1)
 

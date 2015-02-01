@@ -9,6 +9,7 @@ public abstract class OSO {
 	public int posX;
 	public int posY;
 	public int gravity;
+	public int rotationDirection;
 	public int asset;
 	public int scale;
 	

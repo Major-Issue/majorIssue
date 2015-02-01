@@ -46,16 +46,18 @@ public class LoadingScreen extends Screen {
 		Assets.menu_back = game.getAudio().newSound("gravity/sound/back_01.wav");
 		
 		// music
+		Assets.music_bonobo = game.getAudio().newMusic("nom/music.ogg");
 	}
 	
 	@Override
 	public void update(float deltaTime) {
 		loadingTime += deltaTime;
 		if(loadingComplete && loadingTime > LOADING_TIME_MIN) {
-			if(Settings.introState == IntroScreen.INTRO_FIRST || Settings.introState == IntroScreen.INTRO_SHOW)
+			if(Settings.introState == IntroScreen.INTRO_FIRST || Settings.introState == IntroScreen.INTRO_SHOW) {
 				game.setScreen(new IntroScreen(game));
-			else
+			} else {
 				game.setScreen(new MainMenuScreen(game));
+			}
 		}
 	}
 

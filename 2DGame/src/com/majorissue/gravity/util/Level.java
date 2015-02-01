@@ -42,7 +42,7 @@ public class Level {
 			return;
 		}
 		if(type == LEVEL_STORY) {
-			if(level > 9) {
+			if(level > 5) {
 				level = 1;
 			}
 			Settings.currentLevel = level;
@@ -160,6 +160,7 @@ public class Level {
 		portal.posX = Integer.parseInt(st.nextToken());
 		portal.posY = Integer.parseInt(st.nextToken());
 		portal.gravity = Integer.parseInt(st.nextToken());
+		portal.rotationDirection = Integer.parseInt(st.nextToken());
 		portal.asset = Integer.parseInt(st.nextToken());
 		portal.scale = Integer.parseInt(st.nextToken());
 	}
@@ -174,6 +175,7 @@ public class Level {
 		planet.posX = Integer.parseInt(st.nextToken());
 		planet.posY = Integer.parseInt(st.nextToken());
 		planet.gravity = Integer.parseInt(st.nextToken());
+		planet.rotationDirection = Integer.parseInt(st.nextToken());
 		planet.asset = Integer.parseInt(st.nextToken());
 		planet.scale = Integer.parseInt(st.nextToken());
 		planet.hasMoon = Integer.parseInt(st.nextToken()) == 0 ? false : true;
