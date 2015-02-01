@@ -4,12 +4,11 @@ import java.util.List;
 
 import com.majorissue.framework.Game;
 import com.majorissue.framework.Graphics;
-import com.majorissue.framework.Screen;
 import com.majorissue.framework.Input.TouchEvent;
 import com.majorissue.framework.impl.AndroidGraphics;
 import com.majorissue.gravity.util.Assets;
 
-public class CreditsScreen extends Screen {
+public class CreditsScreen extends MenuScreen {
 
 	public CreditsScreen(Game game) {
 		super(game);
@@ -22,7 +21,6 @@ public class CreditsScreen extends Screen {
 		for (int i = 0; i < len; i++) {
 			TouchEvent event = touchEvents.get(i);
 			if (event.type == TouchEvent.TOUCH_UP) {
-				// TODO:
 				game.setScreen(new MainMenuScreen(game));
 			}
 		}
@@ -35,14 +33,4 @@ public class CreditsScreen extends Screen {
 		g.drawText(AndroidGraphics.CENTER, 20, "ALL the credits belong to me!", null);
 		g.drawText(AndroidGraphics.BOTTOM_RIGHT, 15, "... sweet, sweet credits", null);
 	}
-
-	@Override
-	public void pause() {}
-
-	@Override
-	public void resume() {}
-
-	@Override
-	public void dispose() {}
-
 }

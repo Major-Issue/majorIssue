@@ -25,12 +25,18 @@ public class GravityGame extends AndroidGame {
 	@Override
 	public void onBackPressed() {
 		if(getCurrentScreen() instanceof MainMenuScreen) {	// exit game
-			Assets.music_bonobo.dispose();
 			super.onBackPressed();
 		} else {											// return to main screen
 			setScreen(new MainMenuScreen(this));
-			// TODO: check "return to menu ?"
 		}
 	}
 
+	@Override
+	public void onPause() {
+		Assets.music_bonobo.pause();
+		if(isFinishing()) {
+			Assets.music_bonobo.dispose();
+		}
+		super.onPause();
+	}
 }

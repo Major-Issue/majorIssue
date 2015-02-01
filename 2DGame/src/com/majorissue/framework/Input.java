@@ -68,5 +68,4 @@ public interface Input {
 	public List<KeyEvent> getKeyEvents();
 
 	public List<TouchEvent> getTouchEvents();
-
 }

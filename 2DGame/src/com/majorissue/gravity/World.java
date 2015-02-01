@@ -124,15 +124,5 @@ public class World {
 		ship = null;
 		planets = null;
 		portal = null;
-		
-//		ship.reset();
-//		inputX = -1;
-//		inputY = -1;
-//		
-//		if(planets != null) {
-//			for(Planet planet : planets) {
-//				planet.reset();
-//			}
-//		}
 	}
 }

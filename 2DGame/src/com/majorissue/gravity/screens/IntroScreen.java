@@ -6,11 +6,10 @@ import com.majorissue.framework.Game;
 import com.majorissue.framework.Graphics;
 import com.majorissue.framework.Input.TouchEvent;
 import com.majorissue.framework.Pixmap;
-import com.majorissue.framework.Screen;
 import com.majorissue.gravity.util.Assets;
 import com.majorissue.gravity.util.Settings;
 
-public class IntroScreen extends Screen {
+public class IntroScreen extends MenuScreen {
 
 	public static final int INTRO_FIRST = -1;
 	public static final int INTRO_SHOW = 0;
@@ -85,14 +84,4 @@ public class IntroScreen extends Screen {
 			return null;
 		}
 	}
-
-	@Override
-	public void pause() {}
-
-	@Override
-	public void resume() {}
-
-	@Override
-	public void dispose() {}
-
 }

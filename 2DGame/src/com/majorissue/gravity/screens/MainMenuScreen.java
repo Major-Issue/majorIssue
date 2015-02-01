@@ -149,12 +149,6 @@ public class MainMenuScreen extends MenuScreen {
 	@Override
 	public void pause() {
 		Settings.save(game.getFileIO());
+		super.pause();
 	}
-
-	@Override
-	public void resume() {}
-
-	@Override
-	public void dispose() {}
-
 }

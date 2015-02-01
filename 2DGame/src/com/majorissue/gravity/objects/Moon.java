@@ -4,8 +4,8 @@ import com.majorissue.gravity.util.Assets;
 
 public class Moon extends OSO {
 
-	private static final float SELF_ROTATION_INCR = -0.6f;
-	private static float ORBITAL_ROTATION_INCR = 0.6f;
+	private static final float SELF_ROTATION_INCR = -0.3f;
+	private static float ORBITAL_ROTATION_INCR = 0.3f;
 	public float selfRotation = 0f;
 	public float orbitalRotation = 0f;
 	
@@ -62,6 +62,5 @@ public class Moon extends OSO {
 	public void reset() {
 		// reset
 		orbitalRotation = 0f;
-	}
-	
+	}	
 }

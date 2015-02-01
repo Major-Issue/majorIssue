@@ -5,6 +5,7 @@ import java.io.IOException;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.util.Log;
 
 import com.majorissue.framework.Music;
 
@@ -22,16 +23,17 @@ public class AndroidMusic implements Music, OnCompletionListener {
 			isPrepared = true;
 			mediaPlayer.setOnCompletionListener(this);
 		} catch (Exception e) {
-			throw new RuntimeException("Couldn't load music");
+			Log.e("GRAVITY", "!!! MEDIAPLAYER LOAD !!!");
+			e.printStackTrace();
 		}
 	}
 
 	public void onCompletion(MediaPlayer player) {
-		synchronized (this) {
-			isPrepared = false;
-		}
+		// nothing for now
 	}
 
+// ================================================================== //
+	
 	public void play() {
 		if (mediaPlayer.isPlaying())
 			return;
@@ -44,49 +46,63 @@ public class AndroidMusic implements Music, OnCompletionListener {
 				mediaPlayer.start();
 			}
 		} catch (IllegalStateException e) {
+			Log.e("GRAVITY", "!!! MEDIAPLAYER PLAY !!!");
 			e.printStackTrace();
 		} catch (IOException e) {
+			Log.e("GRAVITY", "!!! MEDIAPLAYER PLAY !!!");
 			e.printStackTrace();
 		}
 	}
 
 	public void pause() {
-		if (mediaPlayer.isPlaying()) {
-			mediaPlayer.pause();
+		try {
+			synchronized (this) {
+				if (mediaPlayer.isPlaying()) {
+					mediaPlayer.pause();
+				}
+			}
+		} catch (IllegalStateException e) {
+			Log.e("GRAVITY", "!!! MEDIAPLAYER PAUSE !!!");
+			e.printStackTrace();
 		}
 	}
 
 	public void stop() {
-		mediaPlayer.stop();
-		synchronized (this) {
-			isPrepared = false;
+		try {
+			synchronized (this) {
+				if(!isPrepared) {
+					return;
+				}
+				mediaPlayer.stop();
+				isPrepared = false;
+			}
+		} catch (Exception e) {
+			Log.e("GRAVITY", "!!! MEDIAPLAYER STOP !!!");
+			e.printStackTrace();
 		}
 	}
 
 	public void dispose() {
-		if (mediaPlayer.isPlaying()) {
-			mediaPlayer.stop();
+		try {
+			synchronized (this) {
+				if (mediaPlayer.isPlaying()) {
+					mediaPlayer.stop();
+				}
+				mediaPlayer.release();
+			}
+		} catch (Exception e) {
+			Log.e("GRAVITY", "!!! MEDIAPLAYER DISPOSE !!!");
+			e.printStackTrace();
 		}
-		mediaPlayer.release();
 	}
 
+// ================================================================== //
+	
 	public void setLooping(boolean isLooping) {
 		mediaPlayer.setLooping(isLooping);
 	}
 
-	public boolean isLooping() {
-		return mediaPlayer.isLooping();
-	}
-
 	public void setVolume(float volume) {
 		mediaPlayer.setVolume(volume, volume);
-	}
-
-	public boolean isPlaying() {
-		return mediaPlayer.isPlaying();
-	}
-
-	public boolean isStopped() {
-		return !isPrepared;
 	}
 }

@@ -182,5 +182,4 @@ public class Level {
 		planet.hasStation = Integer.parseInt(st.nextToken()) == 0 ? false : true;
 		planets.add(planet);
 	}
-
 }

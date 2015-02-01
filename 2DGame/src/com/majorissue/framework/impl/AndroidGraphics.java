@@ -199,4 +199,3 @@ public class AndroidGraphics implements Graphics {
 		canvas.drawText(text, x, y, paint);
 	}
 }
-

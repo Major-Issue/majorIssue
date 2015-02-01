@@ -298,11 +298,8 @@ public class GameScreen extends Screen {
 	}
 
 	@Override
-	public void resume() {
-	}
+	public void resume() {}
 
 	@Override
-	public void dispose() {
-	}
-
+	public void dispose() {}
 }

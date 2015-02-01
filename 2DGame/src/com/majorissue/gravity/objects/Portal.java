@@ -26,5 +26,4 @@ public class Portal extends OSO {
 			rotation = 0;
 		}
 	}
-
 }

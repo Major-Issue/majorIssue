@@ -91,14 +91,4 @@ public class ContinueGameScreen extends MenuScreen {
 					Integer.parseInt(touchAreas[0][3])
 				);
 	}
-
-	@Override
-	public void pause() {}
-
-	@Override
-	public void resume() {}
-
-	@Override
-	public void dispose() {}
-
 }

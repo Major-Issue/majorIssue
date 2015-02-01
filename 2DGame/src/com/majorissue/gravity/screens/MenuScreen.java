@@ -14,7 +14,7 @@ import com.majorissue.gravity.GravityGame;
 import com.majorissue.gravity.util.Assets;
 import com.majorissue.gravity.util.Settings;
 
-public abstract class MenuScreen extends Screen {
+public class MenuScreen extends Screen {
 
 	public MenuScreen(Game game) {
 		super(game);
@@ -32,7 +32,6 @@ public abstract class MenuScreen extends Screen {
 	protected String[][] drawMenu(String[] entries, String touchedMenuEntry) {
 		
 		Graphics g = game.getGraphics();
-//		g.clear(android.R.color.black);
 		
 		int widthMenuBlock = 0;
 		int heightMenuBlock = 0;
@@ -161,4 +160,18 @@ public abstract class MenuScreen extends Screen {
 		}
 	}
 
+	@Override
+	public void update(float deltaTime) {}
+
+	@Override
+	public void present(float deltaTime) {}
+
+	@Override
+	public void pause() {}
+
+	@Override
+	public void resume() {}
+
+	@Override
+	public void dispose() {}
 }

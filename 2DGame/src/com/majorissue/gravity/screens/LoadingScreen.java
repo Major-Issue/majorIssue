@@ -4,14 +4,13 @@ import android.graphics.Typeface;
 
 import com.majorissue.framework.Game;
 import com.majorissue.framework.Graphics;
-import com.majorissue.framework.Screen;
 import com.majorissue.framework.Graphics.PixmapFormat;
 import com.majorissue.framework.impl.AndroidGraphics;
 import com.majorissue.gravity.util.Assets;
 import com.majorissue.gravity.util.Level;
 import com.majorissue.gravity.util.Settings;
 
-public class LoadingScreen extends Screen {
+public class LoadingScreen extends MenuScreen {
 
 	private final float LOADING_TIME_MIN = 3; // sec
 	
@@ -46,7 +45,7 @@ public class LoadingScreen extends Screen {
 		Assets.menu_back = game.getAudio().newSound("gravity/sound/back_01.wav");
 		
 		// music
-		Assets.music_bonobo = game.getAudio().newMusic("nom/music.ogg");
+		Assets.music_bonobo = game.getAudio().newMusic("gravity/music/music_bonobo.ogg");
 	}
 	
 	@Override
@@ -68,14 +67,4 @@ public class LoadingScreen extends Screen {
 		Typeface tf = Typeface.create("Roboto",Typeface.BOLD_ITALIC);
 		g.drawText(AndroidGraphics.CENTER, 25, "LOADING ...", tf);
 	}
-
-	@Override
-	public void pause() {}
-
-	@Override
-	public void resume() {}
-
-	@Override
-	public void dispose() {}
-
 }

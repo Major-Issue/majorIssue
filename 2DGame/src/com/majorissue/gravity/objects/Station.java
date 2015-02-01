@@ -10,7 +10,7 @@ public class Station extends OSO {
 	public static int STATION_TYPE_D = 3;
 
 	private static final float SELF_ROTATION_INCR = 0.1f;
-	private static float ORBITAL_ROTATION_INCR = 0.2f;
+	private static float ORBITAL_ROTATION_INCR = 0.4f;
 	public float selfRotation = 0f;
 	public float orbitalRotation = 0f;
 
