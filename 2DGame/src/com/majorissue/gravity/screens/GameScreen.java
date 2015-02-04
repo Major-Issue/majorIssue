@@ -266,7 +266,7 @@ public class GameScreen extends Screen {
 		
 		// draw Portal
 		if(world.portal != null) {
-			Bitmap portal = Util.RotateBitmap(Assets.portal.getBitmap(), world.portal.rotation);
+			Bitmap portal = Util.RotateBitmap(world.portal.getAsset().getBitmap(), world.portal.rotation);
 			x = world.portal.getPosX() - (portal.getWidth() / 2);
 			y = world.portal.getPosY() - (portal.getHeight() / 2);
 			g.drawBitmap(portal, x, y);

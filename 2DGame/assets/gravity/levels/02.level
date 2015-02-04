@@ -1,5 +1,5 @@
 ##t x y g (r) a f (m) (s)
 #ship 5 50 0 0 0
-#portal 80 35 100 1 0 100
+#portal 80 35 100 1 2 100
 #planet 60 55 50 -1 1 100 0 0
 #planet 30 15 70 1 2 100 0 0

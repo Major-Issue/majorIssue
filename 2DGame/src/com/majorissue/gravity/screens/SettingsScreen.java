@@ -103,16 +103,16 @@ public class SettingsScreen extends MenuScreen {
 		}
 		
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.music))) {
-			Assets.menu_select.play(1);
+			Assets.menu_click.play(1);
 		}
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.sound))) {
-			Assets.menu_select.play(1);
+			Assets.menu_click.play(1);
 		}
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.intro))) {
-			Assets.menu_select.play(1);
+			Assets.menu_click.play(1);
 		}
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.back))) {
-			Assets.menu_back.play(1);
+			Assets.menu_click.play(1);
 		}
 	}
 }

@@ -5,7 +5,8 @@ import com.majorissue.framework.Pixmap;
 import com.majorissue.framework.Sound;
 
 public class Assets {
-	public static Pixmap portal;
+	public static Pixmap portal_01;
+	public static Pixmap portal_02;
 	public static Pixmap ship;
 	public static Pixmap planet_01;
 	public static Pixmap planet_02;
@@ -17,8 +18,7 @@ public class Assets {
 	public static Pixmap intro_page_02;
 	public static Pixmap intro_page_03;
 	
-	public static Sound menu_select;
-	public static Sound menu_back;
+	public static Sound menu_click;
 	
 	public static Music music_bonobo;
 }

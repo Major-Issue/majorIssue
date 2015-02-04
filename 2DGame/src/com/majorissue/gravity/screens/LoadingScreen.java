@@ -29,7 +29,8 @@ public class LoadingScreen extends MenuScreen {
 		// graphics
 		Graphics g = game.getGraphics();
 		Assets.background_menu_01 = g.newPixmap("gravity/graphics/background_menu_01.jpg", PixmapFormat.RGB565);
-		Assets.portal = g.newPixmap("gravity/graphics/portal.png", PixmapFormat.ARGB4444);
+		Assets.portal_01 = g.newPixmap("gravity/graphics/portal_01.png", PixmapFormat.ARGB4444);
+		Assets.portal_02 = g.newPixmap("gravity/graphics/portal_02.png", PixmapFormat.ARGB4444);
 		Assets.ship = g.newPixmap("gravity/graphics/ship.png", PixmapFormat.ARGB4444);
 		Assets.planet_01 = g.newPixmap("gravity/graphics/planet_01.png", PixmapFormat.ARGB4444);
 		Assets.planet_02 = g.newPixmap("gravity/graphics/planet_02.png", PixmapFormat.ARGB4444);
@@ -41,11 +42,10 @@ public class LoadingScreen extends MenuScreen {
 		Assets.intro_page_03 = g.newPixmap("gravity/graphics/intro_page_03.png", PixmapFormat.RGB565);
 		
 		// sounds
-		Assets.menu_select = game.getAudio().newSound("gravity/sound/select_01.wav");
-		Assets.menu_back = game.getAudio().newSound("gravity/sound/back_01.wav");
+		Assets.menu_click = game.getAudio().newSound("gravity/sound/click_01.ogg");
 		
 		// music
-		Assets.music_bonobo = game.getAudio().newMusic("gravity/music/music_bonobo.ogg");
+		Assets.music_bonobo = game.getAudio().newMusic("gravity/music/menu_background_01.ogg");
 	}
 	
 	@Override

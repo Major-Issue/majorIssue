@@ -1,5 +1,6 @@
 package com.majorissue.gravity.objects;
 
+import com.majorissue.framework.Pixmap;
 import com.majorissue.gravity.util.Assets;
 
 
@@ -17,13 +18,24 @@ public class Portal extends OSO {
 	public Portal() {}
 	
 	public void init() {
-		collisionRadius = Assets.portal.getWidth() / 2;
+		collisionRadius = Assets.portal_01.getWidth() / 2;
 	}
 
 	public void update(float deltaTime) {
 		rotation += (ROTATION_INCR * rotationDirection);
 		if (rotation >= 360 || rotation <= -360) {
 			rotation = 0;
+		}
+	}
+	
+	public Pixmap getAsset() {
+		switch (asset) {
+		case 1:
+			return Assets.portal_01;
+		case 2:
+			return Assets.portal_02;
+		default:
+			return Assets.portal_01;
 		}
 	}
 }

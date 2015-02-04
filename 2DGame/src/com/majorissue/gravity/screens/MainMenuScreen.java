@@ -110,25 +110,25 @@ public class MainMenuScreen extends MenuScreen {
 		}
 		
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.new_game))) {
-			Assets.menu_select.play(1);
+			Assets.menu_click.play(1);
 		}
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.continue_game))) {
-			Assets.menu_select.play(1);
+			Assets.menu_click.play(1);
 		}
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.extra))) {
-			Assets.menu_select.play(1);
+			Assets.menu_click.play(1);
 		}
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.settings))) {
-			Assets.menu_select.play(1);
+			Assets.menu_click.play(1);
 		}
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.help))) {
-			Assets.menu_select.play(1);
+			Assets.menu_click.play(1);
 		}
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.credits))) {
-			Assets.menu_select.play(1);
+			Assets.menu_click.play(1);
 		}
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.quit))) {
-			Assets.menu_back.play(1);
+			Assets.menu_click.play(1);
 		}
 	}
 	
