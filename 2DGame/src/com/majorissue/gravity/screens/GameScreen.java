@@ -7,16 +7,18 @@ import android.graphics.Bitmap;
 import com.majorissue.framework.Game;
 import com.majorissue.framework.Graphics;
 import com.majorissue.framework.Input.TouchEvent;
-import com.majorissue.framework.Screen;
 import com.majorissue.framework.impl.AndroidGraphics;
+import com.majorissue.game.R;
+import com.majorissue.gravity.GravityGame;
 import com.majorissue.gravity.World;
+import com.majorissue.gravity.World.GameOverReason;
 import com.majorissue.gravity.objects.Planet;
 import com.majorissue.gravity.util.Assets;
 import com.majorissue.gravity.util.Level;
 import com.majorissue.gravity.util.Settings;
 import com.majorissue.gravity.util.Util;
 
-public class GameScreen extends Screen {
+public class GameScreen extends MenuScreen {
 
 	public static final int RESOLUTION_NATIVE = 0;
 	public static final int RESOLUTION_HALF = 1;
@@ -25,7 +27,11 @@ public class GameScreen extends Screen {
 	private final float LOADING_TIME_MIN = 2f; // sec
 	
 	public enum GameState {
-		Loading, Ready, Running, Paused, GameOver, GameWon
+		Loading,
+		Ready,
+		Running,
+		Paused,
+		GameOver
 	}
 
 	private GameState oldState = GameState.Loading;
@@ -36,6 +42,9 @@ public class GameScreen extends Screen {
 	private float loadingTime = 0.0f;
 	private boolean loadingComplete = false;
 	private int fps = 0;
+	
+	private String[][] menuTouchAreas = null;
+	private String touchedMenuEntry = null;
 
 	public GameScreen(Game game, int extraLvl) {
 		super(game);
@@ -59,9 +68,6 @@ public class GameScreen extends Screen {
 		
 		List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
 		switch (state) {
-		case GameWon:
-			loadNextLevel();
-			break;
 		case Loading:
 			updateLoading(touchEvents, deltaTime);
 			break;
@@ -116,11 +122,74 @@ public class GameScreen extends Screen {
 		int len = touchEvents.size();
 		for (int i = 0; i < len; i++) {
 			TouchEvent event = touchEvents.get(i);
+			if (event.type == TouchEvent.TOUCH_DOWN) {
+				checkTouchDown(event);
+			}
 			if (event.type == TouchEvent.TOUCH_UP) {
-				retryLevel();
+				touchedMenuEntry = null;
+				checkTouchUp(event);
 			}
 		}
 		updateWorld(deltaTime);
+		
+		if(Settings.autoretry && gameLost()) {
+			retryLevel();
+		}
+	}
+	
+	private boolean gameLost() {
+		if(	world.gameOverResason == GameOverReason.LostInSpace ||
+			world.gameOverResason == GameOverReason.Moon ||
+			world.gameOverResason == GameOverReason.Planet) {
+			return true;
+		}
+		return false;
+	}
+	
+	private void checkTouchDown(TouchEvent event) {
+		for(int i = 0; i < menuTouchAreas.length; i++) {
+			try {
+				if(inBounds(event, menuTouchAreas, i)) {
+					touchedMenuEntry = menuTouchAreas[i][0];
+					playSound(touchedMenuEntry);
+					break;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void playSound(String entry) {
+		if(entry == null || !Settings.soundEnabled) {
+			return;
+		}
+		Assets.menu_click.play(1);
+	}
+	
+	private void checkTouchUp(TouchEvent event) {
+		for(int i = 0; i < menuTouchAreas.length; i++){
+			try {
+				if(inBounds(event, menuTouchAreas, i)) {
+					handleInput(menuTouchAreas[i][0]);
+					break;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void handleInput(String entry) {
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.next_level))) {
+			loadNextLevel();
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.retry))) {
+			retryLevel();
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.mainmenu))) {
+			game.setScreen(new MainMenuScreen(game));
+		}
 	}
 
 	private void updatePaused(List<TouchEvent> touchEvents, float deltaTime) {
@@ -180,10 +249,6 @@ public class GameScreen extends Screen {
 				oldState = state;
 				state = GameState.GameOver;
 			}
-			else if(world.gameWon) {
-				oldState = state;
-				state = GameState.GameWon;
-			}
 		}
 	}
 
@@ -236,6 +301,21 @@ public class GameScreen extends Screen {
 	private void drawGameOverUI(Graphics g) {
 		g.drawText(AndroidGraphics.TOP_LEFT, 20, "game over", null);
 		drawWorld(g);
+		switch (world.gameOverResason) {
+		case Portal:
+		case Station:
+			// next level
+			menuTouchAreas = drawMenu(new String[]{	((GravityGame)game).getResources().getString(R.string.next_level),
+													((GravityGame)game).getResources().getString(R.string.mainmenu)
+													}, touchedMenuEntry);
+			break;
+		default:
+			// retry
+			menuTouchAreas = drawMenu(new String[]{	((GravityGame)game).getResources().getString(R.string.retry),
+													((GravityGame)game).getResources().getString(R.string.mainmenu)
+													}, touchedMenuEntry);
+			break;
+		}
 	}
 	
 	private void drawWorld(Graphics g) {

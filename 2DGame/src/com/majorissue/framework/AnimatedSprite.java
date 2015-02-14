@@ -11,13 +11,13 @@ public interface AnimatedSprite {
     
     public void draw(Canvas canvas);
     
-    public void setmXPos(int mXPos);
+    public void setXPos(int xPos);
     
-    public void setmYPos(int mYPos);
+    public void setYPos(int yPos);
     
-    public int getmXPos();
+    public int getXPos();
     
-    public int getmYPos();
+    public int getYPos();
     
     public boolean isExpired();
 }

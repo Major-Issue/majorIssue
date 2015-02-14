@@ -92,6 +92,10 @@ public class MenuScreen extends Screen {
 				drawIntroExplanation(menuX, menuY, widthMenuBlock);
 			}
 			
+			if(entry.equals(((GravityGame)game).getResources().getString(R.string.autoretry))) {
+				drawRetryExplanation(menuX, menuY, widthMenuBlock);
+			}
+			
 			menuY += (bounds.height() * 2);
 			i++;
 		}
@@ -140,6 +144,16 @@ public class MenuScreen extends Screen {
 			text = ((GravityGame)game).getResources().getString(R.string.intro_off);
 		} else {
 			text = ((GravityGame)game).getResources().getString(R.string.intro_on);
+		}
+		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
+	}
+	
+	private void drawRetryExplanation(int x, int y, int blockWidth) {
+		String text = "";
+		if(Settings.autoretry) {
+			text = ((GravityGame)game).getResources().getString(R.string.autoretry_on);
+		} else {
+			text = ((GravityGame)game).getResources().getString(R.string.autoretry_off);
 		}
 		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
 	}

@@ -3,6 +3,7 @@ package com.majorissue.gravity;
 import java.util.ArrayList;
 
 import com.majorissue.framework.Game;
+import com.majorissue.framework.impl.AndroidAnimatedSprite;
 import com.majorissue.gravity.objects.Planet;
 import com.majorissue.gravity.objects.Portal;
 import com.majorissue.gravity.objects.Ship;
@@ -14,9 +15,18 @@ public class World {
 	public Ship ship;
 	public Portal portal;
 	public ArrayList<Planet> planets;
+	public ArrayList<AndroidAnimatedSprite> animations;
 	public boolean gameOver = false;
-	public boolean gameWon = false;
 	public Game game;
+	public GameOverReason gameOverResason;
+	
+	public enum GameOverReason {
+		LostInSpace,
+		Moon,
+		Planet,
+		Portal,
+		Station
+	}
 
 	public int inputX = -1;
 	public int inputY = -1;
@@ -93,22 +103,26 @@ public class World {
 		// collision
 		if(ship != null && portal != null) {
 			if(ship.checkCollision(portal)) {
-				gameWon = true;
+				gameOver = true;
+				gameOverResason = GameOverReason.Portal;
 			}
 		}
 		if(ship != null && planets != null) {
 			for(Planet planet : planets) {
 				if(ship.checkCollision(planet)) {
 					gameOver = true;
+					gameOverResason = GameOverReason.Planet;
 				}
 				if(planet.hasMoon) {
 					if(ship.checkCollision(planet.moon)) {
 						gameOver = true;
+						gameOverResason = GameOverReason.Moon;
 					}
 				}
 				if(planet.hasStation) {
 					if(ship.checkCollision(planet.station)) {
-						gameWon = true;
+						gameOver = true;
+						gameOverResason = GameOverReason.Station;
 					}
 				}
 			}
@@ -117,6 +131,7 @@ public class World {
 		// lost in space
 		if(ship != null && ship.checkOutOfBounds()) {
 			gameOver = true;
+			gameOverResason = GameOverReason.LostInSpace;
 		}
 	}
 	

@@ -20,11 +20,19 @@
     <string name="intro">Play Intro</string>
     <string name="intro_on">ON</string>
     <string name="intro_off">OFF</string>
+    <string name="autoretry">AutoRetry</string>
+    <string name="autoretry_on">ON</string>
+    <string name="autoretry_off">OFF</string>
     
     <!-- continue game -->
     <string name="reset">New Game</string>
     <string name="cancel">Cancel</string>
     <string name="continue_info">reset current game progress and start anew?</string>
+    
+    <!-- gameOver -->
+    <string name="next_level">Next</string>
+    <string name="retry">Retry</string>
+    <string name="mainmenu">Main Menu</string>
     
     <!-- misc -->
     <string name="back">Back</string>

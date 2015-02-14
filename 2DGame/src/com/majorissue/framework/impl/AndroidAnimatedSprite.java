@@ -50,7 +50,7 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
         if (gameTime > mFrameTimer + mFPS) {
             mFrameTimer = gameTime;
             mCurrentFrame += 1;
-            if (mCurrentFrame == mFramesCount){
+            if(mCurrentFrame == mFramesCount) {
             	mCurrentFrame = 0;
             	mFirstCircleCompleted = true;
             }
@@ -62,28 +62,28 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
     @Override
     public void draw(Canvas canvas) {
     	if(!isExpired()){
-    		Rect rect = new Rect(getmXPos(), getmYPos(), getmXPos() + mSpriteWidth, getmYPos() + mSpriteHeight);
+    		Rect rect = new Rect(getXPos(), getYPos(), getXPos() + mSpriteWidth, getYPos() + mSpriteHeight);
     		canvas.drawBitmap(mAnimation, mSRectangle, rect, null);
     	}
     }
 
     @Override
-    public void setmXPos(int mXPos) {
-        this.mXPos = mXPos;
+    public void setXPos(int xPos) {
+        this.mXPos = xPos;
     }
 
     @Override
-    public void setmYPos(int mYPos) {
-        this.mYPos = mYPos;
+    public void setYPos(int yPos) {
+        this.mYPos = yPos;
     }
 
     @Override
-    public int getmXPos() {
+    public int getXPos() {
         return mXPos;
     }
 
     @Override
-    public int getmYPos() {
+    public int getYPos() {
         return mYPos;
     }
 

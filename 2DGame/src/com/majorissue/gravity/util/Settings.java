@@ -21,6 +21,7 @@ public class Settings {
 	public static int resolution = GameScreen.RESOLUTION_NATIVE;
 	public static boolean continueGame = false;
 	public static int currentLevel = DEFAULT_LVL;
+	public static boolean autoretry = false;
 		
 	public static void load(FileIO files) {
 		BufferedReader in = null;
@@ -32,6 +33,7 @@ public class Settings {
 			resolution = Integer.parseInt(in.readLine());
 			continueGame = Boolean.parseBoolean(in.readLine());
 			currentLevel = Integer.parseInt(in.readLine());
+			autoretry = Boolean.parseBoolean(in.readLine());
 		} catch (Exception e) {
 			// defaults
 		} finally {
@@ -59,6 +61,8 @@ public class Settings {
 			out.write("\n");
 			out.write(Integer.toString(currentLevel));
 			out.write("\n");
+			out.write(Boolean.toString(autoretry));
+			out.write("\n");
 		} catch (IOException e) {
 		} finally {
 			try {
@@ -78,9 +82,14 @@ public class Settings {
 	}
 	
 	public static void toggleIntro(){
-		if(introState == IntroScreen.INTRO_DONT_SHOW)
+		if(introState == IntroScreen.INTRO_DONT_SHOW) {
 			introState = IntroScreen.INTRO_SHOW;
-		else
+		} else {
 			introState = IntroScreen.INTRO_DONT_SHOW;
+		}
+	}
+	
+	public static void toggleAutoRetry() {
+		autoretry = !autoretry;
 	}
 }

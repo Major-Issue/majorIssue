@@ -44,6 +44,7 @@ public class ContinueGameScreen extends MenuScreen {
 			try {
 				if(inBounds(event, touchAreas, i)) {
 					touchedEntry = touchAreas[i][0];
+					playSound(touchedEntry);
 					break;
 				}
 			} catch (Exception e) {
@@ -74,6 +75,19 @@ public class ContinueGameScreen extends MenuScreen {
 		}
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.cancel))) {
 			game.setScreen(new MainMenuScreen(game));
+		}
+	}
+	
+	private void playSound(String entry) {
+		if(entry == null || !Settings.soundEnabled) {
+			return;
+		}
+		
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.reset))) {
+			Assets.menu_click.play(1);
+		}
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.cancel))) {
+			Assets.menu_click.play(1);
 		}
 	}
 
