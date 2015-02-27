@@ -73,7 +73,8 @@ public class SettingsScreen extends MenuScreen {
 													((GravityGame)game).getResources().getString(R.string.sound),
 													((GravityGame)game).getResources().getString(R.string.intro),
 													((GravityGame)game).getResources().getString(R.string.autoretry),
-													((GravityGame)game).getResources().getString(R.string.back)
+													((GravityGame)game).getResources().getString(R.string.aidline),
+                                                    ((GravityGame)game).getResources().getString(R.string.back)
 													}, touchedSettingsEntry);
 	}
 	
@@ -96,6 +97,9 @@ public class SettingsScreen extends MenuScreen {
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.autoretry))) {
 			Settings.toggleAutoRetry();
 		}
+        if(entry.equals(((GravityGame)game).getResources().getString(R.string.aidline))) {
+            Settings.toggleAidline();
+        }
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.back))) {
 			Settings.save(game.getFileIO());
 			game.setScreen(new MainMenuScreen(game));
@@ -119,6 +123,9 @@ public class SettingsScreen extends MenuScreen {
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.autoretry))) {
 			Assets.menu_click.play(1);
 		}
+        if(entry.equals(((GravityGame)game).getResources().getString(R.string.aidline))) {
+            Assets.menu_click.play(1);
+        }
 		if(entry.equals(((GravityGame)game).getResources().getString(R.string.back))) {
 			Assets.menu_click.play(1);
 		}

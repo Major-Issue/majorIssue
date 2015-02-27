@@ -1,7 +1,6 @@
 package majorissue.com.gravity.objects;
 
 import majorissue.com.framework.Game;
-import majorissue.com.framework.impl.AndroidGraphics;
 import majorissue.com.gravity.util.Assets;
 
 public class Gauge extends OSO {

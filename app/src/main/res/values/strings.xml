@@ -23,6 +23,9 @@
     <string name="autoretry">AutoRetry</string>
     <string name="autoretry_on">ON</string>
     <string name="autoretry_off">OFF</string>
+    <string name="aidline">Aid Line</string>
+    <string name="aidline_on">ON</string>
+    <string name="aidline_off">OFF</string>
     
     <!-- continue game -->
     <string name="reset">New Game</string>

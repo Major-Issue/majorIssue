@@ -9,6 +9,7 @@ import java.util.List;
 import majorissue.com.framework.Game;
 import majorissue.com.framework.Graphics;
 import majorissue.com.framework.Input.TouchEvent;
+import majorissue.com.framework.impl.AndroidAnimatedSprite;
 import majorissue.com.framework.impl.AndroidGraphics;
 import majorissue.com.gravity.GravityGame;
 import majorissue.com.gravity.World;
@@ -249,6 +250,7 @@ public class GameScreen extends MenuScreen {
 			if (world.gameOver) {
 				oldState = state;
 				state = GameState.GameOver;
+                addGameOverAnimation();
 			}
 		}
 	}
@@ -318,8 +320,30 @@ public class GameScreen extends MenuScreen {
 			break;
 		}
 	}
+
+    private void addGameOverAnimation() {
+        switch (world.gameOverResason) {
+            case Planet:
+                // TODO:
+            case Moon:
+                world.addAnimation(new AndroidAnimatedSprite(   world.ship.getPosX(),
+                                                                world.ship.getPosY(),
+                                                                Assets.explosion_01.getBitmap(),
+                                                                64, 64, 10, 5, 5, false));
+                break;
+            case Portal:
+                // TODO:
+                break;
+            default:
+                break;
+        }
+    }
 	
 	private void drawWorld(Graphics g) {
+        if(world == null) {
+            return;
+        }
+
 		int x = 0;
 		int y = 0;
 		
@@ -354,17 +378,24 @@ public class GameScreen extends MenuScreen {
 		}
 		
 		// draw Ship
-		if(world.ship != null) {
+		if(world.ship != null && !world.gameOver) {
 			Bitmap ship = Util.RotateBitmap(Assets.ship.getBitmap(), world.ship.heading);
 			x = world.ship.getPosX() - (ship.getWidth() / 2);
 			y = world.ship.getPosY() - (ship.getHeight() / 2);
 			g.drawBitmap(ship, x, y);
 			
 			// draw Line
-			if(state == GameState.Ready && player_x != -1) {
+			if(Settings.aidline && state == GameState.Ready && player_x != -1) {
 				g.drawLine(world.ship.getPosX(), world.ship.getPosY(), player_x, player_y, 0xffffffff);
 			}
 		}
+
+        //draw Animations
+        if(world.animations != null && !world.animations.isEmpty()) {
+            for(AndroidAnimatedSprite animation : world.animations) {
+                animation.draw(g.getCanvas());
+            }
+        }
 
         // draw Gauge
         if(world.gauge != null && world.ship != null) {

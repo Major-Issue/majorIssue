@@ -19,6 +19,7 @@ public class Assets {
 	public static Pixmap intro_page_03;
     public static Pixmap hub_boost;
     public static Pixmap hud_needle;
+    public static Pixmap explosion_01;
 	
 	public static Sound menu_click;
 	

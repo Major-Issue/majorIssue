@@ -86,14 +86,19 @@ public class World {
 				planet.update(deltaTime);
 			}
 		}
+        if(animations != null && !animations.isEmpty()) {
+            updateAnimations(deltaTime);
+        }
 	}
 	
 	private void updateRunning(float deltaTime) {
+        if(ship == null) {
+            return;
+        }
+
 		// ship movement
-		if(ship != null) {
-			ship.updatePosition(deltaTime);
-		}
-		
+        ship.updatePosition(deltaTime);
+
 		// gravitational movement
 		if(planets != null) {
 			for(Planet planet : planets) {
@@ -110,13 +115,13 @@ public class World {
 		}
 		
 		// collision
-		if(ship != null && portal != null) {
+		if(portal != null) {
 			if(ship.checkCollision(portal)) {
 				gameOver = true;
 				gameOverResason = GameOverReason.Portal;
 			}
 		}
-		if(ship != null && planets != null) {
+		if(planets != null) {
 			for(Planet planet : planets) {
 				if(ship.checkCollision(planet)) {
 					gameOver = true;
@@ -138,7 +143,7 @@ public class World {
 		}
 		
 		// lost in space
-		if(ship != null && ship.checkOutOfBounds()) {
+		if(ship.checkOutOfBounds()) {
 			gameOver = true;
 			gameOverResason = GameOverReason.LostInSpace;
 		}
@@ -149,4 +154,20 @@ public class World {
 		planets = null;
 		portal = null;
 	}
+
+    public void addAnimation(AndroidAnimatedSprite animation) {
+        if(animations == null) {
+            animations = new ArrayList<>();
+        }
+        animations.add(animation);
+    }
+
+    public void updateAnimations(float deltaTime) {
+        for(AndroidAnimatedSprite animation : animations) {
+            animation.update(deltaTime);
+            if(animation.isExpired()) {
+                animations.remove(animation);
+            }
+        }
+    }
 }

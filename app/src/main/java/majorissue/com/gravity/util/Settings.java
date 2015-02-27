@@ -22,6 +22,7 @@ public class Settings {
 	public static boolean continueGame = false;
 	public static int currentLevel = DEFAULT_LVL;
 	public static boolean autoretry = false;
+    public static boolean aidline = true;
 		
 	public static void load(FileIO files) {
 		BufferedReader in = null;
@@ -34,6 +35,7 @@ public class Settings {
 			continueGame = Boolean.parseBoolean(in.readLine());
 			currentLevel = Integer.parseInt(in.readLine());
 			autoretry = Boolean.parseBoolean(in.readLine());
+            aidline = Boolean.parseBoolean(in.readLine());
 		} catch (Exception e) {
 			// defaults
 		} finally {
@@ -63,6 +65,8 @@ public class Settings {
 			out.write("\n");
 			out.write(Boolean.toString(autoretry));
 			out.write("\n");
+            out.write(Boolean.toString(aidline));
+            out.write("\n");
 		} catch (IOException e) {
 		} finally {
 			try {
@@ -92,4 +96,8 @@ public class Settings {
 	public static void toggleAutoRetry() {
 		autoretry = !autoretry;
 	}
+
+    public static void toggleAidline() {
+        aidline = !aidline;
+    }
 }

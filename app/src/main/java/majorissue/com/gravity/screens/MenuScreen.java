@@ -96,6 +96,10 @@ public class MenuScreen extends Screen {
 			if(entry.equals(((GravityGame)game).getResources().getString(R.string.autoretry))) {
 				drawRetryExplanation(menuX, menuY, widthMenuBlock);
 			}
+
+            if(entry.equals(((GravityGame)game).getResources().getString(R.string.aidline))) {
+                drawAidLineExplanation(menuX, menuY, widthMenuBlock);
+            }
 			
 			menuY += (bounds.height() * 2);
 			i++;
@@ -158,6 +162,16 @@ public class MenuScreen extends Screen {
 		}
 		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
 	}
+
+    private void drawAidLineExplanation(int x, int y, int blockWidth) {
+        String text = "";
+        if(Settings.aidline) {
+            text = ((GravityGame)game).getResources().getString(R.string.aidline_on);
+        } else {
+            text = ((GravityGame)game).getResources().getString(R.string.aidline_off);
+        }
+        game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
+    }
 	
 	protected boolean inBounds(TouchEvent event, String[][] touchAreas, int i) throws Exception{
 		return inBounds(event, 
