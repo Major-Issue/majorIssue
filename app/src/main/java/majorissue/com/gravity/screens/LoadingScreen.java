@@ -46,9 +46,12 @@ public class LoadingScreen extends MenuScreen {
 		
 		// sounds
 		Assets.menu_click = game.getAudio().newSound("gravity/sound/click_01.ogg");
+        Assets.explosion_sfx_01 = game.getAudio().newSound("gravity/sound/explosion_01.ogg");
+        Assets.explosion_sfx_02 = game.getAudio().newSound("gravity/sound/explosion_02.ogg");
+        Assets.swoosh_01 = game.getAudio().newSound("gravity/sound/swoosh_01.ogg");
 		
 		// music
-		Assets.music_bonobo = game.getAudio().newMusic("gravity/music/menu_background_01.ogg");
+		Assets.music_bkg_01 = game.getAudio().newMusic("gravity/music/menu_background_01.ogg");
 	}
 	
 	@Override

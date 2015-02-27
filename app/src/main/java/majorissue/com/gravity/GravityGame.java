@@ -33,9 +33,9 @@ public class GravityGame extends AndroidGame {
 
 	@Override
 	public void onPause() {
-		Assets.music_bonobo.pause();
+		Assets.music_bkg_01.pause();
 		if(isFinishing()) {
-			Assets.music_bonobo.dispose();
+			Assets.music_bkg_01.dispose();
 		}
 		super.onPause();
 	}

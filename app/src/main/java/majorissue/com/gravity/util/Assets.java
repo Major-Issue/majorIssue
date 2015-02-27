@@ -22,6 +22,9 @@ public class Assets {
     public static Pixmap explosion_01;
 	
 	public static Sound menu_click;
+    public static Sound explosion_sfx_01;
+    public static Sound explosion_sfx_02;
+    public static Sound swoosh_01;
 	
-	public static Music music_bonobo;
+	public static Music music_bkg_01;
 }

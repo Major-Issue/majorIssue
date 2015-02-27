@@ -23,10 +23,10 @@ public class MenuScreen extends Screen {
 	
 	public void playBackgroundMusic() {
 		if(Settings.musicEnabled) {
-			Assets.music_bonobo.setLooping(true);
-			Assets.music_bonobo.play();
+			Assets.music_bkg_01.setLooping(true);
+			Assets.music_bkg_01.play();
 		} else {
-			Assets.music_bonobo.stop();
+			Assets.music_bkg_01.stop();
 		}
 	}
 	
