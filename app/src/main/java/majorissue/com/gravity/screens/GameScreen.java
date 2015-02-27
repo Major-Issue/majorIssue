@@ -277,7 +277,7 @@ public class GameScreen extends MenuScreen {
 			break;
 		}
 		
-		g.drawText(AndroidGraphics.TOP_RIGHT, 20, fps + " fps", null);
+		g.drawText(AndroidGraphics.BOTTOM_RIGHT, 20, fps + " fps", null);
 	}
 
 	private void drawLoadingUI(Graphics g) {
@@ -365,6 +365,12 @@ public class GameScreen extends MenuScreen {
 				g.drawLine(world.ship.getPosX(), world.ship.getPosY(), player_x, player_y, 0xffffffff);
 			}
 		}
+
+        // draw Gauge
+        if(world.gauge != null && world.ship != null) {
+            g.drawPixmap(Assets.hub_boost, world.gauge.getPosX(), world.gauge.getPosY());
+            g.drawLine(world.gauge.needleAnchorX, world.gauge.needleAnchorY, world.gauge.needleTargetX, world.gauge.needleTargetY, 0xffff0000);
+        }
 		
 	}
 

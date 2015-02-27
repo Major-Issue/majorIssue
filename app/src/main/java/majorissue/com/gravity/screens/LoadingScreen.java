@@ -40,6 +40,8 @@ public class LoadingScreen extends MenuScreen {
 		Assets.intro_page_01 = g.newPixmap("gravity/graphics/intro_page_01.png", PixmapFormat.RGB565);
 		Assets.intro_page_02 = g.newPixmap("gravity/graphics/intro_page_02.png", PixmapFormat.RGB565);
 		Assets.intro_page_03 = g.newPixmap("gravity/graphics/intro_page_03.png", PixmapFormat.RGB565);
+        Assets.hub_boost = g.newPixmap("gravity/graphics/hud_boost.png", PixmapFormat.ARGB4444);
+        Assets.hud_needle = g.newPixmap("gravity/graphics/hud_needle.png", PixmapFormat.ARGB4444);
 		
 		// sounds
 		Assets.menu_click = game.getAudio().newSound("gravity/sound/click_01.ogg");

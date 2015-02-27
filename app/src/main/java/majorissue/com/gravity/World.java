@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import majorissue.com.framework.Game;
 import majorissue.com.framework.impl.AndroidAnimatedSprite;
+import majorissue.com.gravity.objects.Gauge;
 import majorissue.com.gravity.objects.Planet;
 import majorissue.com.gravity.objects.Portal;
 import majorissue.com.gravity.objects.Ship;
@@ -19,6 +20,7 @@ public class World {
 	public boolean gameOver = false;
 	public Game game;
 	public GameOverReason gameOverResason;
+    public Gauge gauge;
 	
 	public enum GameOverReason {
 		LostInSpace,
@@ -36,6 +38,7 @@ public class World {
 		ship = Level.ship;
 		portal = Level.portal;
 		planets = Level.planets;
+        gauge = new Gauge();
 	}
 	
 	public void init() {
@@ -59,12 +62,18 @@ public class World {
 				planet.init();
 			}
 		}
+        if(gauge != null) {
+            gauge.init(game);
+        }
 	}
 
 	public void update(float deltaTime, GameState state) {
 		// this is where we make things move
 		if(state == GameState.Ready && ship != null) {
 			ship.userInput(inputX, inputY);
+            if(gauge != null) {
+                gauge.setNeedleHeading(ship.percetageSpeed);
+            }
 		}
 		if(state == GameState.Running) {
 			updateRunning(deltaTime);

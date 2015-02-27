@@ -49,17 +49,17 @@ public class Station extends OSO {
 		float y = yNorm * distanceToRoot;
 		float x = (float) Math.sqrt( ( (Math.pow(distanceToRoot, 2))-(Math.pow(y, 2)) ) );
 		float f = getRotationCorrection();
-		pixPosX = root.pixPosX + (x*f) * (-1.0f);
+		pixPosX = root.pixPosX + (x*f);
 		pixPosY = root.pixPosY + y;
 	}
 	
 	private float getRotationCorrection() {
-		float f = 1.0f;
+		float f = -1.0f;
 		if(orbitalRotation <= 270) {
-			f = -1.0f;
+			f = 1.0f;
 		}
 		if(orbitalRotation <= 90) {
-			f = 1.0f;
+			f = -1.0f;
 		}
 		return f;
 	}
