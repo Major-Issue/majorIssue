@@ -4,11 +4,6 @@ import majorissue.com.framework.Pixmap;
 import majorissue.com.gravity.util.Assets;
 
 public class Planet extends OSO {
-
-	public static int PLANET_TYPE_A = 0;
-	public static int PLANET_TYPE_B = 1;
-	public static int PLANET_TYPE_C = 2;
-	public static int PLANET_TYPE_D = 3;
 	
 	private static final float ROTATION_INCR = 0.1f;
 	

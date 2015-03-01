@@ -14,6 +14,7 @@ import majorissue.com.framework.impl.AndroidGraphics;
 import majorissue.com.gravity.GravityGame;
 import majorissue.com.gravity.World;
 import majorissue.com.gravity.World.GameOverReason;
+import majorissue.com.gravity.objects.Debris;
 import majorissue.com.gravity.objects.Planet;
 import majorissue.com.gravity.util.Assets;
 import majorissue.com.gravity.util.Level;
@@ -26,7 +27,7 @@ public class GameScreen extends MenuScreen {
 	public static final int RESOLUTION_HALF = 1;
 	public static final float DELTA_TIME_MIN = 0.02f;
 	
-	private final float LOADING_TIME_MIN = 2f; // sec
+	private final float LOADING_TIME_MIN = 1f; // sec
 	
 	public enum GameState {
 		Loading,
@@ -339,8 +340,9 @@ public class GameScreen extends MenuScreen {
             case Moon:
                 world.addAnimation(new AndroidAnimatedSprite(   world.ship.getPosX(),
                                                                 world.ship.getPosY(),
-                                                                Assets.explosion_01.getBitmap(),
-                                                                64, 64, 10, 5, 5, false));
+                                                                Assets.explosion_02.getBitmap(),
+                                                                93, 100, 10, 10, 4, false));
+                addDebris(world.ship.getPosX(), world.ship.getPosY());
                 if(Settings.soundEnabled) {
                     Assets.explosion_sfx_01.play(1);
                 }
@@ -350,6 +352,12 @@ public class GameScreen extends MenuScreen {
                 break;
             default:
                 break;
+        }
+    }
+
+    private void addDebris(int x, int y) {
+        for(int i = 0; i < 7; i++) {
+            world.addDebris(new Debris(game, i+1, x, y));
         }
     }
 	
@@ -403,6 +411,16 @@ public class GameScreen extends MenuScreen {
 				g.drawLine(world.ship.getPosX(), world.ship.getPosY(), player_x, player_y, 0xffffffff);
 			}
 		}
+
+        //draw Debris
+        if(world.debris != null && !world.debris.isEmpty()) {
+            for(Debris debris : world.debris) {
+                Bitmap d = Util.RotateBitmap(debris.getAsset().getBitmap(), debris.rotation);
+                x = debris.getPosX() - (d.getWidth() / 2);
+                y = debris.getPosY() - (d.getHeight() / 2);
+                g.drawBitmap(d, x, y);
+            }
+        }
 
         //draw Animations
         if(world.animations != null && !world.animations.isEmpty()) {

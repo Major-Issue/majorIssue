@@ -12,7 +12,7 @@ import majorissue.com.gravity.util.Settings;
 
 public class LoadingScreen extends MenuScreen {
 
-	private final float LOADING_TIME_MIN = 3; // sec
+	private final float LOADING_TIME_MIN = 2; // sec
 	
 	private float loadingTime = 0;
 	private boolean loadingComplete = false;
@@ -41,9 +41,17 @@ public class LoadingScreen extends MenuScreen {
 		Assets.intro_page_02 = g.newPixmap("gravity/graphics/intro_page_02.png", PixmapFormat.RGB565);
 		Assets.intro_page_03 = g.newPixmap("gravity/graphics/intro_page_03.png", PixmapFormat.RGB565);
         Assets.hub_boost = g.newPixmap("gravity/graphics/hud_boost.png", PixmapFormat.ARGB4444);
-        Assets.hud_needle = g.newPixmap("gravity/graphics/hud_needle.png", PixmapFormat.ARGB4444);
         Assets.explosion_01 = g.newPixmap("gravity/graphics/explosion_01.png", PixmapFormat.ARGB4444);
-		
+        Assets.explosion_02 = g.newPixmap("gravity/graphics/explosion_02.png", PixmapFormat.ARGB4444);
+
+        Assets.debris_01 = g.newPixmap("gravity/graphics/debris_01.png", PixmapFormat.ARGB4444);
+        Assets.debris_02 = g.newPixmap("gravity/graphics/debris_02.png", PixmapFormat.ARGB4444);
+        Assets.debris_03 = g.newPixmap("gravity/graphics/debris_03.png", PixmapFormat.ARGB4444);
+        Assets.debris_04 = g.newPixmap("gravity/graphics/debris_04.png", PixmapFormat.ARGB4444);
+        Assets.debris_05 = g.newPixmap("gravity/graphics/debris_05.png", PixmapFormat.ARGB4444);
+        Assets.debris_06 = g.newPixmap("gravity/graphics/debris_06.png", PixmapFormat.ARGB4444);
+        Assets.debris_07 = g.newPixmap("gravity/graphics/debris_07.png", PixmapFormat.ARGB4444);
+
 		// sounds
 		Assets.menu_click = game.getAudio().newSound("gravity/sound/click_01.ogg");
         Assets.explosion_sfx_01 = game.getAudio().newSound("gravity/sound/explosion_01.ogg");

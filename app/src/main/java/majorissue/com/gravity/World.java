@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import majorissue.com.framework.Game;
 import majorissue.com.framework.impl.AndroidAnimatedSprite;
+import majorissue.com.gravity.objects.Debris;
 import majorissue.com.gravity.objects.Gauge;
 import majorissue.com.gravity.objects.Planet;
 import majorissue.com.gravity.objects.Portal;
 import majorissue.com.gravity.objects.Ship;
 import majorissue.com.gravity.screens.GameScreen.GameState;
+import majorissue.com.gravity.util.Assets;
 import majorissue.com.gravity.util.Level;
 
 public class World {
@@ -21,6 +23,7 @@ public class World {
 	public Game game;
 	public GameOverReason gameOverResason;
     public Gauge gauge;
+    public ArrayList<Debris> debris;
 	
 	public enum GameOverReason {
 		LostInSpace,
@@ -88,6 +91,9 @@ public class World {
 		}
         if(animations != null && !animations.isEmpty()) {
             updateAnimations(deltaTime);
+        }
+        if(debris != null && !debris.isEmpty()) {
+            updateDebris(deltaTime);
         }
 	}
 	
@@ -168,6 +174,32 @@ public class World {
             if(animation.isExpired()) {
                 animations.remove(animation);
             }
+        }
+    }
+
+    public void addDebris(Debris debris) {
+        if(this.debris == null) {
+            this.debris = new ArrayList<>();
+        }
+        this.debris.add(debris);
+    }
+
+    public void updateDebris(float deltaTime) {
+        for(Debris d : debris) {
+            d.update(deltaTime);
+//            if(d.checkOutOfBounds()) {
+////                debris.remove(d);
+//                continue;
+//            }
+//            for(Planet p : planets) {
+//                if(d.checkCollision(p)) {
+//                    animations.add(new AndroidAnimatedSprite(   d.getPosX(),
+//                                                                d.getPosY(),
+//                                                                Assets.explosion_01.getBitmap(),
+//                                                                64, 64, 10, 5, 5, false));
+////                    debris.remove(d);
+//                }
+//            }
         }
     }
 }

@@ -85,7 +85,7 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
 
     @Override
     public void draw(Canvas canvas) {
-    	Rect rect = new Rect(mXPos, mYPos, mXPos + mSpriteWidth, mYPos + mSpriteHeight);
+    	Rect rect = new Rect(mXPos - mSpriteWidth/2, mYPos - mSpriteWidth/2, mXPos + mSpriteWidth/2, mYPos + mSpriteHeight/2);
     	canvas.drawBitmap(mAnimation, mSRectangle, rect, null);
     }
 
