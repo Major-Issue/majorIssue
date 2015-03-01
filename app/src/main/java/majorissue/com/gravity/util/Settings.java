@@ -23,6 +23,7 @@ public class Settings {
 	public static int currentLevel = DEFAULT_LVL;
 	public static boolean autoretry = false;
     public static boolean aidline = true;
+    public static boolean vibrate = true;
 		
 	public static void load(FileIO files) {
 		BufferedReader in = null;
@@ -36,6 +37,7 @@ public class Settings {
 			currentLevel = Integer.parseInt(in.readLine());
 			autoretry = Boolean.parseBoolean(in.readLine());
             aidline = Boolean.parseBoolean(in.readLine());
+            vibrate = Boolean.parseBoolean(in.readLine());
 		} catch (Exception e) {
 			// defaults
 		} finally {
@@ -66,6 +68,8 @@ public class Settings {
 			out.write(Boolean.toString(autoretry));
 			out.write("\n");
             out.write(Boolean.toString(aidline));
+            out.write("\n");
+            out.write(Boolean.toString(vibrate));
             out.write("\n");
 		} catch (IOException e) {
 		} finally {
@@ -99,5 +103,9 @@ public class Settings {
 
     public static void toggleAidline() {
         aidline = !aidline;
+    }
+
+    public static void toggleVibration() {
+        vibrate = !vibrate;
     }
 }

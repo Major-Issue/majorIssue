@@ -100,6 +100,10 @@ public class MenuScreen extends Screen {
             if(entry.equals(((GravityGame)game).getResources().getString(R.string.aidline))) {
                 drawAidLineExplanation(menuX, menuY, widthMenuBlock);
             }
+
+            if(entry.equals(((GravityGame)game).getResources().getString(R.string.vibration))) {
+                drawVibrationExplanation(menuX, menuY, widthMenuBlock);
+            }
 			
 			menuY += (bounds.height() * 2);
 			i++;
@@ -169,6 +173,16 @@ public class MenuScreen extends Screen {
             text = ((GravityGame)game).getResources().getString(R.string.aidline_on);
         } else {
             text = ((GravityGame)game).getResources().getString(R.string.aidline_off);
+        }
+        game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
+    }
+
+    private void drawVibrationExplanation(int x, int y, int blockWidth) {
+        String text = "";
+        if(Settings.vibrate) {
+            text = ((GravityGame)game).getResources().getString(R.string.vibration_on);
+        } else {
+            text = ((GravityGame)game).getResources().getString(R.string.vibration_off);
         }
         game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
     }

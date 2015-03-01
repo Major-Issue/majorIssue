@@ -1,6 +1,8 @@
 package majorissue.com.gravity.screens;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Vibrator;
 
 import com.majorissue.game.R;
 
@@ -18,6 +20,7 @@ import majorissue.com.gravity.objects.Debris;
 import majorissue.com.gravity.objects.Planet;
 import majorissue.com.gravity.util.Assets;
 import majorissue.com.gravity.util.Level;
+import majorissue.com.gravity.util.PortalAnimation;
 import majorissue.com.gravity.util.Settings;
 import majorissue.com.gravity.util.Util;
 
@@ -45,6 +48,7 @@ public class GameScreen extends MenuScreen {
 	private float loadingTime = 0.0f;
 	private boolean loadingComplete = false;
 	private int fps = 0;
+    private Vibrator v;
 	
 	private String[][] menuTouchAreas = null;
 	private String touchedMenuEntry = null;
@@ -52,6 +56,7 @@ public class GameScreen extends MenuScreen {
 	public GameScreen(Game game, int extraLvl) {
 		super(game);
 		loadLevel(extraLvl);
+        v = (Vibrator) game.getContext().getSystemService(Context.VIBRATOR_SERVICE);
 	}
 
 	private void loadLevel(int extraLvl) {
@@ -335,7 +340,7 @@ public class GameScreen extends MenuScreen {
                 if(Settings.soundEnabled) {
                     Assets.explosion_sfx_02.play(1);
                 }
-
+                vibrate(300);
                 break;
             case Moon:
                 world.addAnimation(new AndroidAnimatedSprite(   world.ship.getPosX(),
@@ -346,12 +351,20 @@ public class GameScreen extends MenuScreen {
                 if(Settings.soundEnabled) {
                     Assets.explosion_sfx_01.play(1);
                 }
+                vibrate(200);
                 break;
             case Portal:
-                // TODO:
+                world.addPortalAnimations(new PortalAnimation(world.ship, world.portal));
+                // TODO: sound, vibration
                 break;
             default:
                 break;
+        }
+    }
+
+    private void vibrate(long duration) {
+        if(Settings.vibrate && v != null) {
+            v.vibrate(duration);
         }
     }
 
@@ -401,15 +414,16 @@ public class GameScreen extends MenuScreen {
 		
 		// draw Ship
 		if(world.ship != null && !world.gameOver) {
+
+            // draw Line
+            if(Settings.aidline && state == GameState.Ready && player_x != -1) {
+                g.drawLine(world.ship.getPosX(), world.ship.getPosY(), player_x, player_y, 0xffffffff);
+            }
+
 			Bitmap ship = Util.RotateBitmap(Assets.ship.getBitmap(), world.ship.heading);
 			x = world.ship.getPosX() - (ship.getWidth() / 2);
 			y = world.ship.getPosY() - (ship.getHeight() / 2);
 			g.drawBitmap(ship, x, y);
-			
-			// draw Line
-			if(Settings.aidline && state == GameState.Ready && player_x != -1) {
-				g.drawLine(world.ship.getPosX(), world.ship.getPosY(), player_x, player_y, 0xffffffff);
-			}
 		}
 
         //draw Debris
@@ -426,6 +440,13 @@ public class GameScreen extends MenuScreen {
         if(world.animations != null && !world.animations.isEmpty()) {
             for(AndroidAnimatedSprite animation : world.animations) {
                 animation.draw(g.getCanvas());
+            }
+        }
+
+        //draw PostalAnimation
+        if(world.portalAnimations != null && !world.portalAnimations.isEmpty()) {
+            for(PortalAnimation animation : world.portalAnimations) {
+                g.drawBitmap(animation.bmpOut, (int)animation.posX, (int)animation.posY);
             }
         }
 

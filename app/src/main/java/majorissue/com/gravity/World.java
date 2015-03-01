@@ -10,8 +10,8 @@ import majorissue.com.gravity.objects.Planet;
 import majorissue.com.gravity.objects.Portal;
 import majorissue.com.gravity.objects.Ship;
 import majorissue.com.gravity.screens.GameScreen.GameState;
-import majorissue.com.gravity.util.Assets;
 import majorissue.com.gravity.util.Level;
+import majorissue.com.gravity.util.PortalAnimation;
 
 public class World {
 	
@@ -24,6 +24,7 @@ public class World {
 	public GameOverReason gameOverResason;
     public Gauge gauge;
     public ArrayList<Debris> debris;
+    public ArrayList<PortalAnimation> portalAnimations;
 	
 	public enum GameOverReason {
 		LostInSpace,
@@ -94,6 +95,9 @@ public class World {
         }
         if(debris != null && !debris.isEmpty()) {
             updateDebris(deltaTime);
+        }
+        if(portalAnimations != null && !portalAnimations.isEmpty()) {
+            updatePortalAnimations(deltaTime);
         }
 	}
 	
@@ -200,6 +204,22 @@ public class World {
 ////                    debris.remove(d);
 //                }
 //            }
+        }
+    }
+
+    public void addPortalAnimations(PortalAnimation animation) {
+        if(this.portalAnimations == null) {
+            this.portalAnimations = new ArrayList<>();
+        }
+        this.portalAnimations.add(animation);
+    }
+
+    public void updatePortalAnimations(float deltaTime) {
+        for(PortalAnimation animation : portalAnimations) {
+            animation.update(deltaTime);
+            if(animation.isExpired()) {
+                portalAnimations.remove(animation);
+            }
         }
     }
 }
