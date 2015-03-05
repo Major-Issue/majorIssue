@@ -42,6 +42,7 @@
     
     <!-- misc -->
     <string name="back">Back</string>
+    <string name="skip">Skip</string>
     
     
 </resources>

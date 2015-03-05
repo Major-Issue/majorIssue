@@ -10,4 +10,8 @@ public interface AnimatedSprite {
     public void draw(Canvas canvas);
     
     public boolean isExpired();
+
+    public void updateOutRectangle(int posX, int posY);
+
+    public String getAnimationID();
 }

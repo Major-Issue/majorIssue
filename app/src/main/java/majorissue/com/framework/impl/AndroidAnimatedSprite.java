@@ -12,17 +12,18 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
     private int mXPos;
     private int mYPos;
     private Rect mSRectangle;
+    private Rect mORectangle;
     private long mAnimationFrameDuration;
     private int mFramesCount;
     private int mLinesCount;
     private int mCurrentFrame;
     private int mCurrentLine;
-    private float mFrameTimer;
     private int mSpriteHeight;
     private int mSpriteWidth;
     private boolean mIsLooping;
     private boolean mFirstCircleCompleted;
     private float deltaTimeSum = 0;
+    private String mAnimationID = null;
 
     public AndroidAnimatedSprite(int posX,
                                  int posY,
@@ -32,7 +33,8 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
                                  int fps,
                                  int framePerLine,
                                  int linesCount,
-                                 boolean isLooping) {
+                                 boolean isLooping,
+                                 String animationID) {
         // init
         mXPos = posX;
         mYPos = posY;
@@ -44,6 +46,7 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
         mLinesCount = linesCount < 1 ? 1 : linesCount;
         mIsLooping = isLooping;
         mSRectangle = new Rect(0, 0, 0, 0);
+        mAnimationID = animationID;
 
         // first animation frame
         mSRectangle.top = 0;
@@ -52,10 +55,11 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
         mSRectangle.right = mSpriteWidth;
 
         // default values
-        mFrameTimer = 0;
         mCurrentFrame = 0;
         mCurrentLine = 0;
         mFirstCircleCompleted = false;
+
+        mORectangle = new Rect(mXPos - mSpriteWidth/2, mYPos - mSpriteWidth/2, mXPos + mSpriteWidth/2, mYPos + mSpriteHeight/2);
     }
 
     @Override
@@ -85,8 +89,7 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
 
     @Override
     public void draw(Canvas canvas) {
-    	Rect rect = new Rect(mXPos - mSpriteWidth/2, mYPos - mSpriteWidth/2, mXPos + mSpriteWidth/2, mYPos + mSpriteHeight/2);
-    	canvas.drawBitmap(mAnimation, mSRectangle, rect, null);
+    	canvas.drawBitmap(mAnimation, mSRectangle, mORectangle, null);
     }
 
 	@Override
@@ -97,4 +100,16 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
             return false;
         }
 	}
+
+    @Override
+    public void updateOutRectangle(int posX, int posY) {
+        mXPos = posX;
+        mYPos = posY;
+        mORectangle = new Rect(mXPos - mSpriteWidth/2, mYPos - mSpriteWidth/2, mXPos + mSpriteWidth/2, mYPos + mSpriteHeight/2);
+    }
+
+    @Override
+    public String getAnimationID() {
+        return mAnimationID;
+    }
 }

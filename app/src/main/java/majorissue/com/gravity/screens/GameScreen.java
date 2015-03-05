@@ -288,7 +288,7 @@ public class GameScreen extends MenuScreen {
 			break;
 		}
 		
-		g.drawText(AndroidGraphics.BOTTOM_RIGHT, 20, fps + " fps", null);
+//		g.drawText(AndroidGraphics.BOTTOM_RIGHT, 20, fps + " fps", null);
 	}
 
 	private void drawLoadingUI(Graphics g) {
@@ -296,12 +296,12 @@ public class GameScreen extends MenuScreen {
 	}
 
 	private void drawReadyUI(Graphics g) {
-		g.drawText(AndroidGraphics.TOP_LEFT, 20, "ready", null);
+//		g.drawText(AndroidGraphics.TOP_LEFT, 20, "ready", null);
 		drawWorld(g);
 	}
 
 	private void drawRunningUI(Graphics g) {
-		g.drawText(AndroidGraphics.TOP_LEFT, 20, "running", null);
+//		g.drawText(AndroidGraphics.TOP_LEFT, 20, "running", null);
 		drawWorld(g);
 	}
 
@@ -311,7 +311,7 @@ public class GameScreen extends MenuScreen {
 	}
 
 	private void drawGameOverUI(Graphics g) {
-		g.drawText(AndroidGraphics.TOP_LEFT, 20, "game over", null);
+//		g.drawText(AndroidGraphics.TOP_LEFT, 20, "game over", null);
 		drawWorld(g);
 		switch (world.gameOverResason) {
 		case Portal:
@@ -336,7 +336,7 @@ public class GameScreen extends MenuScreen {
                 world.addAnimation(new AndroidAnimatedSprite(   world.ship.getPosX(),
                                                                 world.ship.getPosY(),
                                                                 Assets.explosion_01.getBitmap(),
-                                                                64, 64, 10, 5, 5, false));
+                                                                64, 64, 10, 5, 5, false, null));
                 if(Settings.soundEnabled) {
                     Assets.explosion_sfx_02.play(1);
                 }
@@ -346,7 +346,7 @@ public class GameScreen extends MenuScreen {
                 world.addAnimation(new AndroidAnimatedSprite(   world.ship.getPosX(),
                                                                 world.ship.getPosY(),
                                                                 Assets.explosion_02.getBitmap(),
-                                                                93, 100, 10, 10, 4, false));
+                                                                93, 100, 10, 10, 4, false, null));
                 addDebris(world.ship.getPosX(), world.ship.getPosY());
                 if(Settings.soundEnabled) {
                     Assets.explosion_sfx_01.play(1);
@@ -369,7 +369,7 @@ public class GameScreen extends MenuScreen {
     }
 
     private void addDebris(int x, int y) {
-        for(int i = 0; i < 7; i++) {
+        for(int i = 0; i < 9; i++) {
             world.addDebris(new Debris(game, i+1, x, y));
         }
     }

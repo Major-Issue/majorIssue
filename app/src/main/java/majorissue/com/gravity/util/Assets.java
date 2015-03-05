@@ -14,12 +14,11 @@ public class Assets {
 	public static Pixmap moon_01;
 	public static Pixmap station;
 	public static Pixmap background_menu_01;
-	public static Pixmap intro_page_01;
-	public static Pixmap intro_page_02;
-	public static Pixmap intro_page_03;
+    public static Pixmap intro_background;
     public static Pixmap hub_boost;
     public static Pixmap explosion_01;
     public static Pixmap explosion_02;
+    public static Pixmap flame;
 
     public static Pixmap debris_01;
     public static Pixmap debris_02;
@@ -28,6 +27,8 @@ public class Assets {
     public static Pixmap debris_05;
     public static Pixmap debris_06;
     public static Pixmap debris_07;
+    public static Pixmap debris_08;
+    public static Pixmap debris_09;
 
 	public static Sound menu_click;
     public static Sound explosion_sfx_01;
@@ -35,4 +36,5 @@ public class Assets {
     public static Sound swoosh_01;
 	
 	public static Music music_bkg_01;
+    public static Music rocketengine;
 }

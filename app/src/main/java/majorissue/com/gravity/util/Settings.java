@@ -90,10 +90,10 @@ public class Settings {
 	}
 	
 	public static void toggleIntro(){
-		if(introState == IntroScreen.INTRO_DONT_SHOW) {
+		if(introState == IntroScreen.INTRO_DO_NOT_SHOW) {
 			introState = IntroScreen.INTRO_SHOW;
 		} else {
-			introState = IntroScreen.INTRO_DONT_SHOW;
+			introState = IntroScreen.INTRO_DO_NOT_SHOW;
 		}
 	}
 	

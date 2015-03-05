@@ -149,7 +149,7 @@ public class MenuScreen extends Screen {
 	
 	private void drawIntroExplanation(int x, int y, int blockWidth) {
 		String text = "";
-		if(Settings.introState == IntroScreen.INTRO_DONT_SHOW) {
+		if(Settings.introState == IntroScreen.INTRO_DO_NOT_SHOW) {
 			text = ((GravityGame)game).getResources().getString(R.string.intro_off);
 		} else {
 			text = ((GravityGame)game).getResources().getString(R.string.intro_on);

@@ -61,6 +61,12 @@ public class Debris extends OSO {
             case 7:
                 collisionRadius = Math.max(Assets.debris_07.getHeight(), Assets.debris_07.getWidth());
                 break;
+            case 8:
+                collisionRadius = Math.max(Assets.debris_08.getHeight(), Assets.debris_08.getWidth());
+                break;
+            case 9:
+                collisionRadius = Math.max(Assets.debris_09.getHeight(), Assets.debris_09.getWidth());
+                break;
             default:
                 break;
 
@@ -121,6 +127,10 @@ public class Debris extends OSO {
                 return Assets.debris_06;
             case 7:
                 return Assets.debris_07;
+            case 8:
+                return Assets.debris_08;
+            case 9:
+                return Assets.debris_09;
             default:
                 return Assets.debris_01;
         }
