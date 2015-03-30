@@ -29,7 +29,7 @@ public class Debris extends OSO {
         pixPosY = posY;
 
         init();
-    };
+    }
 
     private void init() {
 
@@ -95,20 +95,14 @@ public class Debris extends OSO {
         float ySqr = (float)Math.pow(distY, 2);
         float hypo = (float)Math.sqrt(xSqr + ySqr);
 
-        if((int)hypo < (objectRadius + collisionRadius)) {
-            return true;
-        }
-        return false;
+        return (int) hypo < (objectRadius + collisionRadius);
     }
 
     public boolean checkOutOfBounds() {
-        if(	pixPosX <= 0 ||
-                pixPosY <= 0 ||
-                pixPosX >= screenWidth ||
-                pixPosY >= screenHeight) {
-            return true;
-        }
-        return false;
+        return pixPosX <= 0 ||
+               pixPosY <= 0 ||
+               pixPosX >= screenWidth ||
+               pixPosY >= screenHeight;
     }
 
     public Pixmap getAsset() {

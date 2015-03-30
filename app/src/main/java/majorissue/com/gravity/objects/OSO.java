@@ -17,7 +17,6 @@ public abstract class OSO {
 	public float pixPosX;
 	public float pixPosY;
 	public int collisionRadius;
-	public AndroidAnimatedSprite sprite;
 	public Game game;
 	
 	protected void reset() {

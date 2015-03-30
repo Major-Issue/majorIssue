@@ -128,7 +128,7 @@ public class MenuScreen extends Screen {
 	}
 	
 	private void drawSoundExplanation(int x, int y, int blockWidth) {
-		String text = "";
+		String text;
 		if(Settings.soundEnabled) {
 			text = ((GravityGame)game).getResources().getString(R.string.sound_on);
 		} else {
@@ -138,7 +138,7 @@ public class MenuScreen extends Screen {
 	}
 	
 	private void drawMusicExplanation(int x, int y, int blockWidth) {
-		String text = "";
+		String text;
 		if(Settings.musicEnabled) {
 			text = ((GravityGame)game).getResources().getString(R.string.music_on);
 		} else {		
@@ -148,7 +148,7 @@ public class MenuScreen extends Screen {
 	}
 	
 	private void drawIntroExplanation(int x, int y, int blockWidth) {
-		String text = "";
+		String text;
 		if(Settings.introState == IntroScreen.INTRO_DO_NOT_SHOW) {
 			text = ((GravityGame)game).getResources().getString(R.string.intro_off);
 		} else {
@@ -158,7 +158,7 @@ public class MenuScreen extends Screen {
 	}
 	
 	private void drawRetryExplanation(int x, int y, int blockWidth) {
-		String text = "";
+		String text;
 		if(Settings.autoretry) {
 			text = ((GravityGame)game).getResources().getString(R.string.autoretry_on);
 		} else {
@@ -168,7 +168,7 @@ public class MenuScreen extends Screen {
 	}
 
     private void drawAidLineExplanation(int x, int y, int blockWidth) {
-        String text = "";
+        String text;
         if(Settings.aidline) {
             text = ((GravityGame)game).getResources().getString(R.string.aidline_on);
         } else {
@@ -178,7 +178,7 @@ public class MenuScreen extends Screen {
     }
 
     private void drawVibrationExplanation(int x, int y, int blockWidth) {
-        String text = "";
+        String text;
         if(Settings.vibrate) {
             text = ((GravityGame)game).getResources().getString(R.string.vibration_on);
         } else {
@@ -196,11 +196,7 @@ public class MenuScreen extends Screen {
 	}
 	
 	protected boolean inBounds(TouchEvent event, int x0, int x1, int y0, int y1) {
-		if (event.x > x0 && event.x < x1 && event.y > y0 && event.y < y1) {
-			return true;
-		} else {
-			return false;
-		}
+        return event.x > x0 && event.x < x1 && event.y > y0 && event.y < y1;
 	}
 
 	@Override

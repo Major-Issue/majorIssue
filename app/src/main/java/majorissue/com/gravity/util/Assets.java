@@ -12,6 +12,7 @@ public class Assets {
 	public static Pixmap planet_02;
 	public static Pixmap planet_03;
 	public static Pixmap moon_01;
+    public static Pixmap moon_02;
 	public static Pixmap station;
 	public static Pixmap background_menu_01;
     public static Pixmap intro_background;
@@ -34,6 +35,10 @@ public class Assets {
     public static Sound explosion_sfx_01;
     public static Sound explosion_sfx_02;
     public static Sound swoosh_01;
+    public static Sound whatwasthat;
+    public static Sound enginegone;
+    public static Sound howdowegethome;
+    public static Sound letstrythat;
 	
 	public static Music music_bkg_01;
     public static Music rocketengine;

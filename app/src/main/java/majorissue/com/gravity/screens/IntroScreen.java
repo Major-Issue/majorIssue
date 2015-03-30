@@ -1,6 +1,7 @@
 package majorissue.com.gravity.screens;
 
 import android.graphics.Rect;
+import android.graphics.Typeface;
 
 import com.majorissue.game.R;
 
@@ -13,7 +14,8 @@ import majorissue.com.framework.impl.AndroidAnimatedSprite;
 import majorissue.com.framework.impl.AndroidGraphics;
 import majorissue.com.gravity.GravityGame;
 import majorissue.com.gravity.util.Assets;
-import majorissue.com.gravity.util.IntroWorld;
+import majorissue.com.gravity.intro.IntroText;
+import majorissue.com.gravity.intro.IntroWorld;
 import majorissue.com.gravity.util.Settings;
 
 public class IntroScreen extends MenuScreen {
@@ -24,7 +26,6 @@ public class IntroScreen extends MenuScreen {
 
     private static final float ANIMATION_FRAME_DURATION = 1/30; //fps
 
-    private float deltaTimeSum = 0f;
     private float backgroundAnimationTime = 0f;
     private Rect rectOut1;
     private Rect rectOut2;
@@ -32,11 +33,14 @@ public class IntroScreen extends MenuScreen {
     private Rect rectSource2;
     private int horizontalOffset = 0;
     private int sourceOutDelta;
-    private int introStep = 0;
     private IntroWorld introWorld;
-    private boolean positionReached = false;
     private boolean firstExplosion = false;
     private boolean secondExplosion = false;
+    private boolean firstText = false;
+    private boolean secondText = false;
+    private boolean thirdText = false;
+    private boolean forthText = false;
+
 	
 	public IntroScreen(Game game) {
 		super(game);
@@ -55,6 +59,10 @@ public class IntroScreen extends MenuScreen {
 
 	@Override
 	public void update(float deltaTime) {
+        if(introWorld.forthTextExpired) {
+            skip();
+        }
+
 		List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
 		int len = touchEvents.size();
 		for (int i = 0; i < len; i++) {
@@ -67,7 +75,7 @@ public class IntroScreen extends MenuScreen {
 			}
 		}
 
-        //update introWorld
+        /* update introWorld */
         if(introWorld.ship.getPosX() < game.getGraphics().getWidth()*0.4f) {
             introWorld.moveShip(2f);
         } else {
@@ -75,9 +83,15 @@ public class IntroScreen extends MenuScreen {
         }
         addSecondExplosion();
         introWorld.updateAnimations(deltaTime);
+
+        if(introWorld.secondExplosionExpired) {
+            addIntroText();
+        }
+        introWorld.updateIntroTexts(deltaTime);
 	}
 	
 	private void skip() {
+        Assets.rocketengine.stop();
 		game.setScreen(new MainMenuScreen(game));
 	}
 
@@ -89,9 +103,9 @@ public class IntroScreen extends MenuScreen {
 	}
 
     private void playIntro(Graphics g, float deltaTime) {
-        deltaTimeSum += deltaTime;
 
-        // background
+        /* background */
+
         backgroundAnimationTime += deltaTime;
         if(backgroundAnimationTime > ANIMATION_FRAME_DURATION) {
             horizontalOffset += 1;
@@ -99,7 +113,7 @@ public class IntroScreen extends MenuScreen {
                 horizontalOffset = 0;
             }
         }
-        rectSource1 = new Rect(0+horizontalOffset, 0, g.getWidth() + horizontalOffset, g.getHeight());
+        rectSource1 = new Rect(horizontalOffset, 0, g.getWidth() + horizontalOffset, g.getHeight());
         g.getCanvas().drawBitmap(Assets.intro_background.getBitmap(), rectSource1, rectOut1, null);
         if(horizontalOffset - sourceOutDelta > 0) {
             rectSource2 = new Rect(0, 0, horizontalOffset - sourceOutDelta, g.getHeight());
@@ -107,14 +121,20 @@ public class IntroScreen extends MenuScreen {
             g.getCanvas().drawBitmap(Assets.intro_background.getBitmap(), rectSource2, rectOut2, null);
         }
 
-        // foreground
+        /* foreground */
 
-        //draw ship
+        /* draw ship */
         g.drawPixmap(Assets.ship, introWorld.ship.getPosX(), introWorld.ship.getPosY());
-        //draw Animations
+        /* draw Animations */
         if(introWorld.animations != null && !introWorld.animations.isEmpty()) {
             for(AndroidAnimatedSprite animation : introWorld.animations) {
                 animation.draw(g.getCanvas());
+            }
+        }
+        /* draw texts */
+        if(introWorld.texts != null && !introWorld.texts.isEmpty()) {
+            for(IntroText text : introWorld.texts) {
+                text.draw(g);
             }
         }
 
@@ -141,6 +161,34 @@ public class IntroScreen extends MenuScreen {
                                                                 Assets.explosion_02.getBitmap(),
                                                                 93, 100, 10, 10, 4, false, "secondExplosion"));
             Assets.explosion_sfx_02.play(1);
+        }
+    }
+
+    private void addIntroText() {
+        // TODO:
+        if(!firstText) {
+            /* add first text */
+            introWorld.addIntroText(new IntroText(game, "what was that!", 0.2f, 0.2f, 2, Typeface.create("Roboto", Typeface.BOLD_ITALIC), 25, 11));
+            Assets.whatwasthat.play(1);
+            firstText = true;
+        }
+        if(!secondText && introWorld.firstTextExpired) {
+            /* add second text */
+            introWorld.addIntroText(new IntroText(game, "our engine exploded", 0.6f, 0.3f, 4, Typeface.create("Roboto",Typeface.NORMAL), 20, 21));
+            Assets.enginegone.play(1);
+            secondText = true;
+        }
+        if(!thirdText && introWorld.secondTextExpired) {
+            /* add third text */
+            introWorld.addIntroText(new IntroText(game, "now what?", 0.2f, 0.2f, 2, Typeface.create("Roboto",Typeface.BOLD_ITALIC), 25, 12));
+            Assets.howdowegethome.play(1);
+            thirdText = true;
+        }
+        if(!forthText && introWorld.thirdTextExpired) {
+            /* add forth text */
+            introWorld.addIntroText(new IntroText(game, "lets try that", 0.6f, 0.3f, 4, Typeface.create("Roboto",Typeface.NORMAL), 20, 22));
+            Assets.letstrythat.play(1);
+            forthText = true;
         }
     }
 }

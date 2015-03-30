@@ -15,7 +15,7 @@ public class Gauge extends OSO {
     public float angle = 0f;
 
 
-    public Gauge() {};
+    public Gauge() {}
 
     public void init(Game game) {
         this.game = game;

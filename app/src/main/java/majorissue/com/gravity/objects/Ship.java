@@ -16,7 +16,7 @@ public class Ship extends OSO {
 	private float pixPosOldX = 0f;
 	private float pixPosOldY = 0f;
 	
-	public Ship(){};
+	public Ship(){}
 	
 	public void init(Game game) {
 		this.game = game;
@@ -77,22 +77,16 @@ public class Ship extends OSO {
 		float xSqr = (float)Math.pow(distX, 2);
 		float ySqr = (float)Math.pow(distY, 2);
 		float hypo = (float)Math.sqrt(xSqr + ySqr);
-		
-		if((int)hypo < (objectRadius + collisionRadius)) {
-			return true;
-		}
-		return false;
-	}
+
+        return (int) hypo < (objectRadius + collisionRadius);
+    }
 	
 	public boolean checkOutOfBounds() {
-		if(	pixPosX <= 0 ||
-			pixPosY <= 0 ||
-			pixPosX >= screenWidth ||
-			pixPosY >= screenHeight) {
-			return true;
-		}
-		return false;
-	}
+        return pixPosX <= 0 ||
+               pixPosY <= 0 ||
+               pixPosX >= screenWidth ||
+               pixPosY >= screenHeight;
+    }
 	
 	public void userInput(int targetX, int targetY) {
 		pulse = updateHeading(targetX, targetY);

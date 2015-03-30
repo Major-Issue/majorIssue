@@ -14,7 +14,7 @@ public class Planet extends OSO {
 	public Moon moon;
 	public Station station;
 	
-	public Planet(){};
+	public Planet(){}
 	
 	public void init() {
 		collisionRadius = Assets.planet_03.getWidth() / 2;

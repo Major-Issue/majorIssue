@@ -12,7 +12,7 @@ public class Station extends OSO {
 	private OSO root;
 	private float distanceToRoot = 0f;
 
-	public Station() {};
+	public Station() {}
 
 	public void init(OSO planet) {
 		root = planet;

@@ -390,7 +390,7 @@ public class GameScreen extends MenuScreen {
 				y = planet.getPosY() - (b.getHeight() / 2);
 				g.drawBitmap(b, x, y);
 				if(planet.hasMoon) {
-					b = Util.RotateBitmap(Assets.moon_01.getBitmap(), planet.moon.selfRotation);
+					b = Util.RotateBitmap(Assets.moon_02.getBitmap(), planet.moon.selfRotation);
 					x = planet.moon.getPosX() - (b.getWidth() / 2);
 					y = planet.moon.getPosY() - (b.getHeight() / 2);
 					g.drawBitmap(b, x, y);

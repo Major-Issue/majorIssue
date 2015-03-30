@@ -12,7 +12,7 @@ public class Moon extends OSO {
 	private OSO root;
 	private float distanceToRoot = 0f;
 	
-	public Moon(){};
+	public Moon(){}
 	
 	public void init(OSO planet) {
 		root = planet;

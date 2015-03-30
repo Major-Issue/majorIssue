@@ -9,8 +9,6 @@ import majorissue.com.gravity.screens.MainMenuScreen;
 import majorissue.com.gravity.util.Assets;
 
 public class GravityGame extends AndroidGame {
-
-	public static final boolean DEBUG = true;
 	
 	@Override
 	public Screen getStartScreen() {

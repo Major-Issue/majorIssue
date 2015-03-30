@@ -28,9 +28,6 @@ public class Level {
 	public static Ship ship = null;
 	public static Portal portal = null;
 	public static ArrayList<Planet> planets = null;
-	
-	public static String levelBackground;
-	public static String levelBGM;
 
 	public static void loadLevel(int level, int type, AssetManager am) {
 		
@@ -52,10 +49,10 @@ public class Level {
 		}
 		String levelName = type == LEVEL_STORY ? storyLevels[level] : extraLevels[level];
 		levelName += LEVEL_POSTFIX;
-		loadLevel(levelName, type, am);
+		loadLevel(levelName, am);
 	}
 	
-	private static void loadLevel(String levelName, int type, AssetManager am) {
+	private static void loadLevel(String levelName, AssetManager am) {
 		InputStream in = null;
 		BufferedReader reader = null;
 		try {
@@ -78,7 +75,7 @@ public class Level {
 				if(reader != null) {
 					reader.close();
 				}
-			} catch (Exception e) {
+			} catch (Exception ignored) {
 			}
 		}
 	}
@@ -86,7 +83,7 @@ public class Level {
 	public static void loadMetaData(AssetManager am) {
 		InputStream in = null;
 		BufferedReader reader = null;
-		String line = "";
+		String line;
 		try {
 			in = am.open(META_DATA);
 			reader = new BufferedReader(new InputStreamReader(in));
@@ -118,16 +115,13 @@ public class Level {
 				if(reader != null) {
 					reader.close();
 				}
-			} catch (Exception e) {
+			} catch (Exception ignored) {
 			}
 		}
 	}
 
 	private static void makeObject(String line) {
-		if(line.startsWith("##")) {
-			return;
-		}
-		else if(line.startsWith("#ship")) {
+		if(line.startsWith("#ship")) {
 			createShip(line);
 		}
 		else if(line.startsWith("#portal")) {
@@ -167,7 +161,7 @@ public class Level {
 
 	private static void createPlanet(String line) {
 		if(planets == null) {
-			planets = new ArrayList<Planet>();
+			planets = new ArrayList<>();
 		}
 		Planet planet = new Planet();
 		StringTokenizer st = new StringTokenizer(line);
@@ -178,8 +172,8 @@ public class Level {
 		planet.rotationDirection = Integer.parseInt(st.nextToken());
 		planet.asset = Integer.parseInt(st.nextToken());
 		planet.scale = Integer.parseInt(st.nextToken());
-		planet.hasMoon = Integer.parseInt(st.nextToken()) == 0 ? false : true;
-		planet.hasStation = Integer.parseInt(st.nextToken()) == 0 ? false : true;
+		planet.hasMoon = Integer.parseInt(st.nextToken()) != 0;
+		planet.hasStation = Integer.parseInt(st.nextToken()) != 0;
 		planets.add(planet);
 	}
 }

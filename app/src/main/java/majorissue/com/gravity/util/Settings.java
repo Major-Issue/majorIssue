@@ -44,7 +44,7 @@ public class Settings {
 			try {
 				if (in != null)
 					in.close();
-			} catch (IOException e) {
+			} catch (IOException ignored) {
 			}
 		}
 	}
@@ -71,12 +71,12 @@ public class Settings {
             out.write("\n");
             out.write(Boolean.toString(vibrate));
             out.write("\n");
-		} catch (IOException e) {
+		} catch (IOException ignored) {
 		} finally {
 			try {
 				if (out != null)
 					out.close();
-			} catch (IOException e) {
+			} catch (IOException ignored) {
 			}
 		}
 	}

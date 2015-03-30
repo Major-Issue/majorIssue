@@ -38,6 +38,7 @@ public class LoadingScreen extends MenuScreen {
 		Assets.planet_03 = g.newPixmap("gravity/graphics/planet_03.png", PixmapFormat.ARGB4444);
 		Assets.station = g.newPixmap("gravity/graphics/station.png", PixmapFormat.ARGB4444);
 		Assets.moon_01 = g.newPixmap("gravity/graphics/moon_01.png", PixmapFormat.ARGB4444);
+        Assets.moon_02 = g.newPixmap("gravity/graphics/moon_02.png", PixmapFormat.ARGB4444);
         Assets.hub_boost = g.newPixmap("gravity/graphics/hud_boost.png", PixmapFormat.ARGB4444);
         Assets.explosion_01 = g.newPixmap("gravity/graphics/explosion_01.png", PixmapFormat.ARGB4444);
         Assets.explosion_02 = g.newPixmap("gravity/graphics/explosion_02.png", PixmapFormat.ARGB4444);
@@ -58,7 +59,11 @@ public class LoadingScreen extends MenuScreen {
         Assets.explosion_sfx_01 = game.getAudio().newSound("gravity/sound/explosion_01.ogg");
         Assets.explosion_sfx_02 = game.getAudio().newSound("gravity/sound/explosion_02.ogg");
         Assets.swoosh_01 = game.getAudio().newSound("gravity/sound/swoosh_01.ogg");
-		
+        Assets.whatwasthat = game.getAudio().newSound("gravity/sound/whatwasthat.ogg");
+        Assets.enginegone = game.getAudio().newSound("gravity/sound/enginegone.ogg");
+        Assets.howdowegethome = game.getAudio().newSound("gravity/sound/howdowegethome.ogg");
+        Assets.letstrythat = game.getAudio().newSound("gravity/sound/letstrythat.ogg");
+
 		// music
 		Assets.music_bkg_01 = game.getAudio().newMusic("gravity/music/menu_background_01.ogg");
         Assets.rocketengine = game.getAudio().newMusic("gravity/music/rocketengine.ogg");

@@ -1,9 +1,6 @@
 package majorissue.com.gravity.util;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Rect;
 
 import majorissue.com.gravity.objects.OSO;
 
@@ -22,7 +19,6 @@ public class PortalAnimation {
     private float fY = 0f;
 
     public Bitmap bmpOut;
-    public float heading = 0f;
     public float posX = 0f;
     public float posY = 0f;
 
