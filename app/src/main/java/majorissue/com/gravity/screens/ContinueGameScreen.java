@@ -95,7 +95,7 @@ public class ContinueGameScreen extends MenuScreen {
 	@Override
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
-		g.drawPixmap(Assets.background_menu_01, 0, 0);
+		g.drawPixmap(Assets.main_menu, 0, 0);
 		touchAreas = drawMenu(new String[]{	((GravityGame)game).getResources().getString(R.string.reset),
 											((GravityGame)game).getResources().getString(R.string.cancel)
 											}, touchedEntry);

@@ -87,16 +87,16 @@ public class IntroWorld {
                 text.update(deltaTime);
                 if(text.isExpired) {
                     switch (text.id) {
-                        case 1:
+                        case 11:
                             firstTextExpired = true;
                             break;
-                        case 2:
+                        case 21:
                             secondTextExpired = true;
                             break;
-                        case 3:
+                        case 12:
                             thirdTextExpired = true;
                             break;
-                        case 4:
+                        case 22:
                             forthTextExpired = true;
                             break;
                         default:

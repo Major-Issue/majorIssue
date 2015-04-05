@@ -136,7 +136,7 @@ public class MainMenuScreen extends MenuScreen {
 	@Override
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
-		g.drawPixmap(Assets.background_menu_01, 0, 0);
+		g.drawPixmap(Assets.main_menu, 0, 0);
 		menuTouchAreas = drawMenu(new String[]{	((GravityGame)game).getResources().getString(R.string.new_game),
 												((GravityGame)game).getResources().getString(R.string.continue_game),
 												((GravityGame)game).getResources().getString(R.string.extra),

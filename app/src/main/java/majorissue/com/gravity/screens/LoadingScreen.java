@@ -1,11 +1,8 @@
 package majorissue.com.gravity.screens;
 
-import android.graphics.Typeface;
-
 import majorissue.com.framework.Game;
 import majorissue.com.framework.Graphics;
 import majorissue.com.framework.Graphics.PixmapFormat;
-import majorissue.com.framework.impl.AndroidGraphics;
 import majorissue.com.gravity.util.Assets;
 import majorissue.com.gravity.util.Level;
 import majorissue.com.gravity.util.Settings;
@@ -28,14 +25,19 @@ public class LoadingScreen extends MenuScreen {
 	private void loadAssets(){
 		// graphics
 		Graphics g = game.getGraphics();
-		Assets.background_menu_01 = g.newPixmap("gravity/graphics/background_menu_01.jpg", PixmapFormat.RGB565);
-        Assets.intro_background = g.newPixmap("gravity/graphics/intro_background.jpg", PixmapFormat.RGB565);
+		Assets.main_menu = g.newPixmap("gravity/graphics/main_menu.jpg", PixmapFormat.RGB565);
+        Assets.intro_screen = g.newPixmap("gravity/graphics/intro_screen.jpg", PixmapFormat.RGB565);
+		Assets.title_screen = g.newPixmap("gravity/graphics/title_screen.jpg", PixmapFormat.RGB565);
 		Assets.portal_01 = g.newPixmap("gravity/graphics/portal_01.png", PixmapFormat.ARGB4444);
 		Assets.portal_02 = g.newPixmap("gravity/graphics/portal_02.png", PixmapFormat.ARGB4444);
 		Assets.ship = g.newPixmap("gravity/graphics/ship.png", PixmapFormat.ARGB4444);
-		Assets.planet_01 = g.newPixmap("gravity/graphics/planet_01.png", PixmapFormat.ARGB4444);
-		Assets.planet_02 = g.newPixmap("gravity/graphics/planet_02.png", PixmapFormat.ARGB4444);
-		Assets.planet_03 = g.newPixmap("gravity/graphics/planet_03.png", PixmapFormat.ARGB4444);
+		Assets.planet_earth = g.newPixmap("gravity/graphics/earth.png", PixmapFormat.ARGB4444);
+		Assets.planet_blue = g.newPixmap("gravity/graphics/blue.png", PixmapFormat.ARGB4444);
+		Assets.planet_green = g.newPixmap("gravity/graphics/green.png", PixmapFormat.ARGB4444);
+		Assets.planet_orange = g.newPixmap("gravity/graphics/orange.png", PixmapFormat.ARGB4444);
+		Assets.planet_purple = g.newPixmap("gravity/graphics/purple.png", PixmapFormat.ARGB4444);
+		Assets.planet_red = g.newPixmap("gravity/graphics/red.png", PixmapFormat.ARGB4444);
+		Assets.planet_yellow = g.newPixmap("gravity/graphics/yellow.png", PixmapFormat.ARGB4444);
 		Assets.station = g.newPixmap("gravity/graphics/station.png", PixmapFormat.ARGB4444);
 		Assets.moon_01 = g.newPixmap("gravity/graphics/moon_01.png", PixmapFormat.ARGB4444);
         Assets.moon_02 = g.newPixmap("gravity/graphics/moon_02.png", PixmapFormat.ARGB4444);
@@ -84,8 +86,8 @@ public class LoadingScreen extends MenuScreen {
 	@Override
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
-		g.drawPixmap(Assets.background_menu_01, 0, 0);
-		Typeface tf = Typeface.create("Roboto",Typeface.BOLD_ITALIC);
-		g.drawText(AndroidGraphics.CENTER, 25, "LOADING ...", tf);
+		g.drawPixmap(Assets.title_screen, 0, 0);
+//		Typeface tf = Typeface.create("Roboto",Typeface.BOLD_ITALIC);
+//		g.drawText(AndroidGraphics.CENTER, 25, "LOADING ...", tf);
 	}
 }

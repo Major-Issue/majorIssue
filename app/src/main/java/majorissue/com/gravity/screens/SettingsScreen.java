@@ -68,7 +68,7 @@ public class SettingsScreen extends MenuScreen {
 	@Override
 	public void present(float deltaTime) {
 		Graphics g = game.getGraphics();
-		g.drawPixmap(Assets.background_menu_01, 0, 0);
+		g.drawPixmap(Assets.main_menu, 0, 0);
 		settingsTouchAreas = drawMenu(new String[]{	((GravityGame)game).getResources().getString(R.string.music),
 													((GravityGame)game).getResources().getString(R.string.sound),
 													((GravityGame)game).getResources().getString(R.string.intro),

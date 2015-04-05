@@ -17,7 +17,7 @@ public class Planet extends OSO {
 	public Planet(){}
 	
 	public void init() {
-		collisionRadius = Assets.planet_03.getWidth() / 2;
+		collisionRadius = Assets.planet_earth.getWidth() / 2;
 		if(hasMoon) {
 			moon = new Moon();
 			moon.init(this);
@@ -53,13 +53,21 @@ public class Planet extends OSO {
 	public Pixmap getAsset() {
 		switch (asset) {
 		case 1:
-			return Assets.planet_01;
+			return Assets.planet_earth;
 		case 2:
-			return Assets.planet_02;
+			return Assets.planet_blue;
 		case 3:
-			return Assets.planet_03;
+			return Assets.planet_orange;
+		case 4:
+			return Assets.planet_purple;
+		case 5:
+			return Assets.planet_green;
+		case 6:
+			return Assets.planet_red;
+		case 7:
+			return Assets.planet_yellow;
 		default:
-			return Assets.planet_01;
+			return Assets.planet_earth;
 		}
 	}
 }

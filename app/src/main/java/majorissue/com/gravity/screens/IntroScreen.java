@@ -51,7 +51,7 @@ public class IntroScreen extends MenuScreen {
         rectOut2 = new Rect(0, 0, 0, 0);
         rectSource1 = new Rect(0, 0, game.getGraphics().getWidth(), game.getGraphics().getHeight());
         rectSource2 = new Rect(0, 0, 0, 0);
-        sourceOutDelta = Assets.intro_background.getWidth() - game.getGraphics().getWidth();
+        sourceOutDelta = Assets.intro_screen.getWidth() - game.getGraphics().getWidth();
         introWorld = new IntroWorld(game);
         Assets.rocketengine.setLooping(true);
         Assets.rocketengine.play();
@@ -109,16 +109,16 @@ public class IntroScreen extends MenuScreen {
         backgroundAnimationTime += deltaTime;
         if(backgroundAnimationTime > ANIMATION_FRAME_DURATION) {
             horizontalOffset += 1;
-            if(horizontalOffset > Assets.intro_background.getWidth()) {
+            if(horizontalOffset > Assets.intro_screen.getWidth()) {
                 horizontalOffset = 0;
             }
         }
         rectSource1 = new Rect(horizontalOffset, 0, g.getWidth() + horizontalOffset, g.getHeight());
-        g.getCanvas().drawBitmap(Assets.intro_background.getBitmap(), rectSource1, rectOut1, null);
+        g.getCanvas().drawBitmap(Assets.intro_screen.getBitmap(), rectSource1, rectOut1, null);
         if(horizontalOffset - sourceOutDelta > 0) {
             rectSource2 = new Rect(0, 0, horizontalOffset - sourceOutDelta, g.getHeight());
             rectOut2 = new Rect(game.getGraphics().getWidth() - (horizontalOffset - sourceOutDelta), 0, game.getGraphics().getWidth(), game.getGraphics().getHeight());
-            g.getCanvas().drawBitmap(Assets.intro_background.getBitmap(), rectSource2, rectOut2, null);
+            g.getCanvas().drawBitmap(Assets.intro_screen.getBitmap(), rectSource2, rectOut2, null);
         }
 
         /* foreground */
@@ -168,7 +168,7 @@ public class IntroScreen extends MenuScreen {
         // TODO:
         if(!firstText) {
             /* add first text */
-            introWorld.addIntroText(new IntroText(game, "what was that!", 0.2f, 0.2f, 2, Typeface.create("Roboto", Typeface.BOLD_ITALIC), 25, 11));
+            introWorld.addIntroText(new IntroText(game, "what was that!", 0.2f, 0.2f, 2, Typeface.create("Roboto", Typeface.NORMAL), 25, 11));
             Assets.whatwasthat.play(1);
             firstText = true;
         }
@@ -180,7 +180,7 @@ public class IntroScreen extends MenuScreen {
         }
         if(!thirdText && introWorld.secondTextExpired) {
             /* add third text */
-            introWorld.addIntroText(new IntroText(game, "now what?", 0.2f, 0.2f, 2, Typeface.create("Roboto",Typeface.BOLD_ITALIC), 25, 12));
+            introWorld.addIntroText(new IntroText(game, "now what?", 0.2f, 0.2f, 2, Typeface.create("Roboto",Typeface.NORMAL), 25, 12));
             Assets.howdowegethome.play(1);
             thirdText = true;
         }
