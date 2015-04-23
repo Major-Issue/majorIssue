@@ -43,6 +43,9 @@
     <!-- misc -->
     <string name="back">Back</string>
     <string name="skip">Skip</string>
-    
+
+    <!-- ad -->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
     
 </resources>

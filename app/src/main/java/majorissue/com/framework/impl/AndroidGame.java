@@ -10,6 +10,13 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.majorissue.game.R;
 
 import majorissue.com.framework.Audio;
 import majorissue.com.framework.FileIO;
@@ -26,6 +33,7 @@ public abstract class AndroidGame extends Activity implements Game {
     FileIO fileIO;
     Screen screen;
     WakeLock wakeLock;
+    InterstitialAd interstitialAd;
 
     @SuppressWarnings("deprecation")
 	@Override
@@ -52,10 +60,39 @@ public abstract class AndroidGame extends Activity implements Game {
         audio = new AndroidAudio(this);
         input = new AndroidInput(this, renderView, scaleX, scaleY);
         screen = getStartScreen();
-        setContentView(renderView);
+
+        setContentView(R.layout.container);
+        FrameLayout fl = (FrameLayout) findViewById(R.id.container_game);
+        fl.addView(renderView);
         
         PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "GLGame");
+
+        loadAd();
+    }
+
+    private void loadAd() {
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+        requestNewInterstitial();
+        interstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // requestNewInterstitial(); // remove if exit
+            }
+        });
+    }
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("07429FC17B6F7C0A242414934F91CB26") // my nexus 5
+                .build();
+
+        interstitialAd.loadAd(adRequest);
     }
 
     @Override
@@ -73,8 +110,12 @@ public abstract class AndroidGame extends Activity implements Game {
         renderView.pause();
         screen.pause();
 
-        if (isFinishing())
+        if (isFinishing()) {
+            if(interstitialAd.isLoaded()) {
+                interstitialAd.show();
+            }
             screen.dispose();
+        }
     }
 
     public Input getInput() {
