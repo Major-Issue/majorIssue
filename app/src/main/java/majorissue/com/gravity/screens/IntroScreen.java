@@ -13,9 +13,9 @@ import majorissue.com.framework.Input.TouchEvent;
 import majorissue.com.framework.impl.AndroidAnimatedSprite;
 import majorissue.com.framework.impl.AndroidGraphics;
 import majorissue.com.gravity.GravityGame;
-import majorissue.com.gravity.util.Assets;
 import majorissue.com.gravity.intro.IntroText;
 import majorissue.com.gravity.intro.IntroWorld;
+import majorissue.com.gravity.util.Assets;
 import majorissue.com.gravity.util.Settings;
 
 public class IntroScreen extends MenuScreen {

@@ -35,6 +35,11 @@ public abstract class AndroidGame extends Activity implements Game {
     WakeLock wakeLock;
     InterstitialAd interstitialAd;
 
+    public final static float defaultWidth = 1794f;
+    public final static float defaultHeight = 1080f;
+    float scaleX = 1f;
+    float scaleY = 1f;
+
     @SuppressWarnings("deprecation")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,8 @@ public abstract class AndroidGame extends Activity implements Game {
         
 		int displayWidth = getWindowManager().getDefaultDisplay().getWidth();
 		int displayHeight = getWindowManager().getDefaultDisplay().getHeight();
+        scaleX = (float)displayWidth / defaultWidth;
+        scaleY = (float)displayHeight / defaultHeight;
 
         boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         int frameBufferWidth = isLandscape ? displayWidth : displayHeight;
@@ -93,6 +100,16 @@ public abstract class AndroidGame extends Activity implements Game {
                 .build();
 
         interstitialAd.loadAd(adRequest);
+    }
+
+    @Override
+    public float getScaleX() {
+        return scaleX;
+    }
+
+    @Override
+    public float getScaleY() {
+        return scaleY;
     }
 
     @Override

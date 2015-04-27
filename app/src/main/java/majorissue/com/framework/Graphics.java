@@ -11,7 +11,7 @@ public interface Graphics {
 		ARGB8888, ARGB4444, RGB565
 	}
 
-	public Pixmap newPixmap(String fileName, PixmapFormat format);
+	public Pixmap newPixmap(String fileName, PixmapFormat format, float rx, float ry);
 
 	public void clear(int color);
 

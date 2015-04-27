@@ -1,8 +1,8 @@
 package majorissue.com.gravity.screens;
 
-import java.util.List;
-
 import com.majorissue.game.R;
+
+import java.util.List;
 
 import majorissue.com.framework.Game;
 import majorissue.com.framework.Graphics;

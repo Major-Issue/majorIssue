@@ -29,7 +29,6 @@
         </activity>
 
         <activity android:name="com.google.android.gms.ads.AdActivity"
-            android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
 

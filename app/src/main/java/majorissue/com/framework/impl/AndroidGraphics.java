@@ -21,6 +21,7 @@ import android.util.TypedValue;
 
 import majorissue.com.framework.Graphics;
 import majorissue.com.framework.Pixmap;
+import majorissue.com.gravity.util.Util;
 
 public class AndroidGraphics implements Graphics {
     
@@ -44,7 +45,7 @@ public class AndroidGraphics implements Graphics {
         this.paint = new Paint();
     }
 
-    public Pixmap newPixmap(String fileName, PixmapFormat format) {
+    public Pixmap newPixmap(String fileName, PixmapFormat format, float rx, float ry) {
         Config config = null;
         if (format == PixmapFormat.RGB565)
             config = Config.RGB_565;
@@ -73,6 +74,8 @@ public class AndroidGraphics implements Graphics {
                 }
             }
         }
+
+        bitmap = Util.ScaleBitamp(bitmap, rx, ry);
 
         if (bitmap.getConfig() == Config.RGB_565)
             format = PixmapFormat.RGB565;

@@ -19,4 +19,8 @@ public interface Game {
 	public Screen getStartScreen();
 	
 	public Context getContext();
+
+	public float getScaleX();
+
+	public float getScaleY();
 }
