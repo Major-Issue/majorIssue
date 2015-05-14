@@ -14,8 +14,8 @@ public abstract class OSO {
 	public int scale;
 	
 	// after init world
-	public float pixPosX;
-	public float pixPosY;
+	public float pixPosX = -1;
+	public float pixPosY = -1;
 	public int collisionRadius;
 	public Game game;
 	
