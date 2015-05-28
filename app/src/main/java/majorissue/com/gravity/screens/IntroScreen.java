@@ -147,7 +147,8 @@ public class IntroScreen extends MenuScreen {
             introWorld.addAnimation(new AndroidAnimatedSprite(  introWorld.ship.getPosX(),
                                                                 introWorld.ship.getPosY() + (int)(Assets.ship.getHeight() * 0.3f),
                                                                 Assets.explosion_02.getBitmap(),
-                                                                93, 100, 10, 10, 4, false, "firstExplosion"));
+                                                                93, 100, 10, 10, 4, false, "firstExplosion",
+                                                                game));
             Assets.rocketengine.stop();
             Assets.explosion_sfx_02.play(1);
         }
@@ -159,7 +160,8 @@ public class IntroScreen extends MenuScreen {
             introWorld.addAnimation(new AndroidAnimatedSprite(  introWorld.ship.getPosX(),
                                                                 introWorld.ship.getPosY() + (int)(Assets.ship.getHeight() * 0.5f),
                                                                 Assets.explosion_02.getBitmap(),
-                                                                93, 100, 10, 10, 4, false, "secondExplosion"));
+                                                                93, 100, 10, 10, 4, false, "secondExplosion",
+                                                                game));
             Assets.explosion_sfx_02.play(1);
         }
     }

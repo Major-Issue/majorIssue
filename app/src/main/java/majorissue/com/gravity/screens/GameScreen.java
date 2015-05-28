@@ -336,7 +336,8 @@ public class GameScreen extends MenuScreen {
                 world.addAnimation(new AndroidAnimatedSprite(   world.ship.getPosX(),
                                                                 world.ship.getPosY(),
                                                                 Assets.explosion_01.getBitmap(),
-                                                                64, 64, 10, 5, 5, false, null));
+                                                                64, 64, 10, 5, 5, false, null,
+																game));
                 if(Settings.soundEnabled) {
                     Assets.explosion_sfx_02.play(1);
                 }
@@ -346,7 +347,8 @@ public class GameScreen extends MenuScreen {
                 world.addAnimation(new AndroidAnimatedSprite(   world.ship.getPosX(),
                                                                 world.ship.getPosY(),
                                                                 Assets.explosion_02.getBitmap(),
-                                                                93, 100, 10, 10, 4, false, null));
+                                                                93, 100, 10, 10, 4, false, null,
+																game));
                 addDebris(world.ship.getPosX(), world.ship.getPosY());
                 if(Settings.soundEnabled) {
                     Assets.explosion_sfx_01.play(1);

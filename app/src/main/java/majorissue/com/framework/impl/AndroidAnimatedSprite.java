@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import majorissue.com.framework.AnimatedSprite;
+import majorissue.com.framework.Game;
 
 public class AndroidAnimatedSprite implements AnimatedSprite {
 
@@ -34,8 +35,12 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
                                  int framePerLine,
                                  int linesCount,
                                  boolean isLooping,
-                                 String animationID) {
+                                 String animationID,
+                                 Game game) {
         // init
+        float scaleX = game.getScaleX();
+        float scaleY = game.getScaleY();
+        // TODO: factor in scale
         mXPos = posX;
         mYPos = posY;
         mAnimation = animation;

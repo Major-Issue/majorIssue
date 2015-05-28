@@ -36,7 +36,8 @@ public class IntroWorld {
         animations.add(new AndroidAnimatedSprite(   ship.getPosX(),
                                                     ship.getPosY() + (int)(Assets.ship.getHeight() * 0.5f),
                                                     Assets.flame.getBitmap(),
-                                                    50, 50, 5, 4, 4, true, "flame"));
+                                                    50, 50, 5, 4, 4, true, "flame",
+                                                    game));
     }
 
     public void moveShip(float deltaX) {
