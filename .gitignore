@@ -1,6 +1,13 @@
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
+/.idea
 .DS_Store
 /build
+**/*.iml
+*.hprof
+*.trace
+
+!/.idea/codeStyleSettings.xml
+!/.idea/vcs.xml
+!/.idea/encodings.xml
+
