@@ -21,4 +21,8 @@ public class Util {
 		return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), m, true);
 
 	}
+
+	public static int getScaledOffset(float scale, float offset) {
+		return (int)(offset * scale);
+	}
 }

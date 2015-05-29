@@ -44,8 +44,8 @@ public class AndroidAnimatedSprite implements AnimatedSprite {
         mXPos = posX;
         mYPos = posY;
         mAnimation = animation;
-        mSpriteWidth = spriteWidth;
-        mSpriteHeight = spriteHeight;
+        mSpriteWidth = (int) (spriteWidth * scaleX);
+        mSpriteHeight = (int) (spriteHeight * scaleY);
         mAnimationFrameDuration = 1 / fps;
         mFramesCount = framePerLine;
         mLinesCount = linesCount < 1 ? 1 : linesCount;

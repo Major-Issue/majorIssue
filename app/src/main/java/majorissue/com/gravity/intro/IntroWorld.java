@@ -6,6 +6,7 @@ import majorissue.com.framework.Game;
 import majorissue.com.framework.impl.AndroidAnimatedSprite;
 import majorissue.com.gravity.objects.Ship;
 import majorissue.com.gravity.util.Assets;
+import majorissue.com.gravity.util.Util;
 
 public class IntroWorld {
 
@@ -34,7 +35,7 @@ public class IntroWorld {
         ship.pixPosX = -100;
         ship.pixPosY = game.getGraphics().getHeight() * 0.6f;
         animations.add(new AndroidAnimatedSprite(   ship.getPosX(),
-                                                    ship.getPosY() + (int)(Assets.ship.getHeight() * 0.5f),
+                                                    ship.getPosY(),
                                                     Assets.flame.getBitmap(),
                                                     50, 50, 5, 4, 4, true, "flame",
                                                     game));
@@ -62,7 +63,7 @@ public class IntroWorld {
                     animations.remove(animation);
                 }
                 if(animation.getAnimationID().equalsIgnoreCase("flame")) {
-                    animation.updateOutRectangle(ship.getPosX() - 25, ship.getPosY() + (int)(Assets.ship.getHeight() * 0.5f)); // -25 = flame offset x
+                    animation.updateOutRectangle(ship.getPosX() - Util.getScaledOffset(game.getScaleX(), 25f), ship.getPosY() + (int)(Assets.ship.getHeight() * 0.5f)); // -25 = flame offset x
                 }
             }
         }

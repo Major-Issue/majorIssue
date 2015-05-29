@@ -55,7 +55,6 @@ public class PortalAnimation {
         float newWidth = width - width * decrPercentage;
         float newHeight = height - height * decrPercentage;
 
-        // TODO: scale bitmap and move to center of portal
         bmpOut = Bitmap.createScaledBitmap(Assets.ship.getBitmap(), (int)newWidth, (int)newHeight, true);
         posX += (fX * 5f);
         posY += (fY * 5f);
