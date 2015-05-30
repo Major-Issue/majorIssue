@@ -2,6 +2,7 @@ package majorissue.com.gravity.screens;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.os.Vibrator;
 
 import com.majorissue.game.R;
@@ -43,13 +44,13 @@ public class GameScreen extends MenuScreen {
 	private GameState oldState = GameState.Loading;
 	private GameState state = GameState.Loading;
 	private World world;
-	private int player_x = -1;
-	private int player_y = -1;
+    private Point player = new Point(-1, -1);
+    private Point lastTry = new Point(-1, -1);
 	private float loadingTime = 0.0f;
 	private boolean loadingComplete = false;
 	private int fps = 0;
     private Vibrator v;
-	
+
 	private String[][] menuTouchAreas = null;
 	private String touchedMenuEntry = null;
 
@@ -97,8 +98,8 @@ public class GameScreen extends MenuScreen {
 	}
 	
 	private void loadNextLevel() {
-		player_x = -1;
-		player_y = -1;
+		player = new Point(-1, -1);
+        lastTry = new Point(-1, -1);
 		state = oldState;
 		state = GameState.Loading;
 		world.reset();
@@ -107,8 +108,7 @@ public class GameScreen extends MenuScreen {
 	}
 	
 	private void retryLevel() {
-		player_x = -1;
-		player_y = -1;
+		player = new Point(-1, -1);
 		state = oldState;
 		state = GameState.Loading;
 		world.reset();
@@ -217,26 +217,27 @@ public class GameScreen extends MenuScreen {
 		for (int i = 0; i < len; i++) {
 			TouchEvent event = touchEvents.get(i);
 			if (event.type == TouchEvent.TOUCH_DOWN) {
-				player_x = event.x;
-				player_y = event.y;
+				player.x = event.x;
+				player.y = event.y;
 			}
 			if (event.type == TouchEvent.TOUCH_DRAGGED) {
-				player_x = event.x;
-				player_y = event.y;
+				player.x = event.x;
+				player.y = event.y;
 			}
 			if (event.type == TouchEvent.TOUCH_UP) {
 				oldState = state;
 				state = GameState.Running;
-				player_x = event.x;
-				player_y = event.y;
+				player.x = event.x;
+				player.y = event.y;
+                lastTry = player;
                 if(Settings.soundEnabled) {
                     Assets.swoosh_01.play(1);
                 }
 			}
 		}
-		
-		world.inputX = player_x;
-		world.inputY = player_y;
+
+        world.inputX = player.x;
+        world.inputY = player.y;
 		updateWorld(deltaTime);
 	}
 
@@ -417,9 +418,14 @@ public class GameScreen extends MenuScreen {
 		// draw Ship
 		if(world.ship != null && !world.gameOver) {
 
-            // draw Line
-            if(Settings.aidline && state == GameState.Ready && player_x != -1) {
-                g.drawLine(world.ship.getPosX(), world.ship.getPosY(), player_x, player_y, 0xffffffff);
+            // draw Aid Line
+            if(Settings.aidline && state == GameState.Ready && player.x != -1) {
+                g.drawLine(world.ship.getPosX(), world.ship.getPosY(), player.x, player.y, ((GravityGame)game).getResources().getColor(R.color.aidline));
+            }
+
+            // draw last Try
+            if(Settings.previous && state == GameState.Ready && lastTry.x != -1) {
+                g.drawLine(world.ship.getPosX(), world.ship.getPosY(), lastTry.x, lastTry.y, ((GravityGame)game).getResources().getColor(R.color.lasttry));
             }
 
 			Bitmap ship = Util.RotateBitmap(Assets.ship.getBitmap(), world.ship.heading);

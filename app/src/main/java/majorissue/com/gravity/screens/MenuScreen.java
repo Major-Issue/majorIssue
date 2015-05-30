@@ -82,27 +82,31 @@ public class MenuScreen extends Screen {
 			g.drawText(entry, menuX, menuY, paint);
 			
 			if(entry.equals(((GravityGame)game).getResources().getString(R.string.sound))) {
-				drawSoundExplanation(menuX, menuY, widthMenuBlock);
+				drawExplanation(menuX, menuY, widthMenuBlock, Settings.soundEnabled, R.string.sound_on, R.string.sound_off);
 			}
 			
 			if(entry.equals(((GravityGame)game).getResources().getString(R.string.music))) {
-				drawMusicExplanation(menuX, menuY, widthMenuBlock);
+				drawExplanation(menuX, menuY, widthMenuBlock, Settings.musicEnabled, R.string.music_on, R.string.music_off);
 			}
 			
 			if(entry.equals(((GravityGame)game).getResources().getString(R.string.intro))) {
-				drawIntroExplanation(menuX, menuY, widthMenuBlock);
+				drawExplanation(menuX, menuY, widthMenuBlock, Settings.introState == IntroScreen.INTRO_DO_NOT_SHOW, R.string.intro_off, R.string.intro_on);
 			}
 			
 			if(entry.equals(((GravityGame)game).getResources().getString(R.string.autoretry))) {
-				drawRetryExplanation(menuX, menuY, widthMenuBlock);
+				drawExplanation(menuX, menuY, widthMenuBlock, Settings.autoretry, R.string.autoretry_on, R.string.autoretry_off);
 			}
 
             if(entry.equals(((GravityGame)game).getResources().getString(R.string.aidline))) {
-                drawAidLineExplanation(menuX, menuY, widthMenuBlock);
+                drawExplanation(menuX, menuY, widthMenuBlock, Settings.aidline, R.string.aidline_on, R.string.aidline_off);
+            }
+
+            if(entry.equals(((GravityGame)game).getResources().getString(R.string.previous))) {
+                drawExplanation(menuX, menuY, widthMenuBlock, Settings.previous, R.string.previous_on, R.string.previous_off);
             }
 
             if(entry.equals(((GravityGame)game).getResources().getString(R.string.vibration))) {
-                drawVibrationExplanation(menuX, menuY, widthMenuBlock);
+                drawExplanation(menuX, menuY, widthMenuBlock, Settings.vibrate, R.string.vibration_on, R.string.vibration_off);
             }
 			
 			menuY += (bounds.height() * 2);
@@ -127,62 +131,82 @@ public class MenuScreen extends Screen {
 		g.drawText(info, x, y - (bounds.height() * 2), paint);
 	}
 	
-	private void drawSoundExplanation(int x, int y, int blockWidth) {
-		String text;
-		if(Settings.soundEnabled) {
-			text = ((GravityGame)game).getResources().getString(R.string.sound_on);
-		} else {
-			text = ((GravityGame)game).getResources().getString(R.string.sound_off);
-		}
-		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
-	}
+//	private void drawSoundExplanation(int x, int y, int blockWidth) {
+//		String text;
+//		if(Settings.soundEnabled) {
+//			text = ((GravityGame)game).getResources().getString(R.string.sound_on);
+//		} else {
+//			text = ((GravityGame)game).getResources().getString(R.string.sound_off);
+//		}
+//		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto", Typeface.ITALIC));
+//	}
 	
-	private void drawMusicExplanation(int x, int y, int blockWidth) {
-		String text;
-		if(Settings.musicEnabled) {
-			text = ((GravityGame)game).getResources().getString(R.string.music_on);
-		} else {		
-			text = ((GravityGame)game).getResources().getString(R.string.music_off);
-		}
-		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
-	}
+//	private void drawMusicExplanation(int x, int y, int blockWidth) {
+//		String text;
+//		if(Settings.musicEnabled) {
+//			text = ((GravityGame)game).getResources().getString(R.string.music_on);
+//		} else {
+//			text = ((GravityGame)game).getResources().getString(R.string.music_off);
+//		}
+//		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
+//	}
 	
-	private void drawIntroExplanation(int x, int y, int blockWidth) {
-		String text;
-		if(Settings.introState == IntroScreen.INTRO_DO_NOT_SHOW) {
-			text = ((GravityGame)game).getResources().getString(R.string.intro_off);
-		} else {
-			text = ((GravityGame)game).getResources().getString(R.string.intro_on);
-		}
-		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
-	}
+//	private void drawIntroExplanation(int x, int y, int blockWidth) {
+//		String text;
+//		if(Settings.introState == IntroScreen.INTRO_DO_NOT_SHOW) {
+//			text = ((GravityGame)game).getResources().getString(R.string.intro_off);
+//		} else {
+//			text = ((GravityGame)game).getResources().getString(R.string.intro_on);
+//		}
+//		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
+//	}
 	
-	private void drawRetryExplanation(int x, int y, int blockWidth) {
-		String text;
-		if(Settings.autoretry) {
-			text = ((GravityGame)game).getResources().getString(R.string.autoretry_on);
-		} else {
-			text = ((GravityGame)game).getResources().getString(R.string.autoretry_off);
-		}
-		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
-	}
+//	private void drawRetryExplanation(int x, int y, int blockWidth) {
+//		String text;
+//		if(Settings.autoretry) {
+//			text = ((GravityGame)game).getResources().getString(R.string.autoretry_on);
+//		} else {
+//			text = ((GravityGame)game).getResources().getString(R.string.autoretry_off);
+//		}
+//		game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
+//	}
 
-    private void drawAidLineExplanation(int x, int y, int blockWidth) {
-        String text;
-        if(Settings.aidline) {
-            text = ((GravityGame)game).getResources().getString(R.string.aidline_on);
-        } else {
-            text = ((GravityGame)game).getResources().getString(R.string.aidline_off);
-        }
-        game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
-    }
+//    private void drawAidLineExplanation(int x, int y, int blockWidth) {
+//        String text;
+//        if(Settings.aidline) {
+//            text = ((GravityGame)game).getResources().getString(R.string.aidline_on);
+//        } else {
+//            text = ((GravityGame)game).getResources().getString(R.string.aidline_off);
+//        }
+//        game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
+//    }
 
-    private void drawVibrationExplanation(int x, int y, int blockWidth) {
+//    private void drawPreviousExplanation(int x, int y, int blockWidth) {
+//        String text;
+//        if(Settings.previous) {
+//            text = ((GravityGame)game).getResources().getString(R.string.previous_on);
+//        } else {
+//            text = ((GravityGame)game).getResources().getString(R.string.previous_off);
+//        }
+//        game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
+//    }
+
+//    private void drawVibrationExplanation(int x, int y, int blockWidth) {
+//        String text;
+//        if(Settings.vibrate) {
+//            text = ((GravityGame)game).getResources().getString(R.string.vibration_on);
+//        } else {
+//            text = ((GravityGame)game).getResources().getString(R.string.vibration_off);
+//        }
+//        game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
+//    }
+
+    private void drawExplanation(int x, int y, int blockWidth, boolean on, int resOn, int resOff) {
         String text;
-        if(Settings.vibrate) {
-            text = ((GravityGame)game).getResources().getString(R.string.vibration_on);
+        if(on) {
+            text = ((GravityGame)game).getResources().getString(resOn);
         } else {
-            text = ((GravityGame)game).getResources().getString(R.string.vibration_off);
+            text = ((GravityGame)game).getResources().getString(resOff);
         }
         game.getGraphics().drawText(x + blockWidth + (game.getGraphics().getWidth() / 10), y, 25, text, Typeface.create("Roboto",Typeface.ITALIC));
     }

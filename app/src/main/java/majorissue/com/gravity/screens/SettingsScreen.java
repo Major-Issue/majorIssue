@@ -74,6 +74,7 @@ public class SettingsScreen extends MenuScreen {
 													((GravityGame)game).getResources().getString(R.string.intro),
 													((GravityGame)game).getResources().getString(R.string.autoretry),
 													((GravityGame)game).getResources().getString(R.string.aidline),
+                                                    ((GravityGame)game).getResources().getString(R.string.previous),
                                                     ((GravityGame)game).getResources().getString(R.string.vibration),
                                                     ((GravityGame)game).getResources().getString(R.string.back)
 													}, touchedSettingsEntry);
@@ -101,6 +102,9 @@ public class SettingsScreen extends MenuScreen {
         if(entry.equals(((GravityGame)game).getResources().getString(R.string.aidline))) {
             Settings.toggleAidline();
         }
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.previous))) {
+			Settings.togglePrevious();
+		}
         if(entry.equals(((GravityGame)game).getResources().getString(R.string.vibration))) {
             Settings.toggleVibration();
         }
@@ -130,6 +134,9 @@ public class SettingsScreen extends MenuScreen {
         if(entry.equals(((GravityGame)game).getResources().getString(R.string.aidline))) {
             Assets.menu_click.play(1);
         }
+		if(entry.equals(((GravityGame)game).getResources().getString(R.string.previous))) {
+			Assets.menu_click.play(1);
+		}
         if(entry.equals(((GravityGame)game).getResources().getString(R.string.vibration))) {
             Assets.menu_click.play(1);
         }

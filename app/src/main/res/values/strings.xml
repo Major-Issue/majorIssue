@@ -26,6 +26,9 @@
     <string name="aidline">Aid Line</string>
     <string name="aidline_on">ON</string>
     <string name="aidline_off">OFF</string>
+    <string name="previous">Show Last</string>
+    <string name="previous_on">ON</string>
+    <string name="previous_off">OFF</string>
     <string name="vibration">Vibration</string>
     <string name="vibration_on">ON</string>
     <string name="vibration_off">OFF</string>
