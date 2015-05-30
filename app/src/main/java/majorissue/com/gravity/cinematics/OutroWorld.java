@@ -1,4 +1,4 @@
-package majorissue.com.gravity.outro;
+package majorissue.com.gravity.cinematics;
 
 import majorissue.com.framework.Game;
 

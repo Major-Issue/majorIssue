@@ -1,4 +1,4 @@
-package majorissue.com.gravity.intro;
+package majorissue.com.gravity.cinematics;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public class IntroWorld {
     public Game game;
     public Ship ship;
     public ArrayList<AndroidAnimatedSprite> animations;
-    public ArrayList<IntroText> texts;
+    public ArrayList<CinematicsText> texts;
 
     public boolean firstExplosionExpired = false;
     public boolean secondExplosionExpired = false;
@@ -79,13 +79,13 @@ public class IntroWorld {
         }
     }
 
-    public void addIntroText(IntroText text) {
+    public void addIntroText(CinematicsText text) {
         texts.add(text);
     }
 
     public void updateIntroTexts(float deltaTime) {
         if(texts != null && !texts.isEmpty()) {
-            for(IntroText text : texts) {
+            for(CinematicsText text : texts) {
                 text.update(deltaTime);
                 if(text.isExpired) {
                     switch (text.id) {

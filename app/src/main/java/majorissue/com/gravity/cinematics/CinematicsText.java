@@ -1,11 +1,11 @@
-package majorissue.com.gravity.intro;
+package majorissue.com.gravity.cinematics;
 
 import android.graphics.Typeface;
 
 import majorissue.com.framework.Game;
 import majorissue.com.framework.Graphics;
 
-public class IntroText {
+public class CinematicsText {
 
     private static final float STEP_DURATION = 1/30f;
 
@@ -23,7 +23,7 @@ public class IntroText {
     private float deltaTimeSum = 0f;
     private int idx;
 
-    public IntroText(Game game, String text, float relPosX, float relPosY, float textDuration, Typeface tf, int fs, int id) {
+    public CinematicsText(Game game, String text, float relPosX, float relPosY, float textDuration, Typeface tf, int fs, int id) {
         this.textSource = text;
         this.pixPosX = (int)(game.getGraphics().getWidth() * relPosX);
         this.pixPosY = (int)(game.getGraphics().getHeight() * relPosY);

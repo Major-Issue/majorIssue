@@ -13,8 +13,8 @@ import majorissue.com.framework.Input.TouchEvent;
 import majorissue.com.framework.impl.AndroidAnimatedSprite;
 import majorissue.com.framework.impl.AndroidGraphics;
 import majorissue.com.gravity.GravityGame;
-import majorissue.com.gravity.intro.IntroText;
-import majorissue.com.gravity.intro.IntroWorld;
+import majorissue.com.gravity.cinematics.CinematicsText;
+import majorissue.com.gravity.cinematics.IntroWorld;
 import majorissue.com.gravity.util.Assets;
 import majorissue.com.gravity.util.Settings;
 
@@ -133,7 +133,7 @@ public class IntroScreen extends MenuScreen {
         }
         /* draw texts */
         if(introWorld.texts != null && !introWorld.texts.isEmpty()) {
-            for(IntroText text : introWorld.texts) {
+            for(CinematicsText text : introWorld.texts) {
                 text.draw(g);
             }
         }
@@ -170,25 +170,25 @@ public class IntroScreen extends MenuScreen {
         // TODO:
         if(!firstText) {
             /* add first text */
-            introWorld.addIntroText(new IntroText(game, "what was that!", 0.2f, 0.2f, 2, Typeface.create("Roboto", Typeface.NORMAL), 25, 11));
+            introWorld.addIntroText(new CinematicsText(game, "what was that!", 0.2f, 0.2f, 2, Typeface.create("Roboto", Typeface.NORMAL), 25, 11));
             Assets.whatwasthat.play(1);
             firstText = true;
         }
         if(!secondText && introWorld.firstTextExpired) {
             /* add second text */
-            introWorld.addIntroText(new IntroText(game, "our engine exploded", 0.6f, 0.3f, 4, Typeface.create("Roboto",Typeface.NORMAL), 20, 21));
+            introWorld.addIntroText(new CinematicsText(game, "our engine exploded", 0.6f, 0.3f, 4, Typeface.create("Roboto",Typeface.NORMAL), 20, 21));
             Assets.enginegone.play(1);
             secondText = true;
         }
         if(!thirdText && introWorld.secondTextExpired) {
             /* add third text */
-            introWorld.addIntroText(new IntroText(game, "now what?", 0.2f, 0.2f, 2, Typeface.create("Roboto",Typeface.NORMAL), 25, 12));
+            introWorld.addIntroText(new CinematicsText(game, "now what?", 0.2f, 0.2f, 2, Typeface.create("Roboto",Typeface.NORMAL), 25, 12));
             Assets.howdowegethome.play(1);
             thirdText = true;
         }
         if(!forthText && introWorld.thirdTextExpired) {
             /* add forth text */
-            introWorld.addIntroText(new IntroText(game, "lets try that", 0.6f, 0.3f, 4, Typeface.create("Roboto",Typeface.NORMAL), 20, 22));
+            introWorld.addIntroText(new CinematicsText(game, "lets try that", 0.6f, 0.3f, 4, Typeface.create("Roboto",Typeface.NORMAL), 20, 22));
             Assets.letstrythat.play(1);
             forthText = true;
         }
